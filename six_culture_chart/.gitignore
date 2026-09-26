@@ -1,0 +1,5 @@
+.venv/
+js/node_modules/
+ephe/*.bsp
+ephe/*.se1
+__pycache__/

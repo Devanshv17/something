@@ -1,0 +1,78 @@
+{
+  "executed_utc": "2026-09-26T20:28:09+00:00",
+  "runtime": {
+    "python": "3.12.3 (main, Mar  3 2026, 12:15:18) [GCC 13.3.0]",
+    "platform": "Linux-6.18.44-fc-v37-x86_64-with-glibc2.39",
+    "node": "v22.22.2"
+  },
+  "packages": {
+    "pyswisseph": "2.10.3.2",
+    "pysweph": "2.10.3.6",
+    "skyfield": "1.55",
+    "jplephem": "2.24",
+    "numpy": "2.5.3",
+    "tzdata": "2026.4",
+    "timezonefinder": "5.2.0",
+    "lunar_python": "1.4.8",
+    "sxtwl": "2.0.7",
+    "convertdate": "2.5.1",
+    "py-iztro": "0.1.5",
+    "pythonmonkey": "1.1.0",
+    "immanuel": "1.6.0",
+    "ephem": "4.2.1"
+  },
+  "npm": {
+    "iztro": "2.6.1"
+  },
+  "package_notes": [
+    "pyswisseph and pysweph both provide the `swisseph` module; the loaded binary reports Swiss Ephemeris 2.10.03",
+    "immanuel installed but NOT used: its object model was not needed after direct Swiss Ephemeris computation; no values come from it",
+    "ephem installed but not used",
+    "py-iztro bundles iztro 2.5.0 JS; canonical npm iztro is newer. Both are the same method, not independent."
+  ],
+  "ephemeris_files": {
+    "de440s.bsp": "c1c7feeab882263fc493a9d5a5b2ddd71b54826cdf65d8d17a76126b260a49f2",
+    "seas_18.se1": "a2cd8fc33807c78ca9a700c91c2e042258b12fc4796519e00781440b5ad8b2e2",
+    "semo_18.se1": "1ca07bd67c24374d77226180c20a4f9996cba013697894810518e7eb582ca4f7",
+    "sepl_18.se1": "ca1393ceab3a44fbc895887cf789c68819ae6a1cbc9b22225872dbe4ccd99a66"
+  },
+  "ephemeris_notes": {
+    "swiss": "Swiss Ephemeris 2.10 compressed JPL files sepl_18/semo_18/seas_18 (1800-2400 CE)",
+    "jpl": "de440s.bsp (NAIF generic kernels; DE440 short span 1849-2150)"
+  },
+  "iana_tzdata": "2026d",
+  "conventions": {
+    "shared": "geocentric apparent positions; true ecliptic and equinox of date; UT via Swiss Ephemeris delta-T",
+    "jyotisha": "sidereal, Lahiri (SE_SIDM_LAHIRI), whole-sign houses from Lagna, MEAN node primary (true node reported), Vimshottari 365.25-day year, BPHS natural friendships, combustion orbs Mo12 Ma17 Me14/12R Ju11 Ve10/8R Sa15",
+    "western": "tropical, whole-sign houses, 7 traditional planets, sect by actual horizon (SE sunrise/sunset), Egyptian bounds, Dorothean triplicities, Chaldean faces, Ptolemaic aspects by sign with 3-deg kollesis, under-beams 15 deg / combust 8.5 deg / cazimi 17', Lots by day/night formula, annual profections by whole sign",
+    "bazi": "lunar_python EightChar sect=2 (day changes at 00:00), civil clock primary with LAT track, jie (sectional) solar terms by apparent solar longitude, Da Yun 3 days = 1 year (exact) and lunar_python rounding reported",
+    "ziwei": {
+      "calendar": "solar date input -> iztro lunar conversion",
+      "fixLeap": true,
+      "day_boundary": "iztro default (civil midnight; 23:00-24:00 = late Zi index 12)",
+      "time_index_source": "civil clock hour (IST); LAT variant evaluated in boundary audit",
+      "gender_encoding": "男 (male)",
+      "direction_rule": "iztro default: yang-male forward",
+      "age_convention": "nominal (虚岁) age as used by iztro",
+      "month_note": "Zi Wei uses the lunar month (三月 -> 戊辰 in iztro chineseDate); BaZi uses the solar-term month (己巳). Both are correct within their own convention."
+    },
+    "maya": "GMT 584283 (convertdate default; own implementation uses the same constant explicitly)",
+    "tibetan": "element-animal-gender year only"
+  },
+  "source_checksums": {
+    "build.py": "947bc783dfa9cc7d325e298437ef615256cd67ebe3e905c8f13b65344c1d1368",
+    "js/package.json": "3ea01d56e1c1360a5c3b35d04dd473dfa3e49377eec0cf8ffdb55fd5a57fe98a",
+    "js/ziwei.js": "9309d8d512a83468cfd379cc256b53551459e2a7fe963d8a98773475850978f1",
+    "render.py": "4a2d4e08919d5f0de396ee2837cca0332ddc631e7cbc84f0a18339ee69d65b7c",
+    "sc/astro.py": "d9123915b1fdfee8fbd4775367142e3e25e4d9755b20aea0fda9cfddf7318c31",
+    "sc/audit.py": "ead6f6a8af82e8d8b11f6ee10d685df9364c1b9db7b9e03e047be8071cebdb80",
+    "sc/bazi.py": "60800b954751f06dd04a91f9d4d4ef4cb7c2c5d9a1434be3d863603d50cedb3a",
+    "sc/common.py": "e133c1d1788aed1fe814e725665ac26bef32aeeec1a157f1068f042aeb1a5f08",
+    "sc/jyotisha.py": "c78d41b0f89c6dda11e8baf2f6344ed0d05d4742b489f7bb2f46068727eea969",
+    "sc/maya_tibet.py": "924d829ee5a8790a3580615b18567c4ddc2ac595206d851ecb35544f718368c3",
+    "sc/western.py": "068f0dc1fd18f566b9689be5ff284fa953ca904d6c6741993832d25a09cca7e5",
+    "sc/ziwei.py": "3984f271a680c14ec6f3f9c51ecf901408d82a83556c0f50701807b9ba26216d",
+    "synth.py": "4b1c9060e866f454eff6c09d9d6156e070d45e02726abd645f6895fce0105f05",
+    "verify.py": "480ed546a5ba41bfb87c029809d12764fd280f690f75b3abbe8c86c07764e00a"
+  }
+}
