@@ -41,6 +41,7 @@ Each chart lives in its own directory containing `BIRTH_INPUT.json` and, optiona
 |---|---|
 | 17 May 2004, Lucknow | this folder (`output/`) |
 | Anju, 29 June 1974, Roorkee | `people/anju/` (`people/anju/output/`) |
+| Riya, 23 June 2004, Vashi (±1 h) | `people/riya/` (`people/riya/output/`) |
 
 `NARRATIVE.json` entries record the grade and cluster readings they were written for. If a rerun changes those,
 the page withholds that text instead of showing stale interpretation.

@@ -9,7 +9,7 @@
 - Time uncertainty: user-confirmed exact time, at most 1 minute off; ensemble uses +/-1 min (inner and outer identical). Modelled as **±1 min**. **Every time-dependent output is stable over that interval.**
 - Nearest boundaries: Vedic Lagna Cancer 1.51° (≈7.0 min after / ≈132.1 min before a cusp); Western Ascendant Cancer 25.43° (≈117.9 / ≈21.2 min); Chinese double-hour boundary ≈27.4 min away (LAT track).
 - Birthplace is a named hospital, so positional uncertainty is under ~100 m, negligible for every output.
-- Houses are counted from the **Lagna** (Jyotisha); Western houses vote. Zi Wei uses the **巳** hour. (Rules JY-REFERENCE and W-HOUSES.)
+- Houses are counted from the **Lagna** (Jyotisha); Western houses vote. Zi Wei uses the **巳** hour; BaZi hour pillar stable. (Rules JY-REFERENCE, W-HOUSES, HOUR-STABILITY.)
 
 ## 2. Verification
 

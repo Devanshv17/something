@@ -1,0 +1,32 @@
+{
+  "original_user_input": "23 JUN 2004,  Vashi navi mumbai maharastra, 1PM +-1hr, cureent:- blr. / female, riya",
+  "subject": {"name": "Riya"},
+  "date": {"raw": "23 JUN 2004", "iso": "2004-06-23", "format_assumed": "D Mon YYYY", "calendar": "gregorian"},
+  "time": {"raw": "1PM", "local_24h": "13:00:00"},
+  "time_uncertainty": {
+    "raw": "+-1hr",
+    "interpretation": "approximate time, stated as plus or minus one hour; outer envelope +/-60 min is primary, +/-30 min is the inner scenario",
+    "inner_minutes": 30,
+    "outer_minutes": 60
+  },
+  "birthplace": {
+    "raw": "Vashi navi mumbai maharastra",
+    "name": "Vashi, Navi Mumbai, Maharashtra, India",
+    "latitude": 19.0632481,
+    "longitude": 72.9987966,
+    "elevation_m": 10,
+    "coordinate_source": "OpenStreetMap Nominatim, way 151768155 'Vashi' (Vashi station area; hospital not given, so a few km of positional uncertainty)",
+    "elevation_source": "approximate; not used by any calculation that matters at this precision"
+  },
+  "gender": "female",
+  "current_residence": {
+    "raw": "blr",
+    "name": "Bengaluru, Karnataka, India",
+    "latitude": 12.9767936,
+    "longitude": 77.590082,
+    "coordinate_source": "OpenStreetMap Nominatim, relation 7902476 'Bengaluru' (city)",
+    "note": "used only for a relocated solar return, reported beside the birthplace return"
+  },
+  "calendar_notes": "No non-Gregorian source date reported. India had no DST in 2004.",
+  "analysis_date": "2026-09-27"
+}

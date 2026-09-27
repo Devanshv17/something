@@ -22,7 +22,7 @@ POL_LABEL = {"positive": "supportive", "negative": "strained", "mixed": "double-
              "silent": "silent"}
 GRADE_LABEL = {"STRONG": "All three agree", "MODERATE": "Two agree", "WEAK": "One voice", "DIVERGENT": "Systems disagree",
                "INSUFFICIENT": "No basis"}
-DOMAIN_TITLE = {"D1": "Who you are", "D2": "Work & public life", "D3": "Money & gains", "D4": "Partnership",
+DOMAIN_TITLE = {"D1": "Self & identity", "D2": "Work & public life", "D3": "Money & gains", "D4": "Partnership",
                 "D5": "Home & roots", "D6": "Children & creation", "D7": "Daily rhythm", "D8": "Mind & craft",
                 "D9": "Meaning & luck"}
 
@@ -337,7 +337,8 @@ def main():
          "BaZi · season: " + bz["dm_strength"]["seasonal_verdict"].split(" (")[0]),
         ("Zi Wei life palace", (" ".join(s_["name"] for s_ in next(p_ for p_ in raw["ziwei"]["alternatives"][syn["reference_frames"]["ziwei_hour_branch"]]["chart_zh"]["palaces"] if p_["name"] == "命宫")["majorStars"]) or "empty (borrows)")
          + " in " + raw["ziwei"]["alternatives"][syn["reference_frames"]["ziwei_hour_branch"]]["chart_zh"]["earthlyBranchOfSoulPalace"],
-         syn["reference_frames"]["ziwei_hour_branch"] + " hour · " + raw["ziwei"]["alternatives"][syn["reference_frames"]["ziwei_hour_branch"]]["chart_en"]["fiveElementsClass"]),
+         syn["reference_frames"]["ziwei_hour_branch"] + " hour · " + raw["ziwei"]["alternatives"][syn["reference_frames"]["ziwei_hour_branch"]]["chart_en"]["fiveElementsClass"]
+         + ("" if syn["reference_frames"].get("ziwei_votes", True) else " · hour uncertain")),
         ("Maya day", m["tzolkin"], m["long_count"]),
         ("Tibetan year", f"{t['element']} {t['animal']}", f"{t['gender']} year (year gender, not the person's)"),
     ]:
@@ -410,7 +411,7 @@ def main():
     h.append('<section id="temperament"><div class="sec-head"><div class="eyebrow">Six axes</div><h2>Temperament</h2>'
              '<p>How each cluster reads six personality axes. "Supported" means the relevant factor is in good condition; "strained" means it works against friction.</p></div>')
     h.append('<div class="frame"><div class="tempo"><div class="h">Axis</div><div class="h">Vedic</div><div class="h">Western</div><div class="h">Chinese</div>')
-    col = {"supported": "var(--pos)", "strained": "var(--neg)", "mixed/neutral": "var(--neu)", "silent": "var(--neu)"}
+    col = {"supported": "var(--pos)", "strained": "var(--neg)", "mixed/neutral": "var(--neu)", "silent": "var(--neu)", "sensitive": "var(--mix)"}
     for k, v in syn["temperament"].items():
         h.append(f'<div><b>{E(k.split(" ", 1)[1])}</b><br><span class="mono muted">{E(v["summary"])}</span></div>')
         for c in ("jyotisha", "western", "sinic"):
@@ -459,7 +460,7 @@ def main():
         h.append(f'<tr><td>{g}</td><td class="mono">{v["sign"]} {v["deg"]:.1f}°</td><td class="mono">{v["whole_sign_house"]}</td><td>{E(", ".join(v["essential"]["planet_dignities"]))}</td><td>{E(v["sect_status"])}</td></tr>')
     h.append(f'</tbody></table></div><p class="refs">Ascendant {asc["sign"]} {asc["deg"]:.2f}°, {wc["sect"]} chart · RAW_CALCULATIONS.json → western.charts.+0min</p></div>')
     h.append(f'<div class="frame"><h3 style="margin-bottom:10px">BaZi Four Pillars</h3>{pillars_html(raw)}<p class="refs">Year · Month · Day · Hour. Checked against sxtwl. RAW_CALCULATIONS.json → bazi.primary.pillars</p></div>')
-    h.append(f'<div class="frame"><h3 style="margin-bottom:10px">Zi Wei Dou Shu</h3>{ziwei_html(raw, syn)}<p class="refs">Traditional ring layout; the life palace is outlined. RAW_CALCULATIONS.json → ziwei.alternatives.{syn["reference_frames"]["ziwei_hour_branch"]}</p></div>')
+    h.append(f'<div class="frame"><h3 style="margin-bottom:10px">Zi Wei Dou Shu</h3>{ziwei_html(raw, syn)}<p class="refs">Traditional ring layout; the life palace is outlined.{" <b>Birth hour uncertain: this is the " + syn["reference_frames"]["ziwei_hour_branch"] + "-hour version, Zi Wei does not vote, and the other hour is in the data.</b>" if not syn["reference_frames"].get("ziwei_votes", True) else ""} RAW_CALCULATIONS.json → ziwei.alternatives.{syn["reference_frames"]["ziwei_hour_branch"]}</p></div>')
     h.append("</div></section>")
 
     # ---------- method ----------

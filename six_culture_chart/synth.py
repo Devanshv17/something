@@ -47,6 +47,8 @@ REGISTRY = {
                 "mixed if components >= +1 and <= -1 both present; otherwise neutral (does not vote)",
     "GRADE": "STRONG = 3 clusters same polarity; MODERATE = 2 same; WEAK = only one cluster voting or no agreement; "
              "DIVERGENT = any positive-vs-negative conflict between clusters (takes precedence); INSUFFICIENT = none voting",
+    "HOUR-STABILITY": "if the Chinese double-hour changes inside the interval, Zi Wei projections and decadals do not vote, "
+                      "and a BaZi projection votes only when the adjacent hour pillar yields the same domain and polarity",
     "STABILITY": "outer scenario (+/-30 min) counts only facts stable over the whole interval; inner (+/-15 min) counts "
                  "facts stable over +/-15. Sensitive facts are displayed as alternatives and never vote.",
     "JY-REFERENCE": "Jyotisha houses are counted from the Lagna when the Lagna sign is stable over the whole uncertainty "
@@ -394,7 +396,7 @@ def tg_domains(tg):
     return []
 
 
-def timing(raw, today, ref="chandra"):
+def timing(raw, today, ref="chandra", zw_stable=True):
     from sc.bazi import STEMS, ten_god
     from sc.jyotisha import LORD
     windows = []
@@ -445,7 +447,7 @@ def timing(raw, today, ref="chandra"):
                            f"lunar_python start differs by {bz['da_yun']['start_convention_difference_days']} days"})
     zw = raw["ziwei"]["alternatives"][raw["ziwei"]["primary_branch"]]["chart_zh"]
     by = int(raw["input_audit"]["gregorian_date"][:4])
-    for p in zw["palaces"]:
+    for p in (zw["palaces"] if zw_stable else []):  # Zi Wei decadals depend on the birth hour
         a, b = p["decadal"]["range"]
         # nominal age n corresponds to Chinese year (birth_year + n - 1); boundaries at lunar new year (approximated by year)
         y0, y1 = by + a - 1, by + b
@@ -585,8 +587,21 @@ def main():
     w_sig, w_sc = western_projections(raw, "+0min", houses=False)
     w_inner, _ = western_projections(raw, "+0min", houses=True)
     w_primary = w_inner if asc_stable else w_sig
+    hour_sensitive = st["bazi_hour_civil"]["outer_interval"] != "stable"
+    zw_stable = st["ziwei_time_branch_civil"]["outer_interval"] == "stable"
     bz_p = bazi_projections(raw)
-    zw_p = ziwei_projections(raw, zw_branch)
+    bz_hour_alts = []
+    if hour_sensitive:
+        # HOUR-STABILITY: a BaZi projection votes only if the adjacent hour pillar gives the same domain/polarity
+        bz_alt_full = raw["bazi"]["alternative_hour"]["full"]
+        p_alt = bazi_projections(raw, bz_alt_full)
+        keys_alt = {(p["domain"], p["polarity"]) for p in p_alt}
+        keys_pri = {(p["domain"], p["polarity"]) for p in bz_p}
+        bz_hour_alts = [p for p in bz_p if (p["domain"], p["polarity"]) not in keys_alt] + \
+                       [dict(p, basis=p["basis"] + f" [hour {bz_alt_full['pillars'][3]['ganzhi']}]") for p in p_alt
+                        if (p["domain"], p["polarity"]) not in keys_pri]
+        bz_p = [p for p in bz_p if (p["domain"], p["polarity"]) in keys_alt]
+    zw_p = ziwei_projections(raw, zw_branch) if zw_stable else []
     for p in jy_c + w_inner + bz_p + zw_p:
         p.setdefault("confidence", "medium")
     unc = load_input()["time_uncertainty"]
@@ -605,14 +620,31 @@ def main():
         for off in offs:
             pw, _ = western_projections(raw, off, houses=True)
             alts[f"western_asc_{raw['western']['charts'][off]['asc']['sign']}"] = [p for p in pw if p["mapping_rule"] == "HOUSE-OCC"]
-    if st["ziwei_time_branch_civil"]["crossings"] or st["ziwei_time_branch_LAT"]["crossings"]:
+    if not zw_stable:
+        for br in raw["ziwei"]["alternatives"]:
+            alts[f"ziwei_{br}"] = ziwei_projections(raw, br)
+    elif st["ziwei_time_branch_LAT"]["crossings"]:
         for br in raw["ziwei"]["alternatives"]:
             if br != zw_branch:
                 alts[f"ziwei_{br}"] = ziwei_projections(raw, br)
+    if bz_hour_alts:
+        alts["bazi_hour_dependent"] = bz_hour_alts
     outer = scenarios["outer"]
 
-    tm = timing(raw, today, ref)
+    tm = timing(raw, today, ref, zw_stable)
     temp = temperament(raw, jy_sc, w_sc, raw["bazi"]["primary"], raw["ziwei"]["alternatives"][zw_branch])
+    if hour_sensitive or not zw_stable:
+        alt_br = next((b for b in raw["ziwei"]["alternatives"] if b != zw_branch), zw_branch)
+        temp_alt = temperament(raw, jy_sc, w_sc, raw["bazi"]["alternative_hour"]["full"], raw["ziwei"]["alternatives"][alt_br])
+        for k in temp:
+            a_, b_ = temp[k]["clusters"]["sinic"], temp_alt[k]["clusters"]["sinic"]
+            if a_["reading"] != b_["reading"]:
+                temp[k]["clusters"]["sinic"] = {"reading": "sensitive", "basis": f"{zw_branch} hour: {a_['reading']} ({a_['basis']}); "
+                                                                              f"{alt_br} hour: {b_['reading']} ({b_['basis']})"}
+            labs = [x["reading"] for x in temp[k]["clusters"].values() if x["reading"] not in ("silent", "mixed/neutral", "sensitive")]
+            conflict = "supported" in labs and "strained" in labs
+            agree = max((labs.count(x), x) for x in set(labs)) if labs else (0, None)
+            temp[k]["summary"] = "conflict" if conflict else (f"{agree[0]} clusters: {agree[1]}" if agree[1] else "no clear signal")
 
     # claim accounting
     all_candidates = jy_c + w_inner + bz_p + zw_p + [p for v in alts.values() for p in v]
@@ -644,7 +676,8 @@ def main():
               for y, gz in raw["bazi"]["primary"]["annual_pillars"].items() if int(y) in (2026, 2027, 2028)}
     syn = {"registry": REGISTRY, "house_domain": HOUSE_DOMAIN, "domains": DOMAINS,
            "scenarios": scenarios, "sensitive_alternatives": alts,
-           "reference_frames": {"jyotisha_houses": ref, "western_houses_vote": asc_stable, "ziwei_hour_branch": zw_branch},
+           "reference_frames": {"jyotisha_houses": ref, "western_houses_vote": asc_stable, "ziwei_hour_branch": zw_branch,
+                                "ziwei_votes": zw_stable, "bazi_hour_stable": not hour_sensitive},
            "secondary_jyotisha_view": jy_secondary,
            "rule_application_note": ("Registry unchanged from the ±30 min run; JY-REFERENCE and W-HOUSES now select the Lagna "
                                      "and Ascendant houses because both are stable over ±1 min."),

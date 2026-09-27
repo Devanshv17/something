@@ -9,7 +9,7 @@
 - Time uncertainty: approximate time, stated as within about 5-10 minutes; outer envelope +/-10 min is primary, +/-5 min is the inner scenario. Modelled as **±10 min** (inner scenario ±5 min). **Outputs that change inside it:** jyotisha_lagna_d9 (Aries→Taurus at -5.2 min); jyotisha_lagna_d10 (Capricorn→Aquarius at -2.1 min); jyotisha_lagna_nakshatra_pada (Punarvasu-1→Punarvasu-2 at -5.2 min).
 - Nearest boundaries: Vedic Lagna Gemini 24.45° (≈113.3 min after / ≈25.7 min before a cusp); Western Ascendant Cancer 17.95° (≈83.2 / ≈55.9 min); Chinese double-hour boundary ≈45.0 min away (civil track).
 - Coordinates: OpenStreetMap Nominatim, node 4373395280 'Roorkee' (city centre; hospital not given, so a few km of positional uncertainty). A different hospital in the same town shifts the Ascendant by roughly 0.1°.
-- Houses are counted from the **Lagna** (Jyotisha); Western houses vote. Zi Wei uses the **卯** hour. (Rules JY-REFERENCE and W-HOUSES.)
+- Houses are counted from the **Lagna** (Jyotisha); Western houses vote. Zi Wei uses the **卯** hour; BaZi hour pillar stable. (Rules JY-REFERENCE, W-HOUSES, HOUR-STABILITY.)
 
 ## 2. Verification
 

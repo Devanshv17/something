@@ -16,6 +16,7 @@
     "BZ-D8": "Output stars (食神/伤官) visible or >=3 hidden, plus Resource present -> positive, high",
     "POLARITY": "positive if net >= +1 and no component <= -1; negative if net <= -1 and no component >= +1; mixed if components >= +1 and <= -1 both present; otherwise neutral (does not vote)",
     "GRADE": "STRONG = 3 clusters same polarity; MODERATE = 2 same; WEAK = only one cluster voting or no agreement; DIVERGENT = any positive-vs-negative conflict between clusters (takes precedence); INSUFFICIENT = none voting",
+    "HOUR-STABILITY": "if the Chinese double-hour changes inside the interval, Zi Wei projections and decadals do not vote, and a BaZi projection votes only when the adjacent hour pillar yields the same domain and polarity",
     "STABILITY": "outer scenario (+/-30 min) counts only facts stable over the whole interval; inner (+/-15 min) counts facts stable over +/-15. Sensitive facts are displayed as alternatives and never vote.",
     "JY-REFERENCE": "Jyotisha houses are counted from the Lagna when the Lagna sign is stable over the whole uncertainty interval; otherwise from Chandra Lagna (Moon sign). The unused frame is shown as a non-voting secondary view.",
     "W-HOUSES": "Western whole-sign house projections vote only when the Ascendant sign is stable over the whole interval.",
@@ -1060,7 +1061,9 @@
   "reference_frames": {
     "jyotisha_houses": "lagna",
     "western_houses_vote": true,
-    "ziwei_hour_branch": "卯"
+    "ziwei_hour_branch": "卯",
+    "ziwei_votes": true,
+    "bazi_hour_stable": true
   },
   "secondary_jyotisha_view": [
     {

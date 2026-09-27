@@ -1,0 +1,357 @@
+{
+  "subject": {
+    "name": "Riya",
+    "possessive": "Riya's",
+    "title": "Riya's Life Map"
+  },
+  "reading": {
+    "narrow": {
+      "D2|mixed|MODERATE": "Vedic (Venus in its own sign in the 10th from the Moon, against a weak Sun) and BaZi (伤官见官 under either hour) agree that work is **prominent and comes with friction**, especially around authority.",
+      "D3|mixed|MODERATE": "Vedic (Sun, Mercury and Saturn crowd the 11th from the Moon, against a strong Jupiter) and BaZi (财多身弱: weak water Day Master with plenty of Fire wealth) agree that money and gains are **prominent but double-edged**.",
+      "D6|positive|MODERATE": "Vedic (Jupiter in a friendly sign) and BaZi (the Hurting Officer, a woman's children and creation star, visible under either hour) read children and creation **favourably**. Symbolic only."
+    },
+    "divergent": {
+      "D8": "BaZi reads mind and craft as positive (Hurting Officer and Direct Resource visible). Vedic reads it as negative (Ketu in the 3rd from the Moon). Western is neutral. The systems genuinely disagree."
+    },
+    "timing_notes": []
+  },
+  "html": {
+    "hero_place": "Vashi, Navi Mumbai (hospital not given)",
+    "domains": {
+      "D1": {
+        "expect": {
+          "grade": "WEAK",
+          "cluster_polarity": {
+            "jyotisha": "mixed",
+            "western": "neutral",
+            "sinic": "negative"
+          }
+        },
+        "headline": "Warm and generous by the Moon, but with a quiet, under-pressure core.",
+        "traditions": [
+          [
+            "jyotisha",
+            "Her rising sign is uncertain (Leo or Virgo), so Vedic houses are read from the Moon. The Moon and Jupiter sit together in Leo, which forms Gajakesari yoga, classically generosity, dignity and good counsel. The Sun, marker of confidence, is in Gemini, a neutral sign, and scores weak."
+          ],
+          [
+            "sinic",
+            "Her BaZi Day Master is 癸, Yin Water, the image of rain or dew. Born in the fire month 午, it is weak by both measures and under either birth hour, rooted only in the year branch."
+          ],
+          [
+            "western",
+            "The Sun is peregrine in Cancer: neutral."
+          ]
+        ],
+        "practice": [
+          "Tradition would expect a kind, big-hearted presence (Moon with Jupiter), with self-confidence that needs building rather than coming ready-made.",
+          "Only one cluster gives a clear, consistent reading here, so hold it loosely."
+        ],
+        "reflect": [
+          "Where does her generosity show first?"
+        ]
+      },
+      "D2": {
+        "expect": {
+          "grade": "MODERATE",
+          "cluster_polarity": {
+            "jyotisha": "mixed",
+            "western": "neutral",
+            "sinic": "mixed"
+          }
+        },
+        "headline": "Work matters a lot to her, and it comes with push and pull.",
+        "traditions": [
+          [
+            "jyotisha",
+            "Counted from the Moon, Venus sits in the 10th house of career in its own sign, Taurus. Tradition links Venus in the career position with art, design, beauty, people and comfort. The Sun, significator of status, is only in a neutral sign."
+          ],
+          [
+            "sinic",
+            "Under either birth hour, BaZi shows an Officer star (authority, structure) on the hour stem and a Hurting Officer (talent that questions rules) on the year stem: the classic 伤官见官 tension."
+          ],
+          [
+            "western",
+            "Neutral: the Western houses can't be used because her Ascendant is uncertain (Virgo or Libra)."
+          ]
+        ],
+        "practice": [
+          "Tradition would expect work to be an important part of her identity, with friction around rules, hierarchy and being told what to do.",
+          "The Vedic picture leans toward Venus fields: creative, aesthetic or people-facing work."
+        ],
+        "reflect": [
+          "When has a rule or a boss clashed with how she wanted to do something?"
+        ]
+      },
+      "D3": {
+        "expect": {
+          "grade": "MODERATE",
+          "cluster_polarity": {
+            "jyotisha": "mixed",
+            "western": "neutral",
+            "sinic": "mixed"
+          }
+        },
+        "headline": "Money and gains are active, and double-edged.",
+        "traditions": [
+          [
+            "jyotisha",
+            "Counted from the Moon, the Sun, Mercury and Saturn fill her 11th house of income and networks. That makes gains very prominent, but the registry scores the group as strained. Jupiter, the wealth significator, is strong in a friendly sign with the Moon."
+          ],
+          [
+            "sinic",
+            "Fire, her Wealth element, is a large part of her BaZi while the Day Master is weak: 财多身弱, more wealth around her than she can easily hold. The BaZi year 2026 丙午 is entirely Wealth stars."
+          ],
+          [
+            "western",
+            "Jupiter is in Virgo, its detriment: neutral."
+          ]
+        ],
+        "practice": [
+          "Tradition would expect income to come through groups, friends and networks (the crowded 11th from the Moon), with a need to guard against taking on more than she can hold.",
+          "Not financial advice and not a forecast of gain or loss."
+        ],
+        "reflect": [
+          "Which of her opportunities have come through friends or groups?"
+        ]
+      },
+      "D4": {
+        "expect": {
+          "grade": "WEAK",
+          "cluster_polarity": {
+            "jyotisha": "positive",
+            "western": "neutral",
+            "sinic": "silent"
+          }
+        },
+        "headline": "Partnership: supportive in the Vedic chart; the Chinese reading depends on the unknown hour.",
+        "traditions": [
+          [
+            "jyotisha",
+            "Venus, the marker of love and marriage, is in Taurus, its own sign, in both the D1 and D9 charts (vargottama): a strong, steady signature."
+          ],
+          [
+            "sinic",
+            "Silent: the BaZi spouse-palace reading changes with the birth hour, so it does not vote."
+          ],
+          [
+            "western",
+            "Venus is retrograde and peregrine in Gemini: neutral."
+          ]
+        ],
+        "practice": [
+          "Only the Vedic chart gives a stable signal, and it is a favourable one."
+        ],
+        "reflect": []
+      },
+      "D5": {
+        "expect": {
+          "grade": "WEAK",
+          "cluster_polarity": {
+            "jyotisha": "neutral",
+            "western": "neutral",
+            "sinic": "positive"
+          }
+        },
+        "headline": "Home and roots: one supportive voice.",
+        "traditions": [
+          [
+            "sinic",
+            "The Direct Resource star (mother, support, learning) is visible on her month stem."
+          ],
+          [
+            "jyotisha",
+            "The Moon, significator of home and mother, is in a friendly sign: neutral under the registry."
+          ]
+        ],
+        "practice": [
+          "A single supportive reading; hold it loosely."
+        ],
+        "reflect": []
+      },
+      "D6": {
+        "expect": {
+          "grade": "MODERATE",
+          "cluster_polarity": {
+            "jyotisha": "positive",
+            "western": "neutral",
+            "sinic": "positive"
+          }
+        },
+        "headline": "Children and creation: two clusters read it favourably.",
+        "traditions": [
+          [
+            "jyotisha",
+            "Jupiter, the significator of children and creative legacy, is in a friendly sign with the Moon."
+          ],
+          [
+            "sinic",
+            "For a woman's chart BaZi reads children from the Output stars; the Hurting Officer is visible on her year stem under either birth hour."
+          ],
+          [
+            "western",
+            "Jupiter is in its detriment: neutral."
+          ]
+        ],
+        "practice": [
+          "A favourable signature for creativity and, in time, for children. Symbolic only; nothing about fertility."
+        ],
+        "reflect": [
+          "What does she make or start that nobody asked her to?"
+        ]
+      },
+      "D7": {
+        "expect": {
+          "grade": "INSUFFICIENT",
+          "cluster_polarity": {
+            "jyotisha": "silent",
+            "western": "neutral",
+            "sinic": "silent"
+          }
+        },
+        "headline": "No clear signal, and symbolic only anyway.",
+        "traditions": [],
+        "practice": [
+          "Nothing on this page is a health, medical or lifespan statement."
+        ],
+        "reflect": []
+      },
+      "D8": {
+        "expect": {
+          "grade": "DIVERGENT",
+          "cluster_polarity": {
+            "jyotisha": "negative",
+            "western": "neutral",
+            "sinic": "positive"
+          }
+        },
+        "headline": "Mind and craft: the systems disagree.",
+        "traditions": [
+          [
+            "sinic",
+            "The Hurting Officer (expressive, critical talent) is visible on her year stem, backed by a visible Direct Resource (learning): a positive reading."
+          ],
+          [
+            "jyotisha",
+            "Counted from the Moon, Ketu sits in the 3rd house of skills and communication: a negative reading. Mercury is in its own sign, but combust."
+          ],
+          [
+            "western",
+            "Mercury is combust and peregrine in Cancer: neutral."
+          ]
+        ],
+        "practice": [
+          "Unresolved; no verdict comes out of it."
+        ],
+        "reflect": []
+      },
+      "D9": {
+        "expect": {
+          "grade": "WEAK",
+          "cluster_polarity": {
+            "jyotisha": "mixed",
+            "western": "neutral",
+            "sinic": "silent"
+          }
+        },
+        "headline": "Meaning and luck: mixed within the Vedic chart, silent elsewhere.",
+        "traditions": [
+          [
+            "jyotisha",
+            "Jupiter is strong with the Moon, but Rahu sits in the 9th house from the Moon, so the reading is mixed."
+          ]
+        ],
+        "practice": [
+          "Nothing clear to read here."
+        ],
+        "reflect": []
+      }
+    },
+    "chapters": [
+      {
+        "start": "2021-01-01",
+        "end": "2026-07-24",
+        "title": "Partnership and career under Officer luck",
+        "tag": "MODERATE",
+        "text": "The Vedic Venus period (2006 to 2026) overlaps BaZi's 戊辰 luck pillar (June 2020 to June 2030), which has the Officer star on both stem and branch. For a woman's chart, BaZi reads the Officer as both career and partner. Two clusters activate partnership and work together.",
+        "refs": [
+          "SYNTHESIS.json → timing.windows (D2, D4)"
+        ]
+      },
+      {
+        "start": "2026-07-24",
+        "end": "2027-02-08",
+        "title": "The Venus-to-Sun changeover (happening now)",
+        "tag": "WEAK",
+        "text": "Her 20-year Vedic Venus period ends and a 6-year Sun period begins. With a ±1 hour birth time, the switch falls somewhere between 24 Jul 2026 and 8 Feb 2027 (1 Nov 2026 at 13:00). BaZi's 2026 year 丙午 is all Wealth stars. Her Western year from 23 Jun 2026 activates the 11th house (gains, friends) whichever Ascendant is right.",
+        "refs": [
+          "RAW_CALCULATIONS.json → jyotisha.vimshottari",
+          "SYNTHESIS.json → bazi_annual_ten_gods.2026"
+        ]
+      },
+      {
+        "start": "2027-02-08",
+        "end": "2030-06-19",
+        "title": "Work and status",
+        "tag": "MODERATE",
+        "text": "The Vedic Sun period (the Sun signifies status and authority) overlaps the rest of BaZi's Officer-heavy 戊辰 pillar. Until 23 Jun 2027 the Western 11th-house year also lines up with the Sun period on money and gains.",
+        "refs": [
+          "SYNTHESIS.json → timing.windows (D2, D3)"
+        ]
+      },
+      {
+        "start": "2028-06-23",
+        "end": "2029-06-23",
+        "title": "A year about her",
+        "tag": "MODERATE",
+        "text": "Her Western age-24 year activates the 1st house (self), and the Vedic Sun period also activates the self: two clusters together.",
+        "refs": [
+          "SYNTHESIS.json → timing.windows (D1)"
+        ]
+      },
+      {
+        "start": "2030-06-19",
+        "end": "2032-07-24",
+        "title": "Money and making things",
+        "tag": "MODERATE",
+        "text": "BaZi's luck pillar changes to 丁卯 (about 19 Jun 2030): Indirect Wealth on the stem, Eating God (output, creativity) in the branch. With the Vedic Sun period still running, money is activated by two clusters.",
+        "refs": [
+          "SYNTHESIS.json → timing.windows (D3)"
+        ]
+      },
+      {
+        "start": "2032-07-24",
+        "end": "2042-07-24",
+        "title": "Vedic Moon period",
+        "tag": "WEAK",
+        "text": "A ten-year Moon period starts between Jul 2032 and Feb 2033. The Moon is with Jupiter in Leo, the Gajakesari pairing.",
+        "refs": [
+          "RAW_CALCULATIONS.json → jyotisha.vimshottari"
+        ]
+      }
+    ],
+    "tension": [
+      {
+        "title": "Mind & craft",
+        "text": "BaZi's visible Hurting Officer and Resource stars read creative and intellectual output as strong. Vedic Ketu in the 3rd house from the Moon reads it as strained. The systems contradict each other, and neither wins.",
+        "link": "D8",
+        "refs": "SYNTHESIS.json → scenarios.outer.domains.D8"
+      },
+      {
+        "title": "The birth hour changes Zi Wei completely",
+        "text": "Before 13:00 by the clock (or before about 13:40 by local solar time) she was born in the 午 hour, and her Zi Wei life palace holds 武曲 turning to 化科 with 天府, a strong pair. After that it is the 未 hour, and the life palace holds 太阳, weak and turning to 化忌. Opposite pictures, so Zi Wei is kept out of every grade until the time is known.",
+        "refs": "RAW_CALCULATIONS.json → ziwei.alternatives.午 / .未"
+      },
+      {
+        "title": "Two rising signs in each zodiac",
+        "text": "Across ±1 hour the Vedic rising sign is Leo or Virgo (Virgo from about 12:05) and the Western one Virgo or Libra (Libra from about 12:31). That is why the houses here are read from the Moon.",
+        "refs": "INPUT_AUDIT.md → boundary audit"
+      },
+      {
+        "title": "Helpful element",
+        "text": "Both BaZi strength measures agree her 癸 water is weak. The balancing school's helpful elements are Metal and Water. The seasonal school has no verified entry in this build for 癸 in 午, so confidence stays low.",
+        "refs": "SYNTHESIS.json → yong_shen"
+      }
+    ],
+    "temperament_summary": "What stands out: drive and discipline read strained in both the Vedic and Western charts (Mars in its weakest sign in both zodiacs; Saturn in detriment in the Western chart). Adaptability is supported in both, with several planets in Gemini and Virgo. The Chinese leadership reading depends on the unknown birth hour."
+  }
+}

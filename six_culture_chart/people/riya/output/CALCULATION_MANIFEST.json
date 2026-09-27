@@ -1,5 +1,5 @@
 {
-  "executed_utc": "2026-09-27T18:17:26+00:00",
+  "executed_utc": "2026-09-27T18:17:37+00:00",
   "runtime": {
     "python": "3.12.3 (main, Mar  3 2026, 12:15:18) [GCC 13.3.0]",
     "platform": "Linux-6.18.44-fc-v37-x86_64-with-glibc2.39",
@@ -51,7 +51,7 @@
       "fixLeap": true,
       "day_boundary": "iztro default (civil midnight; 23:00-24:00 = late Zi index 12)",
       "time_index_source": "civil clock hour (IST); LAT variant evaluated in boundary audit",
-      "gender_encoding": "男 (male)",
+      "gender_encoding": "女 (female)",
       "direction_rule": "iztro default: yang-male / yin-female forward",
       "age_convention": "nominal (虚岁) age as used by iztro",
       "month_note": "Zi Wei uses the lunar month (iztro chineseDate); BaZi uses the solar-term month. They can differ; both are correct within their own convention."

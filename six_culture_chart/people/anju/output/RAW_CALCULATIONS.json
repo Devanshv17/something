@@ -6071,6 +6071,408 @@
         ],
         "confidence": "low",
         "sub_verdicts_disagree": false
+      },
+      "full": {
+        "primary_track": "civil_clock (IST) with lunar_python sect=2; local-apparent-solar-time track retained",
+        "tracks": {
+          "civil_clock": {
+            "input_time": "1974-06-29T07:01:00",
+            "pillars": [
+              "甲寅",
+              "庚午",
+              "辛丑",
+              "壬辰"
+            ],
+            "sxtwl_pillars": [
+              "甲寅",
+              "庚午",
+              "辛丑",
+              "壬辰"
+            ]
+          },
+          "local_apparent_solar_time": {
+            "input_time": "1974-06-29T07:01:00",
+            "pillars": [
+              "甲寅",
+              "庚午",
+              "辛丑",
+              "壬辰"
+            ],
+            "sxtwl_pillars": [
+              "甲寅",
+              "庚午",
+              "辛丑",
+              "壬辰"
+            ]
+          }
+        },
+        "pillars": [
+          {
+            "pillar": "year",
+            "ganzhi": "甲寅",
+            "pinyin": "Jia Yin",
+            "stem": "甲",
+            "stem_element": "Wood",
+            "stem_polarity": "Yang",
+            "branch": "寅",
+            "branch_element": "Wood",
+            "hidden_stems": [
+              {
+                "stem": "甲",
+                "element": "Wood",
+                "ten_god": "正财 Direct Wealth"
+              },
+              {
+                "stem": "丙",
+                "element": "Fire",
+                "ten_god": "正官 Direct Officer"
+              },
+              {
+                "stem": "戊",
+                "element": "Earth",
+                "ten_god": "正印 Direct Resource"
+              }
+            ],
+            "ten_god_of_stem": "正财 Direct Wealth",
+            "na_yin_traditional_attribute": "大溪水"
+          },
+          {
+            "pillar": "month",
+            "ganzhi": "庚午",
+            "pinyin": "Geng Wu",
+            "stem": "庚",
+            "stem_element": "Metal",
+            "stem_polarity": "Yang",
+            "branch": "午",
+            "branch_element": "Fire",
+            "hidden_stems": [
+              {
+                "stem": "丁",
+                "element": "Fire",
+                "ten_god": "七杀 Seven Killings"
+              },
+              {
+                "stem": "己",
+                "element": "Earth",
+                "ten_god": "偏印 Indirect Resource"
+              }
+            ],
+            "ten_god_of_stem": "劫财 Rob Wealth",
+            "na_yin_traditional_attribute": "路旁土"
+          },
+          {
+            "pillar": "day",
+            "ganzhi": "辛丑",
+            "pinyin": "Xin Chou",
+            "stem": "辛",
+            "stem_element": "Metal",
+            "stem_polarity": "Yin",
+            "branch": "丑",
+            "branch_element": "Earth",
+            "hidden_stems": [
+              {
+                "stem": "己",
+                "element": "Earth",
+                "ten_god": "偏印 Indirect Resource"
+              },
+              {
+                "stem": "癸",
+                "element": "Water",
+                "ten_god": "食神 Eating God"
+              },
+              {
+                "stem": "辛",
+                "element": "Metal",
+                "ten_god": "比肩 Friend"
+              }
+            ],
+            "ten_god_of_stem": "日主 Day Master",
+            "na_yin_traditional_attribute": "壁上土"
+          },
+          {
+            "pillar": "hour",
+            "ganzhi": "壬辰",
+            "pinyin": "Ren Chen",
+            "stem": "壬",
+            "stem_element": "Water",
+            "stem_polarity": "Yang",
+            "branch": "辰",
+            "branch_element": "Earth",
+            "hidden_stems": [
+              {
+                "stem": "戊",
+                "element": "Earth",
+                "ten_god": "正印 Direct Resource"
+              },
+              {
+                "stem": "乙",
+                "element": "Wood",
+                "ten_god": "偏财 Indirect Wealth"
+              },
+              {
+                "stem": "癸",
+                "element": "Water",
+                "ten_god": "食神 Eating God"
+              }
+            ],
+            "ten_god_of_stem": "伤官 Hurting Officer",
+            "na_yin_traditional_attribute": "长流水"
+          }
+        ],
+        "day_master": {
+          "stem": "辛",
+          "element": "Metal",
+          "polarity": "Yin"
+        },
+        "solar_terms": {
+          "芒种": {
+            "role": "prev",
+            "pinyin": "Mangzhong (Grain in Ear)",
+            "sun_longitude": 75.0,
+            "swiss_ephemeris_utc": "1974-06-06T01:51:39+00:00",
+            "skyfield_jpl_utc": "1974-06-06T01:51:39+00:00",
+            "lunar_python_utc": "1974-06-06T01:51:39+00:00",
+            "sxtwl_utc": "1974-06-06T01:51:39+00:00",
+            "max_difference_s": 0.511036
+          },
+          "小暑": {
+            "role": "next",
+            "pinyin": "Xiaoshu (Minor Heat)",
+            "sun_longitude": 105.0,
+            "swiss_ephemeris_utc": "1974-07-07T12:11:05+00:00",
+            "skyfield_jpl_utc": "1974-07-07T12:11:05+00:00",
+            "lunar_python_utc": "1974-07-07T12:11:06+00:00",
+            "sxtwl_utc": "1974-07-07T12:11:05+00:00",
+            "max_difference_s": 0.761138
+          }
+        },
+        "prev_jie": "芒种",
+        "next_jie": "小暑",
+        "birth_after_prev_jie_days": 22.95370936300926,
+        "birth_before_next_jie_days": 8.476451572962963,
+        "interactions": [
+          {
+            "type": "harm 六害",
+            "pillars": [
+              "month",
+              "day"
+            ],
+            "chars": "午丑"
+          },
+          {
+            "type": "destruction 六破",
+            "pillars": [
+              "day",
+              "hour"
+            ],
+            "chars": "丑辰"
+          },
+          {
+            "type": "three-harmony (partial)",
+            "chars": "寅午",
+            "element": "Fire",
+            "note": "half-combination requires the middle branch in most schools"
+          }
+        ],
+        "dm_strength": {
+          "rule": "BZ-DM-1",
+          "day_master": "辛",
+          "element_tally": {
+            "Wood": 2.5,
+            "Fire": 2.5,
+            "Earth": 3.3,
+            "Metal": 1.3,
+            "Water": 1.8
+          },
+          "support_share": 0.40350877192982454,
+          "weighted_count_verdict": "weak",
+          "seasonal_verdict": "weakened (month drains/controls/is controlled)",
+          "rows": [
+            [
+              "甲",
+              "visible",
+              1.0
+            ],
+            [
+              "甲",
+              "hidden-main-year",
+              1.0
+            ],
+            [
+              "丙",
+              "hidden-middle-year",
+              0.5
+            ],
+            [
+              "戊",
+              "hidden-residual-year",
+              0.3
+            ],
+            [
+              "庚",
+              "visible",
+              1.0
+            ],
+            [
+              "丁",
+              "hidden-main-month",
+              2.0
+            ],
+            [
+              "己",
+              "hidden-middle-month",
+              1.0
+            ],
+            [
+              "己",
+              "hidden-main-day",
+              1.0
+            ],
+            [
+              "癸",
+              "hidden-middle-day",
+              0.5
+            ],
+            [
+              "辛",
+              "hidden-residual-day",
+              0.3
+            ],
+            [
+              "壬",
+              "visible",
+              1.0
+            ],
+            [
+              "戊",
+              "hidden-main-hour",
+              1.0
+            ],
+            [
+              "乙",
+              "hidden-middle-hour",
+              0.5
+            ],
+            [
+              "癸",
+              "hidden-residual-hour",
+              0.3
+            ]
+          ],
+          "rooting": [
+            "day"
+          ]
+        },
+        "da_yun": {
+          "direction": "backward",
+          "direction_rule": "yang-year male or yin-year female => forward (to next jie); otherwise backward (to previous jie)",
+          "days_to_sectional_term_used": 22.95370936300926,
+          "start_offset_years_exact_3day_rule": 7.65123645433642,
+          "start_date_exact_3day_rule": "1982-02-21",
+          "lunar_python_start": {
+            "years": 7,
+            "months": 7,
+            "days": 20,
+            "date": "1982-02-18"
+          },
+          "start_convention_difference_days": 3,
+          "periods_lunar_python": [
+            {
+              "start_year": 1982,
+              "end_year": 1991,
+              "start_age_virtual": 9,
+              "ganzhi": "己巳"
+            },
+            {
+              "start_year": 1992,
+              "end_year": 2001,
+              "start_age_virtual": 19,
+              "ganzhi": "戊辰"
+            },
+            {
+              "start_year": 2002,
+              "end_year": 2011,
+              "start_age_virtual": 29,
+              "ganzhi": "丁卯"
+            },
+            {
+              "start_year": 2012,
+              "end_year": 2021,
+              "start_age_virtual": 39,
+              "ganzhi": "丙寅"
+            },
+            {
+              "start_year": 2022,
+              "end_year": 2031,
+              "start_age_virtual": 49,
+              "ganzhi": "乙丑"
+            },
+            {
+              "start_year": 2032,
+              "end_year": 2041,
+              "start_age_virtual": 59,
+              "ganzhi": "甲子"
+            },
+            {
+              "start_year": 2042,
+              "end_year": 2051,
+              "start_age_virtual": 69,
+              "ganzhi": "癸亥"
+            },
+            {
+              "start_year": 2052,
+              "end_year": 2061,
+              "start_age_virtual": 79,
+              "ganzhi": "壬戌"
+            },
+            {
+              "start_year": 2062,
+              "end_year": 2071,
+              "start_age_virtual": 89,
+              "ganzhi": "辛酉"
+            }
+          ]
+        },
+        "annual_pillars": {
+          "2024": "甲辰",
+          "2025": "乙巳",
+          "2026": "丙午",
+          "2027": "丁未",
+          "2028": "戊申",
+          "2029": "己酉",
+          "2030": "庚戌"
+        },
+        "yong_shen": {
+          "schools": [
+            {
+              "school": "调候 Seasonal regulation (Qiong Tong Bao Jian)",
+              "useful": [
+                "unavailable"
+              ],
+              "rule_chain": [
+                "Day Master 辛, month branch 午: no verified table entry in this build"
+              ]
+            },
+            {
+              "school": "扶抑 Strength-balancing (rule BZ-DM-1)",
+              "rule_chain": [
+                "weighted support share 0.404 -> weak",
+                "seasonal status: weakened (month drains/controls/is controlled)",
+                "sub-verdicts agree"
+              ],
+              "useful": [
+                "Resource element",
+                "Companion element"
+              ],
+              "useful_elements": [
+                "Earth",
+                "Metal"
+              ]
+            }
+          ],
+          "confidence": "low",
+          "sub_verdicts_disagree": false
+        }
       }
     }
   },

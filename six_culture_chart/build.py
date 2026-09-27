@@ -236,6 +236,8 @@ def main():
     bz_alt_summary["yong_shen"] = bazi.yong_shen(bz_alt)
     terms = bz.pop("_term_objs")
     bz_alt.pop("_term_objs")
+    bz_alt["yong_shen"] = bz_alt_summary["yong_shen"]
+    bz_alt_summary["full"] = bz_alt
 
     # ---------- Western ----------
     bdate = local.date()
