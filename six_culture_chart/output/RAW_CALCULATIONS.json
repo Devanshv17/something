@@ -5,10 +5,10 @@
     "local_iso": "2004-05-17T09:30:00+05:30",
     "utc_iso": "2004-05-17T04:00:00+00:00",
     "weekday": "Monday",
-    "latitude": 26.8467,
-    "longitude": 80.9462,
+    "latitude": 26.8714586,
+    "longitude": 80.9521445,
     "elevation_m": 123,
-    "coordinate_source": "city-centre coordinates (GeoNames/Wikipedia consensus for Lucknow); hospital/district not provided, so up to ~10 km positional uncertainty",
+    "coordinate_source": "OpenStreetMap Nominatim, way 211742439 'Fatima General Hospital' (footprint centroid; building extent < 100 m)",
     "iana_zone": "Asia/Kolkata",
     "tzdata_release": "2026d",
     "utc_offset": "5:30:00",
@@ -30,18 +30,18 @@
     "julian_day_ut": 2453142.6666666665,
     "julian_day_tt": 2453142.667414506,
     "delta_t_seconds": 64.61333124981,
-    "local_mean_time": "2004-05-17T09:23:47",
+    "local_mean_time": "2004-05-17T09:23:48",
     "equation_of_time_minutes": 3.63461696298873,
-    "local_apparent_solar_time": "2004-05-17T09:27:25",
+    "local_apparent_solar_time": "2004-05-17T09:27:26",
     "sunrise": {
-      "swiss_ephemeris": "2004-05-17T05:17:47+05:30",
-      "skyfield_jpl": "2004-05-17T05:17:35+05:30",
-      "difference_s": 11.181954
+      "swiss_ephemeris": "2004-05-17T05:17:42+05:30",
+      "skyfield_jpl": "2004-05-17T05:17:31+05:30",
+      "difference_s": 11.184931
     },
     "sunset": {
-      "swiss_ephemeris": "2004-05-17T18:47:40+05:30",
-      "skyfield_jpl": "2004-05-17T18:47:52+05:30",
-      "difference_s": 12.144333
+      "swiss_ephemeris": "2004-05-17T18:47:42+05:30",
+      "skyfield_jpl": "2004-05-17T18:47:54+05:30",
+      "difference_s": 12.14739
     },
     "sunrise_convention": "upper limb on apparent horizon with standard refraction (SE: 1013.25 hPa, 25 C; Skyfield: -0.8333 deg)",
     "historical_time_note": "Post-1970 date; Asia/Kolkata has used a fixed +05:30 with no DST since 1945 per IANA."
@@ -324,19 +324,19 @@
   },
   "boundaries": {
     "western_asc": {
-      "asc_lon": 115.41303958870469,
-      "deg_in_sign": 25.41303958870469,
-      "to_prev_cusp_deg": 25.41303958870469,
-      "to_next_cusp_deg": 4.586960411295308,
-      "asc_rate_deg_per_min": 0.21575924665414448,
-      "minutes_to_next_cusp_approx": 21.25962378172402,
-      "minutes_since_prev_cusp_approx": 117.78424323774648
+      "asc_lon": 115.42866455647913,
+      "deg_in_sign": 25.428664556479134,
+      "to_prev_cusp_deg": 25.428664556479134,
+      "to_next_cusp_deg": 4.571335443520866,
+      "asc_rate_deg_per_min": 0.2157340353910513,
+      "minutes_to_next_cusp_approx": 21.189681244475928,
+      "minutes_since_prev_cusp_approx": 117.8704348175092
     },
     "jyotisha_lagna": {
-      "lagna_lon": 91.49484435286433,
-      "deg_in_sign": 1.4948443528643338,
-      "minutes_since_prev_cusp_approx": 6.928297980482496,
-      "minutes_to_next_cusp_approx": 132.115569038988,
+      "lagna_lon": 91.51046932063878,
+      "deg_in_sign": 1.5104693206387765,
+      "minutes_since_prev_cusp_approx": 7.001534634536537,
+      "minutes_to_next_cusp_approx": 132.0585814274486,
       "d9_segment_deg": [
         0.0,
         3.3333333333333335
@@ -347,16 +347,16 @@
       ]
     },
     "sunrise_sect": {
-      "sunrise_local": "2004-05-17T05:17:47+05:30",
-      "sunset_local": "2004-05-17T18:47:40+05:30",
-      "minutes_after_sunrise": 252.21505209999998,
-      "minutes_before_sunset": 557.6781698333333
+      "sunrise_local": "2004-05-17T05:17:42+05:30",
+      "sunset_local": "2004-05-17T18:47:42+05:30",
+      "minutes_after_sunrise": 252.2842028,
+      "minutes_before_sunset": 557.7001217
     },
     "bazi_hour": {
       "civil_hour_branch_window": "09:00-11:00 巳 Si",
       "minutes_after_09:00_civil": 30,
-      "LAT_time": "2004-05-17T09:27:25",
-      "minutes_after_09:00_LAT": 27.416666666666668
+      "LAT_time": "2004-05-17T09:27:26",
+      "minutes_after_09:00_LAT": 27.433333333333334
     },
     "day_boundary": {
       "minutes_after_local_midnight": 570,
@@ -579,22 +579,22 @@
         }
       },
       "angles_tropical": {
-        "asc": 115.19726128164291,
-        "mc": 17.236696671651604,
-        "armc": 15.88896979494018
+        "asc": 115.21291143262594,
+        "mc": 17.243085823273866,
+        "armc": 15.894914294940122
       },
       "angles_sidereal": {
-        "asc": 91.2790660723619,
-        "mc": 353.3185014623706
+        "asc": 91.29471622334493,
+        "mc": 353.32489061399286
       },
       "angles_validator": {
-        "asc": 115.1955835041454,
-        "mc": 17.234601821232467,
+        "asc": 115.21123385075441,
+        "mc": 17.24099099408133,
         "true_obliquity": 23.44060648616964
       },
       "angle_differences_deg": {
-        "asc": 0.0016777774974912063,
-        "mc": 0.0020948504191267148
+        "asc": 0.0016775818715473179,
+        "mc": 0.002094829192543557
       }
     },
     "+0min": {
@@ -799,22 +799,22 @@
         }
       },
       "angles_tropical": {
-        "asc": 115.41303958870469,
-        "mc": 17.506076018299627,
-        "armc": 16.139654251321872
+        "asc": 115.42866455647913,
+        "mc": 17.512462422351373,
+        "armc": 16.145598751321927
       },
       "angles_sidereal": {
-        "asc": 91.49484435286433,
-        "mc": 353.58788078245925
+        "asc": 91.51046932063878,
+        "mc": 353.594267186511
       },
       "angles_validator": {
-        "asc": 115.41136212291477,
-        "mc": 17.5039820824612,
+        "asc": 115.42698728674956,
+        "mc": 17.510368508019752,
         "true_obliquity": 23.440606475580246
       },
       "angle_differences_deg": {
-        "asc": 0.0016774657899247813,
-        "mc": 0.0020939358384168827
+        "asc": 0.0016772697295550643,
+        "mc": 0.0020939143316240916
       }
     },
     "+1min": {
@@ -1019,22 +1019,22 @@
         }
       },
       "angles_tropical": {
-        "asc": 115.6287797749512,
-        "mc": 17.77533875749499,
-        "armc": 16.390338707824867
+        "asc": 115.64437950340805,
+        "mc": 17.781722378068718,
+        "armc": 16.396283207824922
       },
       "angles_sidereal": {
-        "asc": 91.71058451255149,
-        "mc": 353.8571434950953
+        "asc": 91.72618424100834,
+        "mc": 353.863527115669
       },
       "angles_validator": {
-        "asc": 115.62710261147818,
-        "mc": 17.773245747872963,
+        "asc": 115.64270253643058,
+        "mc": 17.779629390231182,
         "true_obliquity": 23.440606464989713
       },
       "angle_differences_deg": {
-        "asc": 0.001677163473004839,
-        "mc": 0.00209300962202974
+        "asc": 0.0016769669774703289,
+        "mc": 0.002092987837528426
       }
     }
   },
@@ -1042,15 +1042,15 @@
     "charts": {
       "-1min": {
         "lagna": {
-          "lon": 91.2790660723619,
+          "lon": 91.29471622334493,
           "sign": "Cancer",
-          "deg": 1.2790660723618998,
+          "deg": 1.2947162233449347,
           "nakshatra": {
             "index": 7,
             "name": "Punarvasu",
             "pada": 4,
             "lord": "Jupiter",
-            "fraction_elapsed": 0.8459299554271422
+            "fraction_elapsed": 0.8471037167508698
           },
           "d9": "Cancer",
           "d10": "Pisces",
@@ -1522,15 +1522,15 @@
       },
       "+0min": {
         "lagna": {
-          "lon": 91.49484435286433,
+          "lon": 91.51046932063878,
           "sign": "Cancer",
-          "deg": 1.4948443528643338,
+          "deg": 1.5104693206387765,
           "nakshatra": {
             "index": 7,
             "name": "Punarvasu",
             "pada": 4,
             "lord": "Jupiter",
-            "fraction_elapsed": 0.8621133264648247
+            "fraction_elapsed": 0.8632851990479079
           },
           "d9": "Cancer",
           "d10": "Pisces",
@@ -2002,15 +2002,15 @@
       },
       "+1min": {
         "lagna": {
-          "lon": 91.71058451255149,
+          "lon": 91.72618424100834,
           "sign": "Cancer",
-          "deg": 1.7105845125514918,
+          "deg": 1.7261842410083403,
           "nakshatra": {
             "index": 7,
             "name": "Punarvasu",
             "pada": 4,
             "lord": "Jupiter",
-            "fraction_elapsed": 0.8782938384413616
+            "fraction_elapsed": 0.8794638180756252
           },
           "d9": "Cancer",
           "d10": "Pisces",
@@ -6255,7 +6255,7 @@
           ]
         },
         "local_apparent_solar_time": {
-          "input_time": "2004-05-17T09:27:25",
+          "input_time": "2004-05-17T09:27:26",
           "pillars": [
             "甲申",
             "己巳",
@@ -6982,14 +6982,14 @@
     "charts": {
       "-1min": {
         "asc": {
-          "lon": 115.19726128164291,
+          "lon": 115.21291143262594,
           "sign": "Cancer",
-          "deg": 25.19726128164291
+          "deg": 25.212911432625944
         },
         "mc": {
-          "lon": 17.236696671651604,
+          "lon": 17.243085823273866,
           "sign": "Aries",
-          "deg": 17.236696671651604,
+          "deg": 17.243085823273866,
           "whole_sign_house_of_mc": 10
         },
         "sect": "day",
@@ -7354,13 +7354,13 @@
         ],
         "lots": {
           "fortune": {
-            "lon": 92.68310776258622,
+            "lon": 92.69875791356927,
             "sign": "Cancer",
             "house": 1,
             "formula": "day: Asc + Moon - Sun"
           },
           "spirit": {
-            "lon": 137.7114148006996,
+            "lon": 137.72706495168265,
             "sign": "Leo",
             "house": 2,
             "formula": "day: Asc + Sun - Moon"
@@ -7638,14 +7638,14 @@
       },
       "+0min": {
         "asc": {
-          "lon": 115.41303958870469,
+          "lon": 115.42866455647913,
           "sign": "Cancer",
-          "deg": 25.41303958870469
+          "deg": 25.428664556479134
         },
         "mc": {
-          "lon": 17.506076018299627,
+          "lon": 17.512462422351373,
           "sign": "Aries",
-          "deg": 17.506076018299627,
+          "deg": 17.512462422351373,
           "whole_sign_house_of_mc": 10
         },
         "sect": "day",
@@ -8010,13 +8010,13 @@
         ],
         "lots": {
           "fortune": {
-            "lon": 92.90665117390591,
+            "lon": 92.92227614168036,
             "sign": "Cancer",
             "house": 1,
             "formula": "day: Asc + Moon - Sun"
           },
           "spirit": {
-            "lon": 137.91942800350347,
+            "lon": 137.9350529712779,
             "sign": "Leo",
             "house": 2,
             "formula": "day: Asc + Sun - Moon"
@@ -8294,14 +8294,14 @@
       },
       "+1min": {
         "asc": {
-          "lon": 115.6287797749512,
+          "lon": 115.64437950340805,
           "sign": "Cancer",
-          "deg": 25.628779774951198
+          "deg": 25.644379503408047
         },
         "mc": {
-          "lon": 17.77533875749499,
+          "lon": 17.781722378068718,
           "sign": "Aries",
-          "deg": 17.77533875749499,
+          "deg": 17.781722378068718,
           "whole_sign_house_of_mc": 10
         },
         "sect": "day",
@@ -8666,13 +8666,13 @@
         ],
         "lots": {
           "fortune": {
-            "lon": 93.13015639224881,
+            "lon": 93.14575612070564,
             "sign": "Cancer",
             "house": 1,
             "formula": "day: Asc + Moon - Sun"
           },
           "spirit": {
-            "lon": 138.1274031576536,
+            "lon": 138.14300288611042,
             "sign": "Leo",
             "house": 2,
             "formula": "day: Asc + Sun - Moon"
@@ -8954,9 +8954,9 @@
         "utc": "2026-05-17T11:38:58+00:00",
         "locations": {
           "birthplace_Lucknow": {
-            "asc": 216.1739125204295,
+            "asc": 216.1724982074265,
             "asc_sign": "Scorpio",
-            "mc": 128.45444911285597,
+            "mc": 128.46029962962734,
             "mc_sign": "Leo"
           },
           "current_residence_Almora": {
@@ -8984,9 +8984,9 @@
         "utc": "2027-05-17T17:16:21+00:00",
         "locations": {
           "birthplace_Lucknow": {
-            "asc": 291.86116606444375,
+            "asc": 291.85426758884796,
             "asc_sign": "Capricorn",
-            "mc": 217.57299263042012,
+            "mc": 217.57909051425258,
             "mc_sign": "Scorpio"
           },
           "current_residence_Almora": {

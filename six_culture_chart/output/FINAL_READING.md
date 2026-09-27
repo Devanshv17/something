@@ -4,11 +4,11 @@
 
 ## 1. Input and sensitivity
 
-- Born **Monday 2004-05-17, 09:30 IST (UTC+05:30, no DST)** = 2004-05-17 04:00 UTC, Lucknow (26.8467°N, 80.9462°E; city-centre coordinates).
-- Local mean time 09:23:47; local apparent solar time 09:27:25. Sunrise 05:17, sunset 18:47.
+- Born **Monday 2004-05-17, 09:30 IST (UTC+05:30, no DST)** = 2004-05-17 04:00 UTC, Fatima General Hospital, Nishat Ganj / Mahanagar, Lucknow, Uttar Pradesh, India (26.8715°N, 80.9521°E; OpenStreetMap Nominatim).
+- Local mean time 09:23:48; local apparent solar time 09:27:26. Sunrise 05:17, sunset 18:47.
 - Birth time confirmed by you as exact to within a minute. Modelled as **±1 min**. **Every time-dependent output is stable over that interval.**
-- The nearest boundaries, for reference: the Vedic Lagna is Cancer 1.49°, which is ≈6.9 min of clock time after the Gemini cusp. The Western Ascendant is Cancer 25.41°, ≈21.3 min before Leo. The Chinese 巳 hour began ≈27.4 min earlier by solar time and 30 min earlier by the clock. All of these are well outside ±1 min.
-- Remaining input caveat: the coordinates are for the city centre. A different hospital within Lucknow shifts the Ascendant by roughly 0.1°, which is much smaller than the 1.49° Lagna margin.
+- The nearest boundaries, for reference: the Vedic Lagna is Cancer 1.51°, which is ≈7.0 min of clock time after the Gemini cusp. The Western Ascendant is Cancer 25.43°, ≈21.2 min before Leo. The Chinese 巳 hour began ≈27.4 min earlier by solar time and 30 min earlier by the clock. All of these are well outside ±1 min.
+- Birthplace is the named hospital, so positional uncertainty is under ~100 m, which is negligible for every output.
 - Houses are therefore counted from the **Lagna** (Jyotisha) and the **Ascendant** (Western). Zi Wei uses the **巳** hour. (Rules JY-REFERENCE and W-HOUSES in the registry.)
 
 ## 2. Verification

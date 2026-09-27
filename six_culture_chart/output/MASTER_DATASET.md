@@ -1,6 +1,6 @@
 # Master dataset (facts only, no interpretation)
 
-Birth instant: 2004-05-17T09:30:00+05:30 (2004-05-17T04:00:00+00:00 UTC), Monday, Lucknow 26.8467N 80.9462E.
+Birth instant: 2004-05-17T09:30:00+05:30 (2004-05-17T04:00:00+00:00 UTC), Monday, Lucknow 26.8714586N 80.9521445E.
 
 ## Positions at 09:30 IST
 
@@ -18,12 +18,12 @@ Birth instant: 2004-05-17T09:30:00+05:30 (2004-05-17T04:00:00+00:00 UTC), Monday
 | Pluto | 21°32'59" Sagittarius | 27°37'53" Scorpio | -0.0233 | 2.9e-08 |
 | MeanNode | 10°26'19" Taurus | 16°31'14" Aries | -0.0530 | 3.4e-03 |
 | TrueNode | 11°16'57" Taurus | 17°21'51" Aries | +0.0072 | — (no validator) |
-| Asc | 25°24'47" Cancer | 01°29'41" Cancer | | 1.7e-03 |
-| MC | 17°30'22" Aries | 23°35'16" Pisces | | 2.1e-03 |
+| Asc | 25°25'43" Cancer | 01°30'38" Cancer | | 1.7e-03 |
+| MC | 17°30'45" Aries | 23°35'39" Pisces | | 2.1e-03 |
 
 Lahiri ayanamsha 23.918195°.
 
-## Jyotisha D1 — Lagna Cancer 1.49° (09:30; the Gemini cusp is ≈6.9 min earlier)
+## Jyotisha D1 — Lagna Cancer 1.51° (09:30; the Gemini cusp is ≈7.0 min earlier)
 
 | Graha | Sign | Deg | House | Nakshatra-pada | Dignity | D9 | D10 | Function |
 |---|---|---|---|---|---|---|---|---|
@@ -166,7 +166,7 @@ Da Yun forward; start 2010-10-07 (exact 3-day rule) vs 2010-10-17 (lunar_python)
 - BaZi Da Yun 癸酉: 2040-10-06 → 2050-10-06 — stem 癸 = 正官 Direct Officer; branch 酉 main qi 辛 = 正财 Direct Wealth; lunar_python start differs by 10 days
 - BaZi Da Yun 甲戌: 2050-10-06 → 2060-10-06 — stem 甲 = 偏印 Indirect Resource; branch 戌 main qi 戊 = 食神 Eating God; lunar_python start differs by 10 days
 
-## Western / Hellenistic — Asc Cancer 25.41° (the Leo cusp is ≈21.3 min later), day chart
+## Western / Hellenistic — Asc Cancer 25.43° (the Leo cusp is ≈21.2 min later), day chart
 
 | Planet | Sign | Deg | House | Dignities | Sect | Visibility | Motion |
 |---|---|---|---|---|---|---|---|
@@ -178,7 +178,7 @@ Da Yun forward; start 2010-10-07 (exact 3-day rule) vs 2010-10-17 (lunar_python)
 | Jupiter | Virgo | 9.13 | 3 | detriment | of the sect | free of the beams | D stationary |
 | Saturn | Cancer | 10.43 | 1 | detriment | of the sect | free of the beams | D |
 
-Lots: Fortune 02°54'24" Cancer, Spirit 17°55'10" Leo (Fortune sign stable over the interval).
+Lots: Fortune 02°55'20" Cancer, Spirit 17°56'06" Leo (Fortune sign stable over the interval).
 Dispositors: terminal loop [['Mercury', 'Venus']]; mutual receptions [['Mercury', 'Venus']].
 Aspects (by sign; ≤3° marked): Sun–Moon conjunction 22.5°; Sun–Mercury conjunction 25.7°; Sun–Mars sextile 20.4°; Sun–Jupiter trine 17.5°; Sun–Saturn sextile 16.2°; Moon–Mercury conjunction 3.2°; Moon–Mars sextile 2.1° ✱; Moon–Jupiter trine 5.0°; Moon–Saturn sextile 6.3°; Mercury–Mars sextile 5.3°; Mercury–Jupiter trine 8.2°; Mercury–Saturn sextile 9.5°; Venus–Jupiter square 17.0°; Mars–Jupiter sextile 2.9° ✱; Mars–Saturn conjunction 4.2°; Jupiter–Saturn sextile 1.3° ✱
 

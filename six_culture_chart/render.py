@@ -160,14 +160,15 @@ def write_reading(raw, ver, syn, inp):
     R = ["# Six-culture chart reading", "",
          "*This shows where several traditional symbolic systems agree or disagree, not a validated forecast. None of it is scientific evidence about your character or your future.*", "",
          "## 1. Input and sensitivity", "",
-         f"- Born **{a['weekday']} {a['gregorian_date']}, {a['local_time_24h'][:5]} IST (UTC{a['local_iso'][-6:]}, no DST)** = {a['utc_iso'][:16].replace('T', ' ')} UTC, Lucknow ({a['latitude']}°N, {a['longitude']}°E; city-centre coordinates).",
+         f"- Born **{a['weekday']} {a['gregorian_date']}, {a['local_time_24h'][:5]} IST (UTC{a['local_iso'][-6:]}, no DST)** = {a['utc_iso'][:16].replace('T', ' ')} UTC, {inp['birthplace']['name']} ({a['latitude']:.4f}°N, {a['longitude']:.4f}°E; {inp['birthplace']['coordinate_source'].split(',')[0]}).",
          f"- Local mean time {a['local_mean_time'][11:]}; local apparent solar time {a['local_apparent_solar_time'][11:]}. Sunrise {a['sunrise']['swiss_ephemeris'][11:16]}, sunset {a['sunset']['swiss_ephemeris'][11:16]}.",
          f"- Birth time confirmed by you as exact to within a minute. Modelled as **±{unc['outer_minutes']} min**. "
          + ("**Every time-dependent output is stable over that interval.**" if not sensitive else f"Outputs still changing: {sensitive}."),
          f"- The nearest boundaries, for reference: the Vedic Lagna is Cancer {jl['deg_in_sign']:.2f}°, which is ≈{jl['minutes_since_prev_cusp_approx']:.1f} min of clock time after the Gemini cusp. "
          f"The Western Ascendant is Cancer {wa['deg_in_sign']:.2f}°, ≈{wa['minutes_to_next_cusp_approx']:.1f} min before Leo. "
          f"The Chinese 巳 hour began ≈{bd['bazi_hour']['minutes_after_09:00_LAT']:.1f} min earlier by solar time and 30 min earlier by the clock. All of these are well outside ±{unc['outer_minutes']} min.",
-         "- Remaining input caveat: the coordinates are for the city centre. A different hospital within Lucknow shifts the Ascendant by roughly 0.1°, which is much smaller than the 1.49° Lagna margin.",
+         ("- Birthplace is the named hospital, so positional uncertainty is under ~100 m, which is negligible for every output." if "previous_coordinates" in inp["birthplace"]
+          else "- Remaining input caveat: the coordinates are for the city centre. A different hospital within Lucknow shifts the Ascendant by roughly 0.1°, which is much smaller than the Lagna margin."),
          f"- Houses are therefore counted from the **Lagna** (Jyotisha) and the **Ascendant** (Western). Zi Wei uses the **{zb}** hour. (Rules JY-REFERENCE and W-HOUSES in the registry.)", "",
          "## 2. Verification", "",
          f"- Swiss Ephemeris vs NASA JPL DE440s (via Skyfield): the largest planetary difference is **{ver['largest_planet_difference_deg']:.1e}°** (alert threshold 0.01°). The Ascendant/MC agree to within 0.002°.",

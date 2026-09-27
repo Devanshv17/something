@@ -15,12 +15,12 @@ Thresholds: planets > 0.01°, angles > 0.05°, solar terms > 120 s raise an aler
 | shared | Neptune tropical longitude | 315.39350 | Skyfield + JPL DE440s | 3.48082e-08 | stable (sign) | high | pass |
 | shared | Pluto tropical longitude | 261.54968 | Skyfield + JPL DE440s | 2.87215e-08 | stable (sign) | high | pass |
 | jyotisha | Mean lunar node (Rahu) tropical longitude | 40.43866 | Meeus mean-node polynomial (independent formula) | 0.00335514 | stable | high | pass |
-| western | ASC tropical | 115.41304 | Skyfield GAST + IAU2000A true obliquity, textbook formula | 0.00167747 | outer stable, inner stable | high | pass |
-| western | MC tropical | 17.50608 | Skyfield GAST + IAU2000A true obliquity, textbook formula | 0.00209394 | outer stable, inner stable | high | pass |
-| jyotisha | Lagna (sidereal Ascendant) | 91.49484 | Skyfield Asc minus same Lahiri ayanamsha | 0.00167747 | outer stable, inner stable | medium | pass |
+| western | ASC tropical | 115.42866 | Skyfield GAST + IAU2000A true obliquity, textbook formula | 0.00167727 | outer stable, inner stable | high | pass |
+| western | MC tropical | 17.51246 | Skyfield GAST + IAU2000A true obliquity, textbook formula | 0.00209391 | outer stable, inner stable | high | pass |
+| jyotisha | Lagna (sidereal Ascendant) | 91.51047 | Skyfield Asc minus same Lahiri ayanamsha | 0.00167727 | outer stable, inner stable | medium | pass |
 | jyotisha | Lahiri ayanamsha | 23.91820 | — | — | stable | medium | single-engine |
-| shared | sunrise | 2004-05-17T05:17:47+05:30 | Skyfield almanac + DE440s | 11.182 | stable | high | pass |
-| shared | sunset | 2004-05-17T18:47:40+05:30 | Skyfield almanac + DE440s | 12.1443 | stable | high | pass |
+| shared | sunrise | 2004-05-17T05:17:42+05:30 | Skyfield almanac + DE440s | 11.1849 | stable | high | pass |
+| shared | sunset | 2004-05-17T18:47:42+05:30 | Skyfield almanac + DE440s | 12.1474 | stable | high | pass |
 | bazi | solar term 立夏 instant | 2004-05-05T04:02:26+00:00 | Skyfield/DE440s; lunar_python; sxtwl | 1.14513 | stable | high | pass |
 | bazi | solar term 芒种 instant | 2004-06-05T08:13:44+00:00 | Skyfield/DE440s; lunar_python; sxtwl | 1.5913 | stable | high | pass |
 | bazi | Four Pillars (civil_clock) | ['甲申', '己巳', '丙申', '癸巳'] | sxtwl 2.0.7 (independent C++ calendar) | identical | stable over the interval (癸巳) | high | pass |

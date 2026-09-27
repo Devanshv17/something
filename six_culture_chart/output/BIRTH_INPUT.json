@@ -17,13 +17,18 @@
     "outer_minutes": 1
   },
   "birthplace": {
-    "raw": "Lucknow India",
-    "name": "Lucknow, Uttar Pradesh, India",
-    "latitude": 26.8467,
-    "longitude": 80.9462,
+    "raw": "Lucknow India; later specified: Fatima Hospital Lucknow",
+    "name": "Fatima General Hospital, Nishat Ganj / Mahanagar, Lucknow, Uttar Pradesh, India",
+    "latitude": 26.8714586,
+    "longitude": 80.9521445,
     "elevation_m": 123,
-    "coordinate_source": "city-centre coordinates (GeoNames/Wikipedia consensus for Lucknow); hospital/district not provided, so up to ~10 km positional uncertainty",
-    "elevation_source": "approximate city elevation; not used by any calculation that matters at this precision"
+    "coordinate_source": "OpenStreetMap Nominatim, way 211742439 'Fatima General Hospital' (footprint centroid; building extent < 100 m)",
+    "elevation_source": "approximate city elevation; not used by any calculation that matters at this precision",
+    "previous_coordinates": {
+      "latitude": 26.8467,
+      "longitude": 80.9462,
+      "source": "city centre"
+    }
   },
   "gender": "male",
   "current_residence": {
