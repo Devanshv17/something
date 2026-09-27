@@ -169,8 +169,8 @@
       "difference": 0.0016774657899247813,
       "convention": "tropical, true obliquity",
       "boundary_distance": 4.586960411295308,
-      "uncertainty_stability": "outer sensitive, inner stable",
-      "confidence": "low",
+      "uncertainty_stability": "outer stable, inner stable",
+      "confidence": "high",
       "status": "pass"
     },
     {
@@ -197,9 +197,9 @@
       "difference": 0.0016774657899247813,
       "convention": "sidereal Lahiri",
       "boundary_distance": 1.4948443528643338,
-      "uncertainty_stability": "outer sensitive, inner sensitive",
-      "confidence": "low",
-      "status": "pass (calculation) / sensitive (input)"
+      "uncertainty_stability": "outer stable, inner stable",
+      "confidence": "medium",
+      "status": "pass"
     },
     {
       "system": "jyotisha",
@@ -299,7 +299,7 @@
       "difference": "identical",
       "convention": "jie-based month, 00:00 day boundary",
       "boundary_distance": null,
-      "uncertainty_stability": "hour pillar: civil stable; LAT changes to 壬辰 before -27.41 min",
+      "uncertainty_stability": "stable over the interval (癸巳)",
       "confidence": "high",
       "status": "pass"
     },
@@ -323,7 +323,7 @@
       "difference": "identical",
       "convention": "jie-based month, 00:00 day boundary",
       "boundary_distance": null,
-      "uncertainty_stability": "hour pillar: civil stable; LAT changes to 壬辰 before -27.41 min",
+      "uncertainty_stability": "stable over the interval (癸巳)",
       "confidence": "high",
       "status": "pass"
     },
@@ -337,7 +337,7 @@
       "difference": "10 days",
       "convention": "forward (yang male)",
       "boundary_distance": null,
-      "uncertainty_stability": "stable to +/- ~10 days (time uncertainty shifts by <1 day)",
+      "uncertainty_stability": "convention difference ~10 days; time uncertainty shifts start by < 1 day",
       "confidence": "medium",
       "status": "pass (convention difference disclosed)"
     },
@@ -354,8 +354,8 @@
       "difference": null,
       "convention": "civil clock hour (IST); LAT variant evaluated in boundary audit",
       "boundary_distance": null,
-      "uncertainty_stability": "alternative (LAT, first 2.6 min of outer interval)",
-      "confidence": "low",
+      "uncertainty_stability": "alternative hour, outside the uncertainty interval",
+      "confidence": "not used",
       "status": "pass"
     },
     {
@@ -371,7 +371,7 @@
       "difference": null,
       "convention": "civil clock hour (IST); LAT variant evaluated in boundary audit",
       "boundary_distance": null,
-      "uncertainty_stability": "primary (civil)",
+      "uncertainty_stability": "primary (civil): stable over the interval (巳); LAT: stable over the interval (巳)",
       "confidence": "medium",
       "status": "pass"
     },
@@ -505,13 +505,7 @@
     },
     {
       "system": "jyotisha",
-      "invariant": "Rahu-Ketu separation 180 (-30min)",
-      "pass": true,
-      "value": 180.0
-    },
-    {
-      "system": "jyotisha",
-      "invariant": "Rahu-Ketu separation 180 (-15min)",
+      "invariant": "Rahu-Ketu separation 180 (-1min)",
       "pass": true,
       "value": 180.0
     },
@@ -523,13 +517,7 @@
     },
     {
       "system": "jyotisha",
-      "invariant": "Rahu-Ketu separation 180 (+15min)",
-      "pass": true,
-      "value": 180.0
-    },
-    {
-      "system": "jyotisha",
-      "invariant": "Rahu-Ketu separation 180 (+30min)",
+      "invariant": "Rahu-Ketu separation 180 (+1min)",
       "pass": true,
       "value": 180.0
     },
@@ -540,7 +528,7 @@
     },
     {
       "system": "jyotisha",
-      "invariant": "Vimshottari periods continuous, ordered, non-overlapping (-30min)",
+      "invariant": "Vimshottari periods continuous, ordered, non-overlapping (-1min)",
       "pass": true
     },
     {
@@ -550,7 +538,7 @@
     },
     {
       "system": "jyotisha",
-      "invariant": "Vimshottari periods continuous, ordered, non-overlapping (+30min)",
+      "invariant": "Vimshottari periods continuous, ordered, non-overlapping (+1min)",
       "pass": true
     },
     {

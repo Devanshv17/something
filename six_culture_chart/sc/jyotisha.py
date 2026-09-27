@@ -176,7 +176,7 @@ def yogas(rows, lagna):
     return out
 
 
-def vimshottari(moon_sid_lon, birth_utc, levels=2):
+def vimshottari(moon_sid_lon, birth_utc, pd_window=None):
     nk = nakshatra(moon_sid_lon)
     start_lord = nk["lord"]
     i0 = DASHA_ORDER.index(start_lord)
@@ -195,7 +195,17 @@ def vimshottari(moon_sid_lon, birth_utc, levels=2):
             ad = DASHA_ORDER[(j0 + j) % 9]
             ln = md_len * DASHA_YEARS[ad] / 120.0
             en = st + timedelta(days=ln * YEAR_DAYS)
-            subs.append({"lord": ad, "start": st, "end": en})
+            row = {"lord": ad, "start": st, "end": en}
+            if pd_window and en.year >= pd_window[0] and st.year <= pd_window[1]:
+                pds, ps = [], st
+                k0 = DASHA_ORDER.index(ad)
+                for q in range(9):
+                    pl = DASHA_ORDER[(k0 + q) % 9]
+                    pe = ps + timedelta(days=ln * DASHA_YEARS[pl] / 120.0 * YEAR_DAYS)
+                    pds.append({"lord": pl, "start": ps, "end": pe})
+                    ps = pe
+                row["pratyantardashas"] = pds
+            subs.append(row)
             st = en
         periods.append({"lord": md, "start": t, "end": md_end, "antardashas": subs})
         t = md_end

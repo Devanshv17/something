@@ -23,7 +23,7 @@ Birth instant: 2004-05-17T09:30:00+05:30 (2004-05-17T04:00:00+00:00 UTC), Monday
 
 Lahiri ayanamsha 23.918195°.
 
-## Jyotisha D1 — Lagna Cancer 1.49° (09:30; Gemini if birth ≥6.9 min earlier)
+## Jyotisha D1 — Lagna Cancer 1.49° (09:30; the Gemini cusp is ≈6.9 min earlier)
 
 | Graha | Sign | Deg | House | Nakshatra-pada | Dignity | D9 | D10 | Function |
 |---|---|---|---|---|---|---|---|---|
@@ -37,46 +37,113 @@ Lahiri ayanamsha 23.918195°.
 | Rahu | Aries | 16.52 | 10 | Bharani-1 | n/a (node) | Leo | Virgo |   |
 | Ketu | Libra | 16.52 | 4 | Swati-3 | n/a (node) | Aquarius | Pisces |   |
 
-## Jyotisha D1 — Lagna Gemini 28.25° (-15min alternative)
-
-| Graha | Sign | Deg | House | Nakshatra-pada | Dignity | D9 | D10 | Function |
-|---|---|---|---|---|---|---|---|---|
-| Sun | Taurus | 2.66 | 12 | Krittika-2 | enemy's sign | Capricorn | Capricorn | functional malefic [3] |
-| Moon | Aries | 10.04 | 11 | Ashwini-4 | neutral sign | Cancer | Cancer | neutral (kendra/2/12 lordship) [2] |
-| Mars | Gemini | 12.28 | 1 | Ardra-2 | enemy's sign | Capricorn | Libra | functional malefic [11, 6] |
-| Mercury | Aries | 7.00 | 11 | Ashwini-3 | neutral sign | Gemini | Gemini | functional benefic [1, 4] |
-| Jupiter | Leo | 15.21 | 3 | Purva Phalguni-1 | friend's sign | Leo | Capricorn | neutral (kendra/2/12 lordship) [7, 10] |
-| Venus | Gemini | 2.21 | 1 | Mrigashira-3 | friend's sign | Libra | Gemini | functional benefic [12, 5] |
-| Saturn | Gemini | 16.51 | 1 | Ardra-3 | friend's sign | Aquarius | Scorpio | functional benefic [8, 9] |
-| Rahu | Aries | 16.52 | 11 | Bharani-1 | n/a (node) | Leo | Virgo |   |
-| Ketu | Libra | 16.52 | 5 | Swati-3 | n/a (node) | Aquarius | Pisces |   |
-
 Yogas (declared whitelist): JY-Y-GAJAKESARI=no; JY-Y-BUDHADITYA=no; JY-Y-CHANDRA-MANGALA=no; JY-Y-KEMADRUMA=yes (cancelled: with Moon: ['Mercury']; kendra from Moon: []); JY-Y-MAHAPURUSHA-MARS=no; JY-Y-MAHAPURUSHA-MERCURY=no; JY-Y-MAHAPURUSHA-JUPITER=no; JY-Y-MAHAPURUSHA-VENUS=no; JY-Y-MAHAPURUSHA-SATURN=no
 
 Planetary war: none. True node sign same as mean: True.
 
 Vimshottari: Moon in Ashwini (lord Ketu), balance 1.663 y.
 
-| Mahadasha | Start (09:30) | End (09:30) | Start range ±30 min |
+| Mahadasha | Start (09:30) | End (09:30) | Start range ±1 min |
 |---|---|---|---|
-| Ketu | 1999-01-14 | 2006-01-14 | 1998-11-27 … 1999-03-04 |
-| Venus | 2006-01-14 | 2026-01-14 | 2005-11-27 … 2006-03-04 |
-| Sun | 2026-01-14 | 2032-01-15 | 2025-11-27 … 2026-03-04 |
-| Moon | 2032-01-15 | 2042-01-14 | 2031-11-27 … 2032-03-03 |
-| Mars | 2042-01-14 | 2049-01-14 | 2041-11-27 … 2042-03-04 |
-| Rahu | 2049-01-14 | 2067-01-14 | 2048-11-26 … 2049-03-03 |
+| Ketu | 1999-01-14 | 2006-01-14 | 1999-01-13 … 1999-01-16 |
+| Venus | 2006-01-14 | 2026-01-14 | 2006-01-13 … 2006-01-16 |
+| Sun | 2026-01-14 | 2032-01-15 | 2026-01-13 … 2026-01-16 |
+| Moon | 2032-01-15 | 2042-01-14 | 2032-01-13 … 2032-01-16 |
+| Mars | 2042-01-14 | 2049-01-14 | 2042-01-13 … 2042-01-16 |
+| Rahu | 2049-01-14 | 2067-01-14 | 2049-01-12 … 2049-01-16 |
 
-Sun Mahadasha antardashas (09:30; each shifts with the ±30 min Moon uncertainty):
+Sun Mahadasha antardashas at 09:30 (pratyantardashas listed where computed):
 
 - Sun–Sun: 2026-01-14 → 2026-05-04
+  - Sun–Sun–Sun: 2026-01-14 → 2026-01-20
+  - Sun–Sun–Moon: 2026-01-20 → 2026-01-29
+  - Sun–Sun–Mars: 2026-01-29 → 2026-02-04
+  - Sun–Sun–Rahu: 2026-02-04 → 2026-02-21
+  - Sun–Sun–Jupiter: 2026-02-21 → 2026-03-07
+  - Sun–Sun–Saturn: 2026-03-07 → 2026-03-25
+  - Sun–Sun–Mercury: 2026-03-25 → 2026-04-09
+  - Sun–Sun–Ketu: 2026-04-09 → 2026-04-16
+  - Sun–Sun–Venus: 2026-04-16 → 2026-05-04
 - Sun–Moon: 2026-05-04 → 2026-11-02
+  - Sun–Moon–Moon: 2026-05-04 → 2026-05-19
+  - Sun–Moon–Mars: 2026-05-19 → 2026-05-30
+  - Sun–Moon–Rahu: 2026-05-30 → 2026-06-26
+  - Sun–Moon–Jupiter: 2026-06-26 → 2026-07-20
+  - Sun–Moon–Saturn: 2026-07-20 → 2026-08-18
+  - Sun–Moon–Mercury: 2026-08-18 → 2026-09-13
+  - Sun–Moon–Ketu: 2026-09-13 → 2026-09-24
+  - Sun–Moon–Venus: 2026-09-24 → 2026-10-24
+  - Sun–Moon–Sun: 2026-10-24 → 2026-11-02
 - Sun–Mars: 2026-11-02 → 2027-03-10
+  - Sun–Mars–Mars: 2026-11-02 → 2026-11-10
+  - Sun–Mars–Rahu: 2026-11-10 → 2026-11-29
+  - Sun–Mars–Jupiter: 2026-11-29 → 2026-12-16
+  - Sun–Mars–Saturn: 2026-12-16 → 2027-01-05
+  - Sun–Mars–Mercury: 2027-01-05 → 2027-01-23
+  - Sun–Mars–Ketu: 2027-01-23 → 2027-01-31
+  - Sun–Mars–Venus: 2027-01-31 → 2027-02-21
+  - Sun–Mars–Sun: 2027-02-21 → 2027-02-28
+  - Sun–Mars–Moon: 2027-02-28 → 2027-03-10
 - Sun–Rahu: 2027-03-10 → 2028-02-02
+  - Sun–Rahu–Rahu: 2027-03-10 → 2027-04-29
+  - Sun–Rahu–Jupiter: 2027-04-29 → 2027-06-11
+  - Sun–Rahu–Saturn: 2027-06-11 → 2027-08-02
+  - Sun–Rahu–Mercury: 2027-08-02 → 2027-09-18
+  - Sun–Rahu–Ketu: 2027-09-18 → 2027-10-07
+  - Sun–Rahu–Venus: 2027-10-07 → 2027-12-01
+  - Sun–Rahu–Sun: 2027-12-01 → 2027-12-17
+  - Sun–Rahu–Moon: 2027-12-17 → 2028-01-14
+  - Sun–Rahu–Mars: 2028-01-14 → 2028-02-02
 - Sun–Jupiter: 2028-02-02 → 2028-11-20
+  - Sun–Jupiter–Jupiter: 2028-02-02 → 2028-03-12
+  - Sun–Jupiter–Saturn: 2028-03-12 → 2028-04-27
+  - Sun–Jupiter–Mercury: 2028-04-27 → 2028-06-08
+  - Sun–Jupiter–Ketu: 2028-06-08 → 2028-06-25
+  - Sun–Jupiter–Venus: 2028-06-25 → 2028-08-12
+  - Sun–Jupiter–Sun: 2028-08-12 → 2028-08-27
+  - Sun–Jupiter–Moon: 2028-08-27 → 2028-09-20
+  - Sun–Jupiter–Mars: 2028-09-20 → 2028-10-07
+  - Sun–Jupiter–Rahu: 2028-10-07 → 2028-11-20
 - Sun–Saturn: 2028-11-20 → 2029-11-02
+  - Sun–Saturn–Saturn: 2028-11-20 → 2029-01-14
+  - Sun–Saturn–Mercury: 2029-01-14 → 2029-03-04
+  - Sun–Saturn–Ketu: 2029-03-04 → 2029-03-25
+  - Sun–Saturn–Venus: 2029-03-25 → 2029-05-21
+  - Sun–Saturn–Sun: 2029-05-21 → 2029-06-08
+  - Sun–Saturn–Moon: 2029-06-08 → 2029-07-07
+  - Sun–Saturn–Mars: 2029-07-07 → 2029-07-27
+  - Sun–Saturn–Rahu: 2029-07-27 → 2029-09-17
+  - Sun–Saturn–Jupiter: 2029-09-17 → 2029-11-02
 - Sun–Mercury: 2029-11-02 → 2030-09-09
+  - Sun–Mercury–Mercury: 2029-11-02 → 2029-12-16
+  - Sun–Mercury–Ketu: 2029-12-16 → 2030-01-03
+  - Sun–Mercury–Venus: 2030-01-03 → 2030-02-24
+  - Sun–Mercury–Sun: 2030-02-24 → 2030-03-12
+  - Sun–Mercury–Moon: 2030-03-12 → 2030-04-06
+  - Sun–Mercury–Mars: 2030-04-06 → 2030-04-25
+  - Sun–Mercury–Rahu: 2030-04-25 → 2030-06-10
+  - Sun–Mercury–Jupiter: 2030-06-10 → 2030-07-21
+  - Sun–Mercury–Saturn: 2030-07-21 → 2030-09-09
 - Sun–Ketu: 2030-09-09 → 2031-01-14
+  - Sun–Ketu–Ketu: 2030-09-09 → 2030-09-16
+  - Sun–Ketu–Venus: 2030-09-16 → 2030-10-07
+  - Sun–Ketu–Sun: 2030-10-07 → 2030-10-14
+  - Sun–Ketu–Moon: 2030-10-14 → 2030-10-24
+  - Sun–Ketu–Mars: 2030-10-24 → 2030-11-01
+  - Sun–Ketu–Rahu: 2030-11-01 → 2030-11-20
+  - Sun–Ketu–Jupiter: 2030-11-20 → 2030-12-07
+  - Sun–Ketu–Saturn: 2030-12-07 → 2030-12-27
+  - Sun–Ketu–Mercury: 2030-12-27 → 2031-01-14
 - Sun–Venus: 2031-01-14 → 2032-01-15
+  - Sun–Venus–Venus: 2031-01-14 → 2031-03-16
+  - Sun–Venus–Sun: 2031-03-16 → 2031-04-04
+  - Sun–Venus–Moon: 2031-04-04 → 2031-05-04
+  - Sun–Venus–Mars: 2031-05-04 → 2031-05-25
+  - Sun–Venus–Rahu: 2031-05-25 → 2031-07-19
+  - Sun–Venus–Jupiter: 2031-07-19 → 2031-09-06
+  - Sun–Venus–Saturn: 2031-09-06 → 2031-11-03
+  - Sun–Venus–Mercury: 2031-11-03 → 2031-12-24
+  - Sun–Venus–Ketu: 2031-12-24 → 2032-01-15
 
 ## BaZi
 
@@ -87,7 +154,7 @@ Sun Mahadasha antardashas (09:30; each shifts with the ±30 min Moon uncertainty
 | day | 丙申 Bing Shen | 日主 Day Master | 庚 偏财 Indirect Wealth, 壬 七杀 Seven Killings, 戊 食神 Eating God | 山下火 |
 | hour | 癸巳 Gui Si | 正官 Direct Officer | 丙 比肩 Friend, 庚 偏财 Indirect Wealth, 戊 食神 Eating God | 长流水 |
 
-Alternative hour (solar-time track, birth ≥27.4 min earlier): 壬辰.
+Adjacent hour pillar (reached only if birth was ≥27.4 min earlier, solar-time track; outside the confirmed ±1 min): 壬辰.
 Day Master strength (BZ-DM-1): support share 0.333 → weak; seasonal: prosperous 旺 (month element = DM element); rooted in ['month', 'hour'].
 Interactions: stem combination 天干五合 甲己 (year/month), transformed=False; six combination 六合 申巳 (year/month), transformed=False; destruction 六破 申巳 (year/month); punishment (partial, 2 of 3) ungrateful punishment 无恩之刑 申巳 (year/month); six combination 六合 申巳 (year/hour), transformed=False; destruction 六破 申巳 (year/hour); punishment (partial, 2 of 3) ungrateful punishment 无恩之刑 申巳 (year/hour); six combination 六合 巳申 (month/day), transformed=False; destruction 六破 巳申 (month/day); punishment (partial, 2 of 3) ungrateful punishment 无恩之刑 巳申 (month/day); six combination 六合 申巳 (day/hour), transformed=False; destruction 六破 申巳 (day/hour); punishment (partial, 2 of 3) ungrateful punishment 无恩之刑 申巳 (day/hour)
 
@@ -99,7 +166,7 @@ Da Yun forward; start 2010-10-07 (exact 3-day rule) vs 2010-10-17 (lunar_python)
 - BaZi Da Yun 癸酉: 2040-10-06 → 2050-10-06 — stem 癸 = 正官 Direct Officer; branch 酉 main qi 辛 = 正财 Direct Wealth; lunar_python start differs by 10 days
 - BaZi Da Yun 甲戌: 2050-10-06 → 2060-10-06 — stem 甲 = 偏印 Indirect Resource; branch 戌 main qi 戊 = 食神 Eating God; lunar_python start differs by 10 days
 
-## Western / Hellenistic — Asc Cancer 25.41° (Leo if birth ≥21.3 min later), day chart
+## Western / Hellenistic — Asc Cancer 25.41° (the Leo cusp is ≈21.3 min later), day chart
 
 | Planet | Sign | Deg | House | Dignities | Sect | Visibility | Motion |
 |---|---|---|---|---|---|---|---|
@@ -111,16 +178,16 @@ Da Yun forward; start 2010-10-07 (exact 3-day rule) vs 2010-10-17 (lunar_python)
 | Jupiter | Virgo | 9.13 | 3 | detriment | of the sect | free of the beams | D stationary |
 | Saturn | Cancer | 10.43 | 1 | detriment | of the sect | free of the beams | D |
 
-Lots: Fortune 02°54'24" Cancer, Spirit 17°55'10" Leo (both sensitive).
+Lots: Fortune 02°54'24" Cancer, Spirit 17°55'10" Leo (Fortune sign stable over the interval).
 Dispositors: terminal loop [['Mercury', 'Venus']]; mutual receptions [['Mercury', 'Venus']].
 Aspects (by sign; ≤3° marked): Sun–Moon conjunction 22.5°; Sun–Mercury conjunction 25.7°; Sun–Mars sextile 20.4°; Sun–Jupiter trine 17.5°; Sun–Saturn sextile 16.2°; Moon–Mercury conjunction 3.2°; Moon–Mars sextile 2.1° ✱; Moon–Jupiter trine 5.0°; Moon–Saturn sextile 6.3°; Mercury–Mars sextile 5.3°; Mercury–Jupiter trine 8.2°; Mercury–Saturn sextile 9.5°; Venus–Jupiter square 17.0°; Mars–Jupiter sextile 2.9° ✱; Mars–Saturn conjunction 4.2°; Jupiter–Saturn sextile 1.3° ✱
 
 Profections: age 22 (2026-05-17→2027-05-17): house 11 Taurus, lord Venus; age 23 (2027-05-17→2028-05-17): house 12 Gemini, lord Mercury; age 24 (2028-05-17→2029-05-17): house 1 Cancer, lord Moon
 
-Solar return 2026: 2026-05-17T11:38:58+00:00 — birthplace_Lucknow: Asc Scorpio, current_residence_Almora: Asc Scorpio; ±30 min: {'-30min': {'birthplace_Lucknow': 'Libra', 'current_residence_Almora': 'Libra'}, '+30min': {'birthplace_Lucknow': 'Scorpio', 'current_residence_Almora': 'Scorpio'}}; location changes Asc sign: False
-Solar return 2027: 2027-05-17T17:16:21+00:00 — birthplace_Lucknow: Asc Capricorn, current_residence_Almora: Asc Capricorn; ±30 min: {'-30min': {'birthplace_Lucknow': 'Capricorn', 'current_residence_Almora': 'Capricorn'}, '+30min': {'birthplace_Lucknow': 'Capricorn', 'current_residence_Almora': 'Capricorn'}}; location changes Asc sign: False
+Solar return 2026: 2026-05-17T11:38:58+00:00 — birthplace_Lucknow: Asc Scorpio, current_residence_Almora: Asc Scorpio; at interval edges: {'-1min': {'birthplace_Lucknow': 'Scorpio', 'current_residence_Almora': 'Scorpio'}, '+1min': {'birthplace_Lucknow': 'Scorpio', 'current_residence_Almora': 'Scorpio'}}; location changes Asc sign: False
+Solar return 2027: 2027-05-17T17:16:21+00:00 — birthplace_Lucknow: Asc Capricorn, current_residence_Almora: Asc Capricorn; at interval edges: {'-1min': {'birthplace_Lucknow': 'Capricorn', 'current_residence_Almora': 'Capricorn'}, '+1min': {'birthplace_Lucknow': 'Capricorn', 'current_residence_Almora': 'Capricorn'}}; location changes Asc sign: False
 
-## Zi Wei Dou Shu — 巳 hour (primary, civil clock)
+## Zi Wei Dou Shu — 巳 hour (primary)
 
 Lunar 二〇〇四年三月廿九; 命宫 亥, 身宫 酉; 命主 巨门, 身主 天梁; 火六局 (fire 6th).
 
@@ -139,7 +206,7 @@ Lunar 二〇〇四年三月廿九; 命宫 亥, 身宫 酉; 命主 巨门, 身主
 | 父母 parents | 丙子 | 天同旺 太阴庙 |  | 16–25 |
 | 福德 spirit | 丁丑 | 武曲庙化科 贪狼庙 | 天魁 陀罗 | 26–35 |
 
-## Zi Wei Dou Shu — 辰 hour (alternative: solar-time track, first 2.6 min of ±30)
+## Zi Wei Dou Shu — 辰 hour (adjacent hour, outside the confirmed interval — reference only)
 
 Lunar 二〇〇四年三月廿九; 命宫 子, 身宫 申; 命主 贪狼, 身主 天梁; 水二局 (water 2nd).
 

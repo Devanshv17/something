@@ -64,7 +64,9 @@ def main():
         difference=A["angle_differences_deg"]["asc"], convention="sidereal Lahiri",
         boundary_distance=r["boundaries"]["jyotisha_lagna"]["deg_in_sign"],
         uncertainty_stability=f"outer {st['jyotisha_lagna_sign']['outer_interval']}, inner {st['jyotisha_lagna_sign']['inner_interval']}",
-        confidence="low", status="pass (calculation) / sensitive (input)")
+        confidence=conf(A["angle_differences_deg"]["asc"] <= TH["angle_deg"], st["jyotisha_lagna_sign"]["outer_interval"] == "stable",
+                        school=True),
+        status="pass" if st["jyotisha_lagna_sign"]["outer_interval"] == "stable" else "pass (calculation) / sensitive (input)")
     add(system="jyotisha", datum="Lahiri ayanamsha", primary_engine="Swiss Ephemeris SIDM_LAHIRI",
         primary_value=A["ayanamsha_lahiri_deg"], validator=None, validator_value=None, difference=None,
         convention="Lahiri (Chitrapaksha)", uncertainty_stability="stable", confidence="medium",
@@ -91,14 +93,13 @@ def main():
         add(system="bazi", datum=f"Four Pillars ({tr})", primary_engine="lunar_python 1.4.8", primary_value=v["pillars"],
             validator="sxtwl 2.0.7 (independent C++ calendar)", validator_value=v["sxtwl_pillars"],
             difference="identical" if same else "MISMATCH", convention="jie-based month, 00:00 day boundary",
-            uncertainty_stability=("hour pillar: civil stable; LAT changes to 壬辰 before " +
-                                   str(st["bazi_hour_LAT"]["crossings"][0]["minutes_from_T"]) + " min"),
+            uncertainty_stability=_stab(st, "bazi_hour_civil" if tr == "civil_clock" else "bazi_hour_LAT"),
             confidence="high" if same else "low", status="pass" if same else "fail")
     dy = bz["da_yun"]
     add(system="bazi", datum="Da Yun start", primary_engine="own: exact 3-days-per-year from Swiss Ephemeris 芒种",
         primary_value=dy["start_date_exact_3day_rule"], validator="lunar_python Yun (sect 1 rounding)",
         validator_value=dy["lunar_python_start"]["date"], difference=f"{dy['start_convention_difference_days']} days",
-        convention="forward (yang male)", uncertainty_stability="stable to +/- ~10 days (time uncertainty shifts by <1 day)",
+        convention="forward (yang male)", uncertainty_stability="convention difference ~10 days; time uncertainty shifts start by < 1 day",
         confidence="medium", status="pass (convention difference disclosed)")
     # Zi Wei
     for br, alt in r["ziwei"]["alternatives"].items():
@@ -108,8 +109,10 @@ def main():
             validator="py-iztro 0.1.5 (bundles iztro 2.5.0) -- SAME METHOD, interface check only",
             validator_value="match" if w["all_match"] and w["soul_body_five_match"] else "mismatch",
             difference=None, convention=r["ziwei"]["configuration"]["time_index_source"],
-            uncertainty_stability="primary (civil)" if br == "巳" else "alternative (LAT, first 2.6 min of outer interval)",
-            confidence="medium" if br == "巳" else "low",
+            uncertainty_stability=("primary (civil): " + _stab(st, "ziwei_time_branch_civil") + "; LAT: " +
+                                   _stab(st, "ziwei_time_branch_LAT")) if br == st["ziwei_time_branch_civil"]["value_at_T"]
+            else "alternative hour, outside the uncertainty interval" + (" (reached under LAT)" if st["ziwei_time_branch_LAT"]["crossings"] else ""),
+            confidence="medium" if br == st["ziwei_time_branch_civil"]["value_at_T"] else "not used",
             status="pass" if all(i["pass"] for i in alt["invariants"]) and w["all_match"] else "fail")
         for i in alt["invariants"]:
             inv.append({"system": "ziwei", "chart": br, **i})
@@ -145,6 +148,14 @@ def main():
                 if ad["start"] != p2:
                     ok = False
                 p2 = ad["end"]
+                if "pratyantardashas" in ad:
+                    q = ad["start"]
+                    for pd in ad["pratyantardashas"]:
+                        if pd["start"] != q:
+                            ok = False
+                        q = pd["end"]
+                    if abs((datetime.fromisoformat(q) - datetime.fromisoformat(ad["end"])).total_seconds()) > 1:
+                        ok = False
             if abs((datetime.fromisoformat(p2) - datetime.fromisoformat(md["end"])).total_seconds()) > 1:
                 ok = False
         inv.append({"system": "jyotisha", "invariant": f"Vimshottari periods continuous, ordered, non-overlapping ({off})", "pass": ok})
@@ -181,6 +192,13 @@ def main():
     md += ["", f"**Failures:** {len(failures)}" + ("" if not failures else f" — interpretation stopped for {report['affected_systems_stopped']}"), ""]
     open(os.path.join(OUT, "VERIFICATION_REPORT.md"), "w", encoding="utf-8").write("\n".join(md))
     print("failures:", failures)
+
+
+def _stab(st, key):
+    v = st[key]
+    if not v["crossings"]:
+        return f"stable over the interval ({v['value_at_T']})"
+    return "; ".join(f"changes {c['from']}->{c['to']} at {c['minutes_from_T']:+.1f} min" for c in v["crossings"])
 
 
 def _bound_totals():

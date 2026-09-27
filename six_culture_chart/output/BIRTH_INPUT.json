@@ -1,12 +1,20 @@
 {
   "original_user_input": "17/05/2004, 9:30 AM, 15-30mins ig, Lucknow India, Male, Almora Uttrakhand(only from last 1.5minht a of so but planning to go around and visit the country)",
-  "date": {"raw": "17/05/2004", "format_assumed": "DD/MM/YYYY", "calendar": "gregorian"},
-  "time": {"raw": "9:30 AM", "local_24h": "09:30:00"},
+  "date": {
+    "raw": "17/05/2004",
+    "format_assumed": "DD/MM/YYYY",
+    "calendar": "gregorian"
+  },
+  "time": {
+    "raw": "9:30 AM",
+    "local_24h": "09:30:00"
+  },
   "time_uncertainty": {
-    "raw": "15-30mins ig",
-    "interpretation": "user-estimated uncertainty of 15 to 30 minutes either side; outer envelope +/-30 min used as primary, +/-15 min reported as inner scenario",
-    "inner_minutes": 15,
-    "outer_minutes": 30
+    "raw": "Time of breath is exact 9:30AM I confirmed it's like max a minute away I confirmed",
+    "previous_raw": "15-30mins ig",
+    "interpretation": "user-confirmed exact time, at most 1 minute off; ensemble uses +/-1 min (inner and outer identical)",
+    "inner_minutes": 1,
+    "outer_minutes": 1
   },
   "birthplace": {
     "raw": "Lucknow India",
@@ -27,5 +35,5 @@
     "note": "residence is recent and expected to change; used only for a relocated solar return, reported beside the birthplace return"
   },
   "calendar_notes": "No non-Gregorian source date reported. India had no DST in 2004.",
-  "analysis_date": "2026-09-26"
+  "analysis_date": "2026-09-27"
 }

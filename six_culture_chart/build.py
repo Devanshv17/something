@@ -34,7 +34,7 @@ def main():
         timedelta(hours=lon / 15) - local.utcoffset()  # LAT - civil
     outer = inp["time_uncertainty"]["outer_minutes"]
     inner = inp["time_uncertainty"]["inner_minutes"]
-    offsets = [-outer, -inner, 0, inner, outer]
+    offsets = sorted({-outer, -inner, 0, inner, outer})
 
     # ---------- shared base at each ensemble instant ----------
     bases = {}
@@ -106,7 +106,7 @@ def main():
     crossings = {}
     for k in keys:
         f = lambda u, k=k: flat(lbl(u)[1])[k]
-        cr = find_crossings(f, utc - timedelta(minutes=outer), utc + timedelta(minutes=outer), step_s=60, tol_s=1)
+        cr = find_crossings(f, utc - timedelta(minutes=outer), utc + timedelta(minutes=outer), step_s=10, tol_s=1)
         within_inner = [c for c in cr if abs((c[0] - utc).total_seconds()) <= inner * 60]
         stability[k] = {
             "value_at_T": f(utc),
@@ -176,7 +176,8 @@ def main():
     dasha = {}
     for off in (-outer, 0, outer):
         bb = bases[off]
-        dasha[f"{off:+d}min"] = jyotisha.vimshottari(bb["bodies"]["Moon"]["sidereal_lon"], utc)
+        dasha[f"{off:+d}min"] = jyotisha.vimshottari(bb["bodies"]["Moon"]["sidereal_lon"], utc,
+                                                     pd_window=(2020, 2035) if outer <= 5 else None)
     # identify distinct lagna alternatives
     lagna_alts = {}
     for off in offsets:
@@ -275,7 +276,8 @@ def main():
                      "lagna_alternatives": lagna_alts, "vimshottari": dasha,
                      "unavailable": {"shadbala": "no validated implementation in this environment",
                                      "ashtakavarga": "timing/transit support not requested; not computed",
-                                     "pratyantardasha": "Moon moves ~0.25 deg over +/-30 min => dasha dates uncertain by ~+/-48 days; PD omitted",
+                                     "pratyantardasha": ("computed for Mahadashas overlapping 2020-2035 only" if outer <= 5 else
+                                                         "time precision insufficient; omitted"),
                                      "D7_D12": "domains not specifically requested and time precision insufficient"}},
         "bazi": {"primary": bz, "alternative_hour_Chen": bz_alt_summary},
         "western": {"charts": wc, "solar_returns": sr,

@@ -45,9 +45,12 @@ REGISTRY = {
              "DIVERGENT = any positive-vs-negative conflict between clusters (takes precedence); INSUFFICIENT = none voting",
     "STABILITY": "outer scenario (+/-30 min) counts only facts stable over the whole interval; inner (+/-15 min) counts "
                  "facts stable over +/-15. Sensitive facts are displayed as alternatives and never vote.",
+    "JY-REFERENCE": "Jyotisha houses are counted from the Lagna when the Lagna sign is stable over the whole uncertainty "
+                    "interval; otherwise from Chandra Lagna (Moon sign). The unused frame is shown as a non-voting secondary view.",
+    "W-HOUSES": "Western whole-sign house projections vote only when the Ascendant sign is stable over the whole interval.",
     "CLUSTER": "Jyotisha; Western/Hellenistic; Sinic (BaZi + Zi Wei pooled, one vote). Maya/Tibetan never vote.",
     "TIMING": "a cluster activates a domain in a window if any of its declared techniques does (one vote per cluster): "
-              "Jyotisha: Mahadasha lord's karaka domains + its house from Chandra Lagna; Western: profected house number; "
+              "Jyotisha: Mahadasha lord's karaka domains + its house from the JY-REFERENCE frame; Western: profected house number; "
               "Sinic: Da Yun stem/branch Ten-God domains (Wealth->D3,D4 male; Officer/Killings->D2,D6; Output->D8; "
               "Resource->D5,D8; Companion/Rob->D1) and Zi Wei decadal palace domain",
 }
@@ -356,13 +359,14 @@ def tg_domains(tg):
     return []
 
 
-def timing(raw, today):
+def timing(raw, today, ref="chandra"):
     from sc.bazi import STEMS, ten_god
     from sc.jyotisha import LORD
     windows = []
     # Jyotisha: Mahadasha (stable lords; dates +/- from ensemble)
     jc = raw["jyotisha"]["charts"]["+0min"]
-    moon_sign = SIGNS.index(jc["grahas"]["Moon"]["sign"])
+    moon_sign = SIGNS.index(jc["grahas"]["Moon"]["sign"] if ref == "chandra" else jc["lagna"]["sign"])
+    ref_name = "Chandra Lagna" if ref == "chandra" else "Lagna"
     kar = {"Sun": ["D1", "D2"], "Moon": ["D5", "D8"], "Mercury": ["D8"], "Jupiter": ["D3", "D6", "D9"], "Venus": ["D4"]}
     V = raw["jyotisha"]["vimshottari"]
     jy = []
@@ -377,8 +381,8 @@ def timing(raw, today):
         ends = sorted(V[k]["mahadashas"][i]["end"][:10] for k in V)
         jy.append({"cluster": "jyotisha", "technique": f"Vimshottari {lord} Mahadasha", "start": md["start"][:10],
                    "end": md["end"][:10], "start_range": [starts[0], starts[-1]], "end_range": [ends[0], ends[-1]],
-                   "domains": sorted(ds), "basis": f"{lord} karaka {kar.get(lord, [])}; occupies house {h} from Chandra Lagna; "
-                                                   f"lords houses {owned} from Chandra Lagna (not used)"})
+                   "domains": sorted(ds), "basis": f"{lord} karaka {kar.get(lord, [])}; occupies house {h} from {ref_name}; "
+                                                   f"lords houses {owned} from {ref_name} (not used)"})
     # Western: profections (house number stable even though sign is not)
     w = []
     for pr in raw["western"]["charts"]["+0min"]["profections"]:
@@ -516,53 +520,65 @@ def main():
     today = date.fromisoformat(load_input()["analysis_date"])
     st = raw["stability"]
 
-    # stable (outer) projections
-    jy_c, jy_sc = jyotisha_projections(raw, "+0min", "chandra")
+    lagna_stable = st["jyotisha_lagna_sign"]["outer_interval"] == "stable"
+    asc_stable = st["western_asc_sign"]["outer_interval"] == "stable"
+    asc_inner_stable = st["western_asc_sign"]["inner_interval"] == "stable"
+    ref = "lagna" if lagna_stable else "chandra"
+    zw_branch = st["ziwei_time_branch_civil"]["value_at_T"]
+    jy_c, jy_sc = jyotisha_projections(raw, "+0min", ref)
+    jy_secondary, _ = jyotisha_projections(raw, "+0min", "chandra" if ref == "lagna" else "lagna")
+    jy_secondary = [p for p in jy_secondary if p["mapping_rule"] == "HOUSE-OCC"]
     w_sig, w_sc = western_projections(raw, "+0min", houses=False)
     w_inner, _ = western_projections(raw, "+0min", houses=True)
+    w_primary = w_inner if asc_stable else w_sig
     bz_p = bazi_projections(raw)
-    zw_p = ziwei_projections(raw, "巳")
-    for p in jy_c + w_sig + bz_p + zw_p:
+    zw_p = ziwei_projections(raw, zw_branch)
+    for p in jy_c + w_inner + bz_p + zw_p:
         p.setdefault("confidence", "medium")
-    for p in bz_p:
-        if p["domain"] in ("D6",):
-            p["confidence"] = "medium"  # hour-pillar based: civil stable, LAT alternative differs in first 2.6 min
-    for p in jy_c:
-        if p["mapping_rule"] == "HOUSE-OCC":
-            p["confidence"] = "medium"  # Chandra Lagna: stable; secondary reference frame
-    outer = scenario(raw, "outer ±30 min (primary)", jy_c, w_sig, bz_p + zw_p)
-    inner = scenario(raw, "inner ±15 min (Western Asc Cancer stable)", jy_c, w_inner, bz_p + zw_p)
+    unc = load_input()["time_uncertainty"]
+    scenarios = {"outer": scenario(raw, f"±{unc['outer_minutes']} min (primary)", jy_c, w_primary, bz_p + zw_p)}
+    if unc["inner_minutes"] != unc["outer_minutes"] and asc_inner_stable and not asc_stable:
+        scenarios["inner"] = scenario(raw, f"inner ±{unc['inner_minutes']} min (Western Asc stable)", jy_c, w_inner, bz_p + zw_p)
 
-    # sensitive alternatives (displayed, never vote)
+    # sensitive alternatives (displayed, never vote) -- only for outputs that actually change in the interval
     alts = {}
-    for off in ("-15min", "+0min"):
-        pj, _ = jyotisha_projections(raw, off, "lagna")
-        alts[f"jyotisha_lagna_{raw['jyotisha']['charts'][off]['lagna']['sign']}"] = [p for p in pj if p["mapping_rule"] == "HOUSE-OCC"]
-    for off in ("+0min", "+30min"):
-        pw, _ = western_projections(raw, off, houses=True)
-        alts[f"western_asc_{raw['western']['charts'][off]['asc']['sign']}"] = [p for p in pw if p["mapping_rule"] == "HOUSE-OCC"]
-    alts["ziwei_辰_LAT_edge"] = ziwei_projections(raw, "辰")
+    offs = sorted(raw["jyotisha"]["charts"], key=lambda k: int(k.replace("min", "")))
+    if not lagna_stable:
+        for off in offs:
+            pj, _ = jyotisha_projections(raw, off, "lagna")
+            alts[f"jyotisha_lagna_{raw['jyotisha']['charts'][off]['lagna']['sign']}"] = [p for p in pj if p["mapping_rule"] == "HOUSE-OCC"]
+    if not asc_stable:
+        for off in offs:
+            pw, _ = western_projections(raw, off, houses=True)
+            alts[f"western_asc_{raw['western']['charts'][off]['asc']['sign']}"] = [p for p in pw if p["mapping_rule"] == "HOUSE-OCC"]
+    if st["ziwei_time_branch_civil"]["crossings"] or st["ziwei_time_branch_LAT"]["crossings"]:
+        for br in raw["ziwei"]["alternatives"]:
+            if br != zw_branch:
+                alts[f"ziwei_{br}"] = ziwei_projections(raw, br)
+    outer = scenarios["outer"]
 
-    tm = timing(raw, today)
-    temp = temperament(raw, jy_sc, w_sc, raw["bazi"]["primary"], raw["ziwei"]["alternatives"]["巳"])
+    tm = timing(raw, today, ref)
+    temp = temperament(raw, jy_sc, w_sc, raw["bazi"]["primary"], raw["ziwei"]["alternatives"][zw_branch])
 
     # claim accounting
     all_candidates = jy_c + w_inner + bz_p + zw_p + [p for v in alts.values() for p in v]
-    n_neutral = [p["basis"] for p in jy_c + w_sig + bz_p + zw_p if p["polarity"] in ("neutral", "silent")]
+    n_neutral = [p["basis"] for p in jy_c + w_primary + bz_p + zw_p if p["polarity"] in ("neutral", "silent")]
     removed = {
-        "sensitive_to_birth_time": {"count": sum(len(v) for v in alts.values()) + (len(w_inner) - len(w_sig)),
-                                    "note": "Lagna/Asc-house and Zi Wei 辰-hour projections: displayed as alternatives, never vote "
-                                            "(Western Asc houses vote only in the inner ±15 scenario)"},
+        "sensitive_to_birth_time": {"count": sum(len(v) for v in alts.values()) + (len(w_inner) - len(w_primary)),
+                                    "note": "projections that change inside the uncertainty interval; displayed, never vote"},
+        "secondary_reference_frame_not_voting": {"count": len(jy_secondary),
+                                                 "note": f"Jyotisha houses from {'Chandra Lagna' if ref == 'lagna' else 'Lagna'} (JY-REFERENCE)"},
         "neutral_polarity_no_theme": {"count": len(n_neutral), "items": n_neutral},
         "school_dependent_low_confidence": {"count": 1, "items": ["BaZi Yong Shen / favourable element (schools disagree)"]},
         "no_validated_source": {"count": 4, "items": ["Maya Tzolk'in 10 Ajaw meaning", "Maya Haab 3 Sip meaning",
                                                       "Tibetan Male Wood Monkey meaning",
                                                       "Tibetan Mewa / Parkha / la-sok-lung-ta-wang-thang"]},
-        "unavailable_methods": {"count": 6, "items": ["Shadbala", "Ashtakavarga", "Pratyantardasha", "D7/D12",
-                                                      "Zodiacal releasing", "Transits"]},
+        "unavailable_methods": {"items": [k for k, v in {**raw["jyotisha"]["unavailable"], **raw["western"]["unavailable"]}.items()
+                                          if not v.startswith("computed")]},
         "barnum_screen": "every retained projection is tied to a computed datum via a registry rule; no automated "
                          "Barnum test was run, so generic-sounding prose was avoided by hand in FINAL_READING.md",
     }
+    removed["unavailable_methods"]["count"] = len(removed["unavailable_methods"]["items"])
     from sc.bazi import ten_god
     from lunar_python.util import LunarUtil
     dmst = raw["bazi"]["primary"]["day_master"]["stem"]
@@ -572,7 +588,11 @@ def main():
                   "period": f"Lichun {y} to Lichun {int(y) + 1}"}
               for y, gz in raw["bazi"]["primary"]["annual_pillars"].items() if int(y) in (2026, 2027, 2028)}
     syn = {"registry": REGISTRY, "house_domain": HOUSE_DOMAIN, "domains": DOMAINS,
-           "scenarios": {"outer": outer, "inner": inner}, "sensitive_alternatives": alts,
+           "scenarios": scenarios, "sensitive_alternatives": alts,
+           "reference_frames": {"jyotisha_houses": ref, "western_houses_vote": asc_stable, "ziwei_hour_branch": zw_branch},
+           "secondary_jyotisha_view": jy_secondary,
+           "rule_application_note": ("Registry unchanged from the ±30 min run; JY-REFERENCE and W-HOUSES now select the Lagna "
+                                     "and Ascendant houses because both are stable over ±1 min."),
            "stable_scores": {"jyotisha": jy_sc, "western": w_sc},
            "timing": tm, "temperament": temp, "bazi_annual_ten_gods": annual,
            "overlays": {"maya": {"computed": raw["maya"]["calendar_round"] + " / " + raw["maya"]["long_count"],
@@ -588,7 +608,7 @@ def main():
 
 if __name__ == "__main__":
     s = main()
-    for k in ("outer", "inner"):
+    for k in s["scenarios"]:
         sc = s["scenarios"][k]
         print(sc["scenario"], sc["counts"], sc["divergence_rate_all"], sc["divergence_rate_sufficient"])
         for d, v in sc["domains"].items():
