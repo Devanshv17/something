@@ -19,7 +19,10 @@ def normalize(inp):
     lon = inp["birthplace"]["longitude"]
     tzname = TimezoneFinder().timezone_at(lat=lat, lng=lon)
     tz = ZoneInfo(tzname)
-    d, m, y = (int(x) for x in inp["date"]["raw"].split("/"))
+    if inp["date"].get("iso"):
+        y, m, d = (int(x) for x in inp["date"]["iso"].split("-"))
+    else:
+        d, m, y = (int(x) for x in inp["date"]["raw"].split("/"))
     hh, mm, ss = (int(x) for x in inp["time"]["local_24h"].split(":"))
     local = datetime(y, m, d, hh, mm, ss, tzinfo=tz)
     utc = local.astimezone(timezone.utc)
@@ -66,7 +69,7 @@ def normalize(inp):
             "tzdata_release": tzdata.IANA_VERSION,
             "utc_offset": str(offset),
             "dst_in_effect": dst != timedelta(0),
-            "offset_history_probe_first_of_month_2004": probes,
+            f"offset_history_probe_first_of_month_{y}": probes,
             "julian_day_ut": jd,
             "julian_day_tt": jd + swe.deltat(jd),
             "delta_t_seconds": swe.deltat(jd) * 86400,

@@ -172,8 +172,8 @@ def profections(asc_sign, birth_date, today, n_years=3):
     return out
 
 
-def solar_return(natal_sun, year, places):
-    jd_guess = jd_from_utc(datetime(year, 5, 16, tzinfo=timezone.utc))
+def solar_return(natal_sun, year, places, birth_date):
+    jd_guess = jd_from_utc(datetime(year, birth_date.month, min(birth_date.day, 28), tzinfo=timezone.utc))
     jd = solar_longitude_crossing(natal_sun, jd_guess)
     utc = utc_from_jd(jd)
     out = {"utc": utc.isoformat(timespec="seconds"), "locations": {}}

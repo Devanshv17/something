@@ -54,26 +54,51 @@ def pillars_sxtwl(local_naive):
     return [gz(d.getYearGZ()), gz(d.getMonthGZ()), gz(d.getDayGZ()), gz(d.getHourGZ(local_naive.hour))]
 
 
+JIE = {315: ("立春", "Lichun (Start of Spring)"), 345: ("惊蛰", "Jingzhe (Awakening of Insects)"),
+       15: ("清明", "Qingming (Pure Brightness)"), 45: ("立夏", "Lixia (Start of Summer)"),
+       75: ("芒种", "Mangzhong (Grain in Ear)"), 105: ("小暑", "Xiaoshu (Minor Heat)"),
+       135: ("立秋", "Liqiu (Start of Autumn)"), 165: ("白露", "Bailu (White Dew)"),
+       195: ("寒露", "Hanlu (Cold Dew)"), 225: ("立冬", "Lidong (Start of Winter)"),
+       255: ("大雪", "Daxue (Major Snow)"), 285: ("小寒", "Xiaohan (Minor Cold)")}
+
+
 def solar_terms(birth_utc):
-    """Sectional terms (jie) bracketing the birth: 立夏 45 deg, 芒种 75 deg."""
+    """The two sectional terms (jie) bracketing the birth, each from four engines."""
+    jd_b = jd_from_utc(birth_utc)
+    sun = swe.calc_ut(jd_b, swe.SUN)[0][0]
+    prev_lon = (315 + ((sun - 315) % 360) // 30 * 30) % 360
+    next_lon = (prev_lon + 30) % 360
     out = {}
-    lp_table = Solar.fromYmd(birth_utc.year, 5, 17).getLunar().getJieQiTable()
-    sx = {x.jqIndex: x.jd for x in sxtwl.getJieQiByYear(birth_utc.year)}
-    for name, py, lon, sx_idx in (("立夏", "Lixia (Start of Summer)", 45.0, 9),
-                                  ("芒种", "Mangzhong (Grain in Ear)", 75.0, 11)):
-        guess = jd_from_utc(birth_utc) + (lon - 56.6) / 0.97
-        jd = solar_longitude_crossing(lon, guess)
+    for role, lon in (("prev", prev_lon), ("next", next_lon)):
+        name, py = JIE[int(lon)]
+        d = ((lon - sun + 180) % 360) - 180
+        jd = solar_longitude_crossing(lon, jd_b + d / 0.985)
         se = utc_from_jd(jd)
         sk = skyfield_solar_longitude_crossing(lon, se)
-        lpv = datetime.strptime(lp_table[name].toYmdHms(), "%Y-%m-%d %H:%M:%S").replace(tzinfo=CST)
-        sxv = utc_from_jd(sx[sx_idx] - 8 / 24)  # sxtwl JD is in Beijing time
-        out[name] = {"pinyin": py, "sun_longitude": lon,
+        vals = [se, sk]
+        lpv = None
+        for probe in (se, se + timedelta(days=15), se - timedelta(days=15)):
+            tab = Solar.fromYmd(probe.year, probe.month, probe.day).getLunar().getJieQiTable()
+            if name in tab:
+                cand = datetime.strptime(tab[name].toYmdHms(), "%Y-%m-%d %H:%M:%S").replace(tzinfo=CST)
+                if abs((cand - se).total_seconds()) < 5 * 86400:
+                    lpv = cand
+                    break
+        sx_idx = int(((lon - 270) / 15) % 24)
+        sxv = None
+        for yr in (se.year - 1, se.year, se.year + 1):
+            for x in sxtwl.getJieQiByYear(yr):
+                if x.jqIndex == sx_idx:
+                    cand = utc_from_jd(x.jd - 8 / 24)  # sxtwl JD is in Beijing time
+                    if abs((cand - se).total_seconds()) < 5 * 86400:
+                        sxv = cand
+        vals += [v for v in (lpv, sxv) if v is not None]
+        out[name] = {"role": role, "pinyin": py, "sun_longitude": float(lon),
                      "swiss_ephemeris_utc": se.isoformat(timespec="seconds"),
                      "skyfield_jpl_utc": sk.isoformat(timespec="seconds"),
-                     "lunar_python_utc": lpv.astimezone(timezone.utc).isoformat(timespec="seconds"),
-                     "sxtwl_utc": sxv.isoformat(timespec="seconds"),
-                     "max_difference_s": max(abs((a - b).total_seconds()) for a in (se, sk, lpv, sxv)
-                                             for b in (se, sk, lpv, sxv)),
+                     "lunar_python_utc": lpv.astimezone(timezone.utc).isoformat(timespec="seconds") if lpv else None,
+                     "sxtwl_utc": sxv.isoformat(timespec="seconds") if sxv else None,
+                     "max_difference_s": max(abs((a - b).total_seconds()) for a in vals for b in vals),
                      "_utc": se}
     return out
 
@@ -154,7 +179,7 @@ def dm_strength(pillars, hidden):
                         if any(STEM_EL[STEMS.index(h)] == dme for h in hidden[i])]}
 
 
-def compute(local_civil, local_lat, birth_utc, gender_code=1):
+def compute(local_civil, local_lat, birth_utc, gender_code=1, analysis_year=2026):
     tracks = {}
     for label, t in (("civil_clock", local_civil), ("local_apparent_solar_time", local_lat)):
         ec, p = pillars_lunar_python(t)
@@ -183,7 +208,9 @@ def compute(local_civil, local_lat, birth_utc, gender_code=1):
     # Own Da Yun start: forward (male + yang year stem) => to next jie; 3 days = 1 year
     yang_year = STEMS.index(p[0][0]) % 2 == 0
     forward = (gender_code == 1) == yang_year
-    nxt = terms["芒种"]["_utc"] if forward else terms["立夏"]["_utc"]
+    prev_t = next(v for v in terms.values() if v["role"] == "prev")
+    next_t = next(v for v in terms.values() if v["role"] == "next")
+    nxt = next_t["_utc"] if forward else prev_t["_utc"]
     days = abs((nxt - birth_utc).total_seconds()) / 86400
     years = days / 3
     own_start = birth_utc + timedelta(days=years * 365.2422)
@@ -191,16 +218,19 @@ def compute(local_civil, local_lat, birth_utc, gender_code=1):
         "primary_track": "civil_clock (IST) with lunar_python sect=2; local-apparent-solar-time track retained",
         "tracks": tracks,
         "pillars": pillars,
-        "day_master": {"stem": dm, "element": EL[STEM_EL[STEMS.index(dm)]], "polarity": "Yang"},
+        "day_master": {"stem": dm, "element": EL[STEM_EL[STEMS.index(dm)]],
+                       "polarity": "Yang" if STEMS.index(dm) % 2 == 0 else "Yin"},
         "solar_terms": {k: {kk: vv for kk, vv in v.items() if kk != "_utc"} for k, v in terms.items()},
-        "birth_after_lixia_days": (birth_utc - terms["立夏"]["_utc"]).total_seconds() / 86400,
-        "birth_before_mangzhong_days": (terms["芒种"]["_utc"] - birth_utc).total_seconds() / 86400,
+        "prev_jie": next(k for k, v in terms.items() if v["role"] == "prev"),
+        "next_jie": next(k for k, v in terms.items() if v["role"] == "next"),
+        "birth_after_prev_jie_days": (birth_utc - prev_t["_utc"]).total_seconds() / 86400,
+        "birth_before_next_jie_days": (next_t["_utc"] - birth_utc).total_seconds() / 86400,
         "interactions": interactions(p),
         "dm_strength": dm_strength(p, hidden),
         "da_yun": {
             "direction": "forward" if forward else "backward",
-            "direction_rule": "male + yang year stem => forward",
-            "days_to_next_sectional_term": days,
+            "direction_rule": "yang-year male or yin-year female => forward (to next jie); otherwise backward (to previous jie)",
+            "days_to_sectional_term_used": days,
             "start_offset_years_exact_3day_rule": years,
             "start_date_exact_3day_rule": own_start.date().isoformat(),
             "lunar_python_start": {"years": yun.getStartYear(), "months": yun.getStartMonth(),
@@ -209,29 +239,46 @@ def compute(local_civil, local_lat, birth_utc, gender_code=1):
                 yun.getStartSolar().toYmd(), "%Y-%m-%d").date()).days),
             "periods_lunar_python": [d for d in dayun if d["ganzhi"]],
         },
-        "annual_pillars": {str(y): Solar.fromYmd(y, 7, 1).getLunar().getYearInGanZhiExact() for y in range(2024, 2031)},
+        "annual_pillars": {str(y): Solar.fromYmd(y, 7, 1).getLunar().getYearInGanZhiExact() for y in range(analysis_year - 2, analysis_year + 5)},
         "_term_objs": terms,
     }
 
 
+# 调候 entries from Qiong Tong Bao Jian included only where the text was checked; others are reported unavailable.
+QIONG_TONG = {("丙", "巳"): {"useful": ["Water (壬)", "Metal (庚)"],
+                             "text": "Qiong Tong Bao Jian for 丙 in 四月 (巳): 壬 Ren water as primary, 庚 Geng metal as assistant"}}
+
+
 def yong_shen(bz):
     dm = bz["dm_strength"]
-    return {
-        "schools": [
-            {"school": "调候 Seasonal regulation (Qiong Tong Bao Jian, Bing fire born in Si month)",
-             "rule_chain": ["Day Master 丙 Bing, month branch 巳 Si (early summer, fire at peak)",
-                            "Qiong Tong Bao Jian for 丙 in 四月: 壬 Ren water as primary, 庚 Geng metal as assistant"],
-             "useful": ["Water (壬)", "Metal (庚)"],
-             "presence": "壬 appears only as hidden stem in both 申; 庚 is main qi of both 申; visible water stem is 癸 not 壬"},
-            {"school": "扶抑 Strength-balancing (rule BZ-DM-1)",
-             "rule_chain": [f"weighted support share {dm['support_share']:.3f} -> {dm['weighted_count_verdict']}",
-                            f"seasonal status: {dm['seasonal_verdict']}",
-                            "the two sub-verdicts disagree" if (dm['weighted_count_verdict'] == 'weak') ==
-                            ('旺' in dm['seasonal_verdict'] or '相' in dm['seasonal_verdict']) else "sub-verdicts agree"],
-             "useful": (["Wood (resource)", "Fire (companion)"] if dm["weighted_count_verdict"] == "weak"
-                        else ["Earth", "Metal", "Water"] if dm["weighted_count_verdict"] == "strong" else ["undetermined"]),
-             },
-        ],
-        "confidence": "low",
-        "agreement": "schools disagree unless both point to water/metal; see rule chains",
-    }
+    dms = bz["day_master"]["stem"]
+    mb = bz["pillars"][1]["branch"]
+    qt = QIONG_TONG.get((dms, mb))
+    schools = []
+    if qt:
+        schools.append({"school": f"调候 Seasonal regulation (Qiong Tong Bao Jian, {dms} born in {mb} month)",
+                        "rule_chain": [f"Day Master {dms}, month branch {mb}", qt["text"]], "useful": qt["useful"]})
+    else:
+        schools.append({"school": "调候 Seasonal regulation (Qiong Tong Bao Jian)", "useful": ["unavailable"],
+                        "rule_chain": [f"Day Master {dms}, month branch {mb}: no verified table entry in this build"]})
+    disagree = (dm["weighted_count_verdict"] == "weak") == ("旺" in dm["seasonal_verdict"] or "相" in dm["seasonal_verdict"])
+    schools.append({"school": "扶抑 Strength-balancing (rule BZ-DM-1)",
+                    "rule_chain": [f"weighted support share {dm['support_share']:.3f} -> {dm['weighted_count_verdict']}",
+                                   f"seasonal status: {dm['seasonal_verdict']}",
+                                   "the two sub-verdicts disagree" if disagree else "sub-verdicts agree"],
+                    "useful": (["Resource element", "Companion element"] if dm["weighted_count_verdict"] == "weak"
+                               else ["Output element", "Wealth element", "Officer element"] if dm["weighted_count_verdict"] == "strong"
+                               else ["undetermined"]),
+                    "useful_elements": _useful_elements(bz)})
+    return {"schools": schools, "confidence": "low" if disagree or not qt else "medium",
+            "sub_verdicts_disagree": disagree}
+
+
+def _useful_elements(bz):
+    dme = EL.index(bz["day_master"]["element"])
+    v = bz["dm_strength"]["weighted_count_verdict"]
+    if v == "weak":
+        return [EL[(dme - 1) % 5], EL[dme]]
+    if v == "strong":
+        return [EL[(dme + 1) % 5], EL[(dme + 2) % 5], EL[(dme + 3) % 5]]
+    return []

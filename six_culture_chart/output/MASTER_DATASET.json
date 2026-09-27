@@ -93,10 +93,10 @@
     }
   },
   "conventions_and_versions": {
-    "executed_utc": "2026-09-27T07:44:25+00:00",
+    "executed_utc": "2026-09-27T09:13:59+00:00",
     "runtime": {
       "python": "3.12.3 (main, Mar  3 2026, 12:15:18) [GCC 13.3.0]",
-      "platform": "Linux-6.18.44-fc-v42-x86_64-with-glibc2.39",
+      "platform": "Linux-6.18.44-fc-v37-x86_64-with-glibc2.39",
       "node": "v22.22.2"
     },
     "packages": {
@@ -146,29 +146,29 @@
         "day_boundary": "iztro default (civil midnight; 23:00-24:00 = late Zi index 12)",
         "time_index_source": "civil clock hour (IST); LAT variant evaluated in boundary audit",
         "gender_encoding": "男 (male)",
-        "direction_rule": "iztro default: yang-male forward",
+        "direction_rule": "iztro default: yang-male / yin-female forward",
         "age_convention": "nominal (虚岁) age as used by iztro",
-        "month_note": "Zi Wei uses the lunar month (三月 -> 戊辰 in iztro chineseDate); BaZi uses the solar-term month (己巳). Both are correct within their own convention."
+        "month_note": "Zi Wei uses the lunar month (iztro chineseDate); BaZi uses the solar-term month. They can differ; both are correct within their own convention."
       },
       "maya": "GMT 584283 (convertdate default; own implementation uses the same constant explicitly)",
       "tibetan": "element-animal-gender year only"
     },
     "source_checksums": {
-      "build.py": "bbc7501918519cc319af625a581446b0aa90be940c13fc1d374c1d3d41980b8e",
+      "build.py": "f2fe5ff750cb33f870e07b4d1591694fe13c217a71d6c3e5e523c2294bab0f34",
       "js/package.json": "3ea01d56e1c1360a5c3b35d04dd473dfa3e49377eec0cf8ffdb55fd5a57fe98a",
       "js/ziwei.js": "9309d8d512a83468cfd379cc256b53551459e2a7fe963d8a98773475850978f1",
-      "render.py": "85f4c812d1031f990fc16e1359662c42f2d94fa72645d43cf1e17aebc74a6fd3",
-      "render_html.py": "549945164be4cee59ba90271cc0eb3498e02dfc4c20552b0e3a3940955607942",
+      "render.py": "af542b400f554be3fd01964a96b7203d13b7ac638111faa3b10b87a4bdce7c6c",
+      "render_html.py": "49c12ebe33dd58615569a83e2acf99df364f0c9f9df72cc39ca68dc7f2c9ed31",
       "sc/astro.py": "d9123915b1fdfee8fbd4775367142e3e25e4d9755b20aea0fda9cfddf7318c31",
-      "sc/audit.py": "ead6f6a8af82e8d8b11f6ee10d685df9364c1b9db7b9e03e047be8071cebdb80",
-      "sc/bazi.py": "60800b954751f06dd04a91f9d4d4ef4cb7c2c5d9a1434be3d863603d50cedb3a",
-      "sc/common.py": "e133c1d1788aed1fe814e725665ac26bef32aeeec1a157f1068f042aeb1a5f08",
+      "sc/audit.py": "b676f33d81a4929315b45c383348c9f33a631baed881f0f09db558786074f6b0",
+      "sc/bazi.py": "57c6f017e47a42017966428ec874e3f12cd50a6eb2132729d3447421eb645e28",
+      "sc/common.py": "7fec9170e6992bc01d6eb8503c7913d9bd82004b0bbbdefb1c5f4e2ce5ea336f",
       "sc/jyotisha.py": "e02d10f28adabe00a98f8e50ca6d8dfe0d9de9f21c78a08bdaa568be97a0449e",
-      "sc/maya_tibet.py": "924d829ee5a8790a3580615b18567c4ddc2ac595206d851ecb35544f718368c3",
-      "sc/western.py": "068f0dc1fd18f566b9689be5ff284fa953ca904d6c6741993832d25a09cca7e5",
-      "sc/ziwei.py": "3984f271a680c14ec6f3f9c51ecf901408d82a83556c0f50701807b9ba26216d",
-      "synth.py": "d87f180f15d0f429e812ab64900710e685eacd3e90f236a3caa562095c49cb03",
-      "verify.py": "dff1753c7658cb96a36d64e6c341fe13ec34d5b3a90add6ae2872974c09f2b89"
+      "sc/maya_tibet.py": "0b49bd8b6c4e270e2607742ff0aed29106cce60106e87634c32787533697a887",
+      "sc/western.py": "e017bb6625e4b6db9ed0862c2981a7a913a559e3c56e23e88ae3135d39389b7c",
+      "sc/ziwei.py": "bfa4ac7b0fa72f90923566431175e751e247728e38cd61e2774d8afaca7523b8",
+      "synth.py": "8a9f29e74ed64b95be0454dca8a7a68ead163bd1fee1aed4d4fc69967a7358ec",
+      "verify.py": "5c555bc4497cf6bc612a4839eefa6c94bf23cfcebbdef0cbd5a79e8b51936202"
     }
   },
   "raw_calculations": {
@@ -526,28 +526,49 @@
         "minutes_before_sunset": 557.7001217
       },
       "bazi_hour": {
-        "civil_hour_branch_window": "09:00-11:00 巳 Si",
-        "minutes_after_09:00_civil": 30,
-        "LAT_time": "2004-05-17T09:27:26",
-        "minutes_after_09:00_LAT": 27.433333333333334
+        "civil": {
+          "time": "2004-05-17T09:30:00",
+          "branch": "巳",
+          "window": "09:00-11:00",
+          "minutes_into_branch": 30.0,
+          "minutes_to_branch_end": 90.0
+        },
+        "LAT": {
+          "time": "2004-05-17T09:27:26",
+          "branch": "巳",
+          "window": "09:00-11:00",
+          "minutes_into_branch": 27.433333333333334,
+          "minutes_to_branch_end": 92.56666666666666
+        },
+        "nearest_boundary": {
+          "track": "LAT",
+          "side": "start",
+          "minutes": 27.433333333333334
+        }
       },
       "day_boundary": {
         "minutes_after_local_midnight": 570,
         "minutes_before_23:00_late_zi": 810,
-        "note": "late-Zi convention irrelevant at 09:30"
+        "note": "late-Zi convention matters only for births between 23:00 and 24:00"
       },
       "zi_wei_lunar": {
-        "lunar_date": "甲申年 三月廿九 (3rd lunar month, day 29; not a leap month; 2004's leap month was 闰二月)",
+        "lunar_date": "甲申年 三月廿九",
+        "is_leap_month": false,
+        "leap_month_of_year": 2,
+        "note": "lunar day changes at civil midnight in iztro",
         "next_new_moon_utc": "2004-05-19T04:51:55+00:00",
-        "hours_to_next_new_moon": 48.86555448916666,
-        "note": "lunar day changes at civil midnight in iztro; the next lunar month begins with the new moon's civil date in China (UTC+8)"
+        "hours_to_next_new_moon": 48.86555448916666
       },
-      "tibetan_losar": "birth in May is after every possible Losar date (late Jan - late Mar)",
+      "tibetan_losar": "birth month is after every possible Losar date (late Jan - late Mar)",
       "calendar_adoption": "Gregorian civil date; no Julian/Gregorian ambiguity for 2004",
-      "mercury_tropical_sign_cusp": {
-        "deg_past_0_taurus": 0.9325409777434963,
-        "hours_since_ingress_approx": 20.674711131145976
-      }
+      "planets_near_sign_cusp": [
+        {
+          "body": "Mercury",
+          "zodiac": "tropical",
+          "deg_from_cusp": 0.9325409777434963,
+          "hours_per_degree": 22.17029773980907
+        }
+      ]
     },
     "astronomy": {
       "-1min": {
@@ -6568,6 +6589,7 @@
         },
         "solar_terms": {
           "立夏": {
+            "role": "prev",
             "pinyin": "Lixia (Start of Summer)",
             "sun_longitude": 45.0,
             "swiss_ephemeris_utc": "2004-05-05T04:02:26+00:00",
@@ -6577,6 +6599,7 @@
             "max_difference_s": 1.145127
           },
           "芒种": {
+            "role": "next",
             "pinyin": "Mangzhong (Grain in Ear)",
             "sun_longitude": 75.0,
             "swiss_ephemeris_utc": "2004-06-05T08:13:44+00:00",
@@ -6586,8 +6609,10 @@
             "max_difference_s": 1.591301
           }
         },
-        "birth_after_lixia_days": 11.99830029082176,
-        "birth_before_mangzhong_days": 19.176210820520833,
+        "prev_jie": "立夏",
+        "next_jie": "芒种",
+        "birth_after_prev_jie_days": 11.99830029082176,
+        "birth_before_next_jie_days": 19.176210820520833,
         "interactions": [
           {
             "type": "stem combination 天干五合",
@@ -6811,8 +6836,8 @@
         },
         "da_yun": {
           "direction": "forward",
-          "direction_rule": "male + yang year stem => forward",
-          "days_to_next_sectional_term": 19.176210820520833,
+          "direction_rule": "yang-year male or yin-year female => forward (to next jie); otherwise backward (to previous jie)",
+          "days_to_sectional_term_used": 19.176210820520833,
           "start_offset_years_exact_3day_rule": 6.392070273506945,
           "start_date_exact_3day_rule": "2010-10-07",
           "lunar_python_start": {
@@ -6891,16 +6916,15 @@
         "yong_shen": {
           "schools": [
             {
-              "school": "调候 Seasonal regulation (Qiong Tong Bao Jian, Bing fire born in Si month)",
+              "school": "调候 Seasonal regulation (Qiong Tong Bao Jian, 丙 born in 巳 month)",
               "rule_chain": [
-                "Day Master 丙 Bing, month branch 巳 Si (early summer, fire at peak)",
-                "Qiong Tong Bao Jian for 丙 in 四月: 壬 Ren water as primary, 庚 Geng metal as assistant"
+                "Day Master 丙, month branch 巳",
+                "Qiong Tong Bao Jian for 丙 in 四月 (巳): 壬 Ren water as primary, 庚 Geng metal as assistant"
               ],
               "useful": [
                 "Water (壬)",
                 "Metal (庚)"
-              ],
-              "presence": "壬 appears only as hidden stem in both 申; 庚 is main qi of both 申; visible water stem is 癸 not 壬"
+              ]
             },
             {
               "school": "扶抑 Strength-balancing (rule BZ-DM-1)",
@@ -6910,16 +6934,20 @@
                 "the two sub-verdicts disagree"
               ],
               "useful": [
-                "Wood (resource)",
-                "Fire (companion)"
+                "Resource element",
+                "Companion element"
+              ],
+              "useful_elements": [
+                "Wood",
+                "Fire"
               ]
             }
           ],
           "confidence": "low",
-          "agreement": "schools disagree unless both point to water/metal; see rule chains"
+          "sub_verdicts_disagree": true
         }
       },
-      "alternative_hour_Chen": {
+      "alternative_hour": {
         "hour_pillar": {
           "pillar": "hour",
           "ganzhi": "壬辰",
@@ -7119,19 +7147,20 @@
             "month"
           ]
         },
+        "reached_if": "birth 27.4 min earlier (LAT track)",
+        "minutes_away": 27.433333333333334,
         "yong_shen": {
           "schools": [
             {
-              "school": "调候 Seasonal regulation (Qiong Tong Bao Jian, Bing fire born in Si month)",
+              "school": "调候 Seasonal regulation (Qiong Tong Bao Jian, 丙 born in 巳 month)",
               "rule_chain": [
-                "Day Master 丙 Bing, month branch 巳 Si (early summer, fire at peak)",
-                "Qiong Tong Bao Jian for 丙 in 四月: 壬 Ren water as primary, 庚 Geng metal as assistant"
+                "Day Master 丙, month branch 巳",
+                "Qiong Tong Bao Jian for 丙 in 四月 (巳): 壬 Ren water as primary, 庚 Geng metal as assistant"
               ],
               "useful": [
                 "Water (壬)",
                 "Metal (庚)"
-              ],
-              "presence": "壬 appears only as hidden stem in both 申; 庚 is main qi of both 申; visible water stem is 癸 not 壬"
+              ]
             },
             {
               "school": "扶抑 Strength-balancing (rule BZ-DM-1)",
@@ -7141,13 +7170,17 @@
                 "the two sub-verdicts disagree"
               ],
               "useful": [
-                "Wood (resource)",
-                "Fire (companion)"
+                "Resource element",
+                "Companion element"
+              ],
+              "useful_elements": [
+                "Wood",
+                "Fire"
               ]
             }
           ],
           "confidence": "low",
-          "agreement": "schools disagree unless both point to water/metal; see rule chains"
+          "sub_verdicts_disagree": true
         }
       }
     },
@@ -9126,13 +9159,13 @@
         "2026": {
           "utc": "2026-05-17T11:38:58+00:00",
           "locations": {
-            "birthplace_Lucknow": {
+            "birthplace": {
               "asc": 216.1724982074265,
               "asc_sign": "Scorpio",
               "mc": 128.46029962962734,
               "mc_sign": "Leo"
             },
-            "current_residence_Almora": {
+            "current_residence": {
               "asc": 214.33676287944618,
               "asc_sign": "Scorpio",
               "mc": 127.19008751482791,
@@ -9140,29 +9173,29 @@
             }
           },
           "natal_sun_lon": 56.589541868325774,
-          "sensitivity_note": "Return Ascendant recomputed with the natal Sun at T-30 and T+30; see ensemble_asc_signs.",
+          "sensitivity_note": "Return Ascendant recomputed with the natal Sun at T-1 and T+1 min; see ensemble_asc_signs.",
           "location_changes_asc_sign": false,
           "ensemble_asc_signs": {
             "-1min": {
-              "birthplace_Lucknow": "Scorpio",
-              "current_residence_Almora": "Scorpio"
+              "birthplace": "Scorpio",
+              "current_residence": "Scorpio"
             },
             "+1min": {
-              "birthplace_Lucknow": "Scorpio",
-              "current_residence_Almora": "Scorpio"
+              "birthplace": "Scorpio",
+              "current_residence": "Scorpio"
             }
           }
         },
         "2027": {
           "utc": "2027-05-17T17:16:21+00:00",
           "locations": {
-            "birthplace_Lucknow": {
+            "birthplace": {
               "asc": 291.85426758884796,
               "asc_sign": "Capricorn",
               "mc": 217.57909051425258,
               "mc_sign": "Scorpio"
             },
-            "current_residence_Almora": {
+            "current_residence": {
               "asc": 289.03148518852043,
               "asc_sign": "Capricorn",
               "mc": 216.2502064097205,
@@ -9170,16 +9203,16 @@
             }
           },
           "natal_sun_lon": 56.589541868325774,
-          "sensitivity_note": "Return Ascendant recomputed with the natal Sun at T-30 and T+30; see ensemble_asc_signs.",
+          "sensitivity_note": "Return Ascendant recomputed with the natal Sun at T-1 and T+1 min; see ensemble_asc_signs.",
           "location_changes_asc_sign": false,
           "ensemble_asc_signs": {
             "-1min": {
-              "birthplace_Lucknow": "Capricorn",
-              "current_residence_Almora": "Capricorn"
+              "birthplace": "Capricorn",
+              "current_residence": "Capricorn"
             },
             "+1min": {
-              "birthplace_Lucknow": "Capricorn",
-              "current_residence_Almora": "Capricorn"
+              "birthplace": "Capricorn",
+              "current_residence": "Capricorn"
             }
           }
         }
@@ -9198,9 +9231,9 @@
         "day_boundary": "iztro default (civil midnight; 23:00-24:00 = late Zi index 12)",
         "time_index_source": "civil clock hour (IST); LAT variant evaluated in boundary audit",
         "gender_encoding": "男 (male)",
-        "direction_rule": "iztro default: yang-male forward",
+        "direction_rule": "iztro default: yang-male / yin-female forward",
         "age_convention": "nominal (虚岁) age as used by iztro",
-        "month_note": "Zi Wei uses the lunar month (三月 -> 戊辰 in iztro chineseDate); BaZi uses the solar-term month (己巳). Both are correct within their own convention."
+        "month_note": "Zi Wei uses the lunar month (iztro chineseDate); BaZi uses the solar-term month. They can differ; both are correct within their own convention."
       },
       "alternatives": {
         "辰": {
@@ -9813,7 +9846,7 @@
                 }
               },
               {
-                "date": "2027-9-26",
+                "date": "2027-9-27",
                 "nominalAge": 24,
                 "decadal": {
                   "index": 0,
@@ -9869,7 +9902,7 @@
                 }
               },
               {
-                "date": "2028-9-26",
+                "date": "2028-9-27",
                 "nominalAge": 25,
                 "decadal": {
                   "index": 0,
@@ -10534,7 +10567,7 @@
                 }
               },
               {
-                "date": "2027-9-26",
+                "date": "2027-9-27",
                 "nominalAge": 24,
                 "decadal": {
                   "index": 0,
@@ -10590,7 +10623,7 @@
                 }
               },
               {
-                "date": "2028-9-26",
+                "date": "2028-9-27",
                 "nominalAge": 25,
                 "decadal": {
                   "index": 0,
@@ -11350,7 +11383,7 @@
                 }
               },
               {
-                "date": "2027-9-26",
+                "date": "2027-9-27",
                 "nominalAge": 24,
                 "decadal": {
                   "index": 10,
@@ -11406,7 +11439,7 @@
                 }
               },
               {
-                "date": "2028-9-26",
+                "date": "2028-9-27",
                 "nominalAge": 25,
                 "decadal": {
                   "index": 10,
@@ -12072,7 +12105,7 @@
                 }
               },
               {
-                "date": "2027-9-26",
+                "date": "2027-9-27",
                 "nominalAge": 24,
                 "decadal": {
                   "index": 10,
@@ -12128,7 +12161,7 @@
                 }
               },
               {
-                "date": "2028-9-26",
+                "date": "2028-9-27",
                 "nominalAge": 25,
                 "decadal": {
                   "index": 10,
@@ -12277,11 +12310,12 @@
             }
           ]
         }
-      }
+      },
+      "primary_branch": "巳"
     },
     "maya": {
       "correlation_constant": "GMT 584283 (convertdate default; own implementation uses the same constant explicitly)",
-      "note": "Date-based. Maya days traditionally begin at sunrise in some communities; birth at 09:30 is after sunrise, so the civil date and a sunrise-based day agree.",
+      "note": "Date-based. Maya days traditionally begin at sunrise in some communities; this birth is after sunrise, so the civil date and a sunrise-based day agree.",
       "julian_day_number": 2453143,
       "long_count": "12.19.11.5.0",
       "tzolkin": "10 Ajaw",
@@ -12643,7 +12677,7 @@
       {
         "system": "bazi",
         "datum": "Da Yun start",
-        "primary_engine": "own: exact 3-days-per-year from Swiss Ephemeris 芒种",
+        "primary_engine": "own: exact 3-days-per-year from Swiss Ephemeris sectional term",
         "primary_value": "2010-10-07",
         "validator": "lunar_python Yun (sect 1 rounding)",
         "validator_value": "2010-10-17",

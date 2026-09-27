@@ -1,0 +1,43 @@
+{
+  "original_user_input": "ANjU, 29 june 1974, 6:15AM(around 5-10mins), roorkee, female, current:- kohima nagaland",
+  "subject": {
+    "name": "Anju",
+    "relation": "the user's mother"
+  },
+  "date": {
+    "raw": "29 june 1974",
+    "format_assumed": "D Month YYYY",
+    "calendar": "gregorian",
+    "iso": "1974-06-29"
+  },
+  "time": {
+    "raw": "6:15AM",
+    "local_24h": "06:15:00"
+  },
+  "time_uncertainty": {
+    "raw": "around 5-10mins",
+    "interpretation": "approximate time, stated as within about 5-10 minutes; outer envelope +/-10 min is primary, +/-5 min is the inner scenario",
+    "inner_minutes": 5,
+    "outer_minutes": 10
+  },
+  "birthplace": {
+    "raw": "roorkee",
+    "name": "Roorkee, Haridwar district, Uttarakhand, India (Uttar Pradesh in 1974)",
+    "latitude": 29.8693496,
+    "longitude": 77.8902124,
+    "elevation_m": 268,
+    "coordinate_source": "OpenStreetMap Nominatim, node 4373395280 'Roorkee' (city centre; hospital not given, so a few km of positional uncertainty)",
+    "elevation_source": "approximate city elevation; not used by any calculation that matters at this precision"
+  },
+  "gender": "female",
+  "current_residence": {
+    "raw": "kohima nagaland",
+    "name": "Kohima, Nagaland, India",
+    "latitude": 25.6618755,
+    "longitude": 94.1019156,
+    "coordinate_source": "OpenStreetMap Nominatim, node 3613137018 'Kohima' (city centre)",
+    "note": "used only for a relocated solar return, reported beside the birthplace return"
+  },
+  "calendar_notes": "No non-Gregorian source date reported. India (Asia/Kolkata) used a fixed +05:30 with no DST in 1974.",
+  "analysis_date": "2026-09-27"
+}

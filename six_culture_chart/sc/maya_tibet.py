@@ -20,7 +20,7 @@ def own_maya(jdn):
     return {"long_count": [b, k, t, w, ki], "tzolkin": [tz_num, tz_name], "haab": [hd % 20, HAAB[hd // 20]]}
 
 
-def maya(y, m, d):
+def maya(y, m, d, after_sunrise=True):
     jdn = int(gregorian.to_jd(y, m, d) + 0.5)
     lc = mayan.from_gregorian(y, m, d)
     tz = mayan.to_tzolkin(gregorian.to_jd(y, m, d))
@@ -31,7 +31,9 @@ def maya(y, m, d):
         own["long_count"][2] * 360 + own["long_count"][3] * 20 + own["long_count"][4]
     return {
         "correlation_constant": "GMT 584283 (convertdate default; own implementation uses the same constant explicitly)",
-        "note": "Date-based. Maya days traditionally begin at sunrise in some communities; birth at 09:30 is after sunrise, so the civil date and a sunrise-based day agree.",
+        "note": ("Date-based. Maya days traditionally begin at sunrise in some communities; this birth is after sunrise, "
+                 "so the civil date and a sunrise-based day agree." if after_sunrise else
+                 "Date-based. This birth is before sunrise: a sunrise-based day count would assign the previous day."),
         "julian_day_number": jdn,
         "long_count": ".".join(map(str, lc)),
         "tzolkin": f"{tz[0]} {tz[1]}",

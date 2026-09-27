@@ -1,8 +1,8 @@
 # Master dataset (facts only, no interpretation)
 
-Birth instant: 2004-05-17T09:30:00+05:30 (2004-05-17T04:00:00+00:00 UTC), Monday, Lucknow 26.8714586N 80.9521445E.
+Birth instant: 2004-05-17T09:30:00+05:30 (2004-05-17T04:00:00+00:00 UTC), Monday, Fatima General Hospital, Nishat Ganj / Mahanagar, Lucknow, Uttar Pradesh, India 26.8715N 80.9521E.
 
-## Positions at 09:30 IST
+## Positions at 09:30 local
 
 | Body | Tropical | Sidereal (Lahiri) | Speed °/d | JPL Δ° |
 |---|---|---|---|---|
@@ -23,7 +23,7 @@ Birth instant: 2004-05-17T09:30:00+05:30 (2004-05-17T04:00:00+00:00 UTC), Monday
 
 Lahiri ayanamsha 23.918195°.
 
-## Jyotisha D1 — Lagna Cancer 1.51° (09:30; the Gemini cusp is ≈7.0 min earlier)
+## Jyotisha D1 — Lagna Cancer 1.51° (09:30; previous cusp ≈7.0 min earlier, next ≈132.1 min later)
 
 | Graha | Sign | Deg | House | Nakshatra-pada | Dignity | D9 | D10 | Function |
 |---|---|---|---|---|---|---|---|---|
@@ -51,8 +51,11 @@ Vimshottari: Moon in Ashwini (lord Ketu), balance 1.663 y.
 | Moon | 2032-01-15 | 2042-01-14 | 2032-01-13 … 2032-01-16 |
 | Mars | 2042-01-14 | 2049-01-14 | 2042-01-13 … 2042-01-16 |
 | Rahu | 2049-01-14 | 2067-01-14 | 2049-01-12 … 2049-01-16 |
+| Jupiter | 2067-01-14 | 2083-01-14 | 2067-01-13 … 2067-01-16 |
+| Saturn | 2083-01-14 | 2102-01-15 | 2083-01-13 … 2083-01-16 |
+| Mercury | 2102-01-15 | 2119-01-15 | 2102-01-14 … 2102-01-17 |
 
-Sun Mahadasha antardashas at 09:30 (pratyantardashas listed where computed):
+Current (Sun) Mahadasha antardashas at 09:30 (pratyantardashas listed where computed):
 
 - Sun–Sun: 2026-01-14 → 2026-05-04
   - Sun–Sun–Sun: 2026-01-14 → 2026-01-20
@@ -154,7 +157,7 @@ Sun Mahadasha antardashas at 09:30 (pratyantardashas listed where computed):
 | day | 丙申 Bing Shen | 日主 Day Master | 庚 偏财 Indirect Wealth, 壬 七杀 Seven Killings, 戊 食神 Eating God | 山下火 |
 | hour | 癸巳 Gui Si | 正官 Direct Officer | 丙 比肩 Friend, 庚 偏财 Indirect Wealth, 戊 食神 Eating God | 长流水 |
 
-Adjacent hour pillar (reached only if birth was ≥27.4 min earlier, solar-time track; outside the confirmed ±1 min): 壬辰.
+Adjacent hour pillar 壬辰: reached if birth 27.4 min earlier (LAT track); outside the ±1 min interval.
 Day Master strength (BZ-DM-1): support share 0.333 → weak; seasonal: prosperous 旺 (month element = DM element); rooted in ['month', 'hour'].
 Interactions: stem combination 天干五合 甲己 (year/month), transformed=False; six combination 六合 申巳 (year/month), transformed=False; destruction 六破 申巳 (year/month); punishment (partial, 2 of 3) ungrateful punishment 无恩之刑 申巳 (year/month); six combination 六合 申巳 (year/hour), transformed=False; destruction 六破 申巳 (year/hour); punishment (partial, 2 of 3) ungrateful punishment 无恩之刑 申巳 (year/hour); six combination 六合 巳申 (month/day), transformed=False; destruction 六破 巳申 (month/day); punishment (partial, 2 of 3) ungrateful punishment 无恩之刑 巳申 (month/day); six combination 六合 申巳 (day/hour), transformed=False; destruction 六破 申巳 (day/hour); punishment (partial, 2 of 3) ungrateful punishment 无恩之刑 申巳 (day/hour)
 
@@ -166,7 +169,7 @@ Da Yun forward; start 2010-10-07 (exact 3-day rule) vs 2010-10-17 (lunar_python)
 - BaZi Da Yun 癸酉: 2040-10-06 → 2050-10-06 — stem 癸 = 正官 Direct Officer; branch 酉 main qi 辛 = 正财 Direct Wealth; lunar_python start differs by 10 days
 - BaZi Da Yun 甲戌: 2050-10-06 → 2060-10-06 — stem 甲 = 偏印 Indirect Resource; branch 戌 main qi 戊 = 食神 Eating God; lunar_python start differs by 10 days
 
-## Western / Hellenistic — Asc Cancer 25.43° (the Leo cusp is ≈21.2 min later), day chart
+## Western / Hellenistic — Asc Cancer 25.43° (previous cusp ≈117.9 min earlier, next ≈21.2 min later), day chart
 
 | Planet | Sign | Deg | House | Dignities | Sect | Visibility | Motion |
 |---|---|---|---|---|---|---|---|
@@ -184,8 +187,8 @@ Aspects (by sign; ≤3° marked): Sun–Moon conjunction 22.5°; Sun–Mercury c
 
 Profections: age 22 (2026-05-17→2027-05-17): house 11 Taurus, lord Venus; age 23 (2027-05-17→2028-05-17): house 12 Gemini, lord Mercury; age 24 (2028-05-17→2029-05-17): house 1 Cancer, lord Moon
 
-Solar return 2026: 2026-05-17T11:38:58+00:00 — birthplace_Lucknow: Asc Scorpio, current_residence_Almora: Asc Scorpio; at interval edges: {'-1min': {'birthplace_Lucknow': 'Scorpio', 'current_residence_Almora': 'Scorpio'}, '+1min': {'birthplace_Lucknow': 'Scorpio', 'current_residence_Almora': 'Scorpio'}}; location changes Asc sign: False
-Solar return 2027: 2027-05-17T17:16:21+00:00 — birthplace_Lucknow: Asc Capricorn, current_residence_Almora: Asc Capricorn; at interval edges: {'-1min': {'birthplace_Lucknow': 'Capricorn', 'current_residence_Almora': 'Capricorn'}, '+1min': {'birthplace_Lucknow': 'Capricorn', 'current_residence_Almora': 'Capricorn'}}; location changes Asc sign: False
+Solar return 2026: 2026-05-17T11:38:58+00:00 — birthplace: Asc Scorpio, current_residence: Asc Scorpio; at interval edges: {'-1min': {'birthplace': 'Scorpio', 'current_residence': 'Scorpio'}, '+1min': {'birthplace': 'Scorpio', 'current_residence': 'Scorpio'}}; location changes Asc sign: False
+Solar return 2027: 2027-05-17T17:16:21+00:00 — birthplace: Asc Capricorn, current_residence: Asc Capricorn; at interval edges: {'-1min': {'birthplace': 'Capricorn', 'current_residence': 'Capricorn'}, '+1min': {'birthplace': 'Capricorn', 'current_residence': 'Capricorn'}}; location changes Asc sign: False
 
 ## Zi Wei Dou Shu — 巳 hour (primary)
 

@@ -7,7 +7,14 @@ from .common import ROOT
 
 MAJOR14 = {"紫微", "天机", "太阳", "武曲", "天同", "廉贞", "天府", "太阴", "贪狼", "巨门",
            "天相", "天梁", "七杀", "破军"}
-TIME_INDEX = {"辰": 4, "巳": 5}
+ORDER = "子丑寅卯辰巳午未申酉戌亥"
+
+
+def time_index(hour):
+    """iztro time index from a local clock hour: 0 early Zi (00-01), 1..11 Chou..Hai, 12 late Zi (23-24)."""
+    if hour == 23:
+        return 12
+    return ((hour + 1) // 2) % 12
 
 
 def canonical(date_str, time_index, gender_zh, lang="zh-CN", hdates=()):
@@ -52,19 +59,21 @@ def invariants(chart):
     ]
 
 
-def compute(date_str, hdates):
+def compute(date_str, hdates, time_indices, gender="male"):
+    zh_g, en_g = ("男", "male") if gender == "male" else ("女", "female")
     res = {"implementation": "iztro (npm, canonical JS) + py-iztro 0.1.5 wrapper (bundles iztro 2.5.0) -- ONE method",
            "configuration": {"calendar": "solar date input -> iztro lunar conversion", "fixLeap": True,
                              "day_boundary": "iztro default (civil midnight; 23:00-24:00 = late Zi index 12)",
                              "time_index_source": "civil clock hour (IST); LAT variant evaluated in boundary audit",
-                             "gender_encoding": "男 (male)", "direction_rule": "iztro default: yang-male forward",
+                             "gender_encoding": f"{zh_g} ({en_g})", "direction_rule": "iztro default: yang-male / yin-female forward",
                              "age_convention": "nominal (虚岁) age as used by iztro",
-                             "month_note": "Zi Wei uses the lunar month (三月 -> 戊辰 in iztro chineseDate); BaZi uses the solar-term month (己巳). Both are correct within their own convention."},
+                             "month_note": "Zi Wei uses the lunar month (iztro chineseDate); BaZi uses the solar-term month. They can differ; both are correct within their own convention."},
            "alternatives": {}}
-    for br, ti in TIME_INDEX.items():
-        zh = canonical(date_str, ti, "男", "zh-CN", hdates)
-        en = canonical(date_str, ti, "male", "en-US", hdates)
-        wr = wrapper(date_str, ti, "男")
+    for ti in sorted(set(time_indices)):
+        br = ORDER[ti % 12] + ("(late)" if ti == 12 else "")
+        zh = canonical(date_str, ti, zh_g, "zh-CN", hdates)
+        en = canonical(date_str, ti, en_g, "en-US", hdates)
+        wr = wrapper(date_str, ti, zh_g)
         cmp_ = []
         for p, w in zip(zh["palaces"], wr["palaces"]):
             same = (p["name"] == w["name"] and p["earthlyBranch"] == w["branch"] and

@@ -35,9 +35,13 @@ REGISTRY = {
     "BZ-D1": "Day Master strength verdicts (BZ-DM-1 weighted vs seasonal) agree -> that polarity; disagree -> mixed",
     "BZ-D2": "Officer/Seven Killings stars visible -> prominence; 伤官见官 (Hurting Officer and Direct Officer both visible) -> mixed",
     "BZ-D3": "Wealth element share >= 25% -> prominence high; weak DM carrying heavy wealth (财多身弱) -> mixed",
-    "BZ-D4": "male: spouse palace = day branch; combination + punishment/destruction on it -> mixed",
+    "BZ-D3": "Wealth element (the one the Day Master controls) share >= 25% -> prominence high; weak DM carrying wealth (财多身弱) -> mixed; share < 15% -> neutral",
+    "BZ-D4": "spouse palace = day branch (spouse star: Wealth for a male chart, Officer/Killings for a female chart); "
+             "punishment/destruction/clash/harm on it -> mixed; only combinations -> positive; none -> neutral",
     "BZ-D5": "Resource star visible in year pillar -> prominence medium; resource stem combined away (合绊) -> mixed",
-    "BZ-D6": "male: children star = Officer/Killings, children palace = hour pillar; 伤官见官 -> mixed",
+    "BZ-D6": "children palace = hour pillar; children star = Officer/Killings (male) or Eating/Hurting (female); "
+             "visible with conflict (伤官见官 male, 枭神夺食 female) -> mixed; visible -> positive; not visible -> neutral",
+    "BZ-D5": "Resource star on a visible stem -> positive; combined away by a stem combination -> mixed; none visible -> neutral",
     "BZ-D8": "Output stars (食神/伤官) visible or >=3 hidden, plus Resource present -> positive, high",
     "POLARITY": "positive if net >= +1 and no component <= -1; negative if net <= -1 and no component >= +1; "
                 "mixed if components >= +1 and <= -1 both present; otherwise neutral (does not vote)",
@@ -207,7 +211,8 @@ def zw_palace_score(pal, all_pal):
     return parts, borrowed, [s["name"] + (s["brightness"] or "") + (("化" + s["mutagen"]) if s.get("mutagen") else "") for s in majors]
 
 
-def ziwei_projections(raw, branch="巳"):
+def ziwei_projections(raw, branch=None):
+    branch = branch or raw["ziwei"]["primary_branch"]
     ch = raw["ziwei"]["alternatives"][branch]["chart_zh"]
     en = raw["ziwei"]["alternatives"][branch]["chart_en"]
     pal = ch["palaces"]
@@ -237,9 +242,13 @@ def ziwei_projections(raw, branch="巳"):
 
 
 def bazi_projections(raw, bz=None):
+    from sc.bazi import EL, STEMS, STEM_EL, STEM_COMBOS
     bz = bz or raw["bazi"]["primary"]
+    male = raw["input_audit"].get("_gender", "male") == "male"
     P = bz["pillars"]
     dm = bz["dm_strength"]
+    dms = bz["day_master"]["stem"]
+    dme = STEM_EL[STEMS.index(dms)]
     vis = {p["pillar"]: p["ten_god_of_stem"] for p in P}
     hidden = [h["ten_god"] for p in P for h in p["hidden_stems"]]
     out = []
@@ -247,45 +256,68 @@ def bazi_projections(raw, bz=None):
     weighted_weak = dm["weighted_count_verdict"] == "weak"
     pol1 = "mixed" if weighted_weak == strong_season else ("positive" if strong_season else "negative")
     out.append({"domain": "D1", "prominence": "high", "polarity": pol1, "scores": [1, -1] if pol1 == "mixed" else [1],
-                "basis": f"Day Master 丙 Bing: weighted support {dm['support_share']:.2f} ({dm['weighted_count_verdict']}) vs "
-                         f"seasonal {dm['seasonal_verdict']}; rooted in {', '.join(dm['rooting'])}", "mapping_rule": "BZ-D1"})
-    officer_vis = [k for k, v in vis.items() if "Officer" in v and "Hurting" not in v or "Killings" in v]
+                "basis": f"Day Master {dms} ({bz['day_master']['polarity']} {bz['day_master']['element']}): weighted support "
+                         f"{dm['support_share']:.2f} ({dm['weighted_count_verdict']}) vs seasonal {dm['seasonal_verdict']}; "
+                         f"rooted in {', '.join(dm['rooting']) or 'none'}", "mapping_rule": "BZ-D1"})
+    officer_vis = [k for k, v in vis.items() if ("Officer" in v and "Hurting" not in v) or "Killings" in v]
     hurting_vis = [k for k, v in vis.items() if "Hurting" in v]
+    eating_vis = [k for k, v in vis.items() if "Eating" in v]
+    ind_res_vis = [k for k, v in vis.items() if "Indirect Resource" in v]
     shgg = bool(officer_vis and hurting_vis)
     if officer_vis or any("Killings" in h or "Direct Officer" in h for h in hidden):
         out.append({"domain": "D2", "prominence": "medium", "polarity": "mixed" if shgg else "positive",
                     "scores": [1, -1] if shgg else [1],
-                    "basis": f"Officer visible in {officer_vis} pillar(s); Seven Killings hidden x{sum('Killings' in h for h in hidden)}"
-                             + ("; 伤官见官: Hurting Officer visible in " + str(hurting_vis) if shgg else ""), "mapping_rule": "BZ-D2"})
+                    "basis": f"Officer visible in {', '.join(officer_vis) or 'none'} pillar(s); Seven Killings hidden x{sum('Killings' in h for h in hidden)}"
+                             + ("; 伤官见官: Hurting Officer visible in " + ', '.join(hurting_vis) if shgg else ""), "mapping_rule": "BZ-D2"})
     tally = dm["element_tally"]
-    wshare = tally["Metal"] / sum(tally.values())
+    wel = EL[(dme + 2) % 5]
+    wshare = tally[wel] / sum(tally.values())
+    largest = max(tally, key=tally.get) == wel
     out.append({"domain": "D3", "prominence": "high" if wshare >= 0.25 else "medium",
-                "polarity": "mixed" if weighted_weak else "positive", "scores": [1, -1] if weighted_weak else [1],
-                "basis": f"Wealth (Metal) share {wshare:.2f} of weighted tally, largest element; "
+                "polarity": ("mixed" if weighted_weak else "positive") if wshare >= 0.15 else "neutral",
+                "scores": [1, -1] if weighted_weak else [1],
+                "basis": f"Wealth ({wel}) share {wshare:.2f} of weighted tally{', largest element' if largest else ''}; "
                          f"{'weighted-weak DM => 财多身弱 wealth heavy / self light' if weighted_weak else 'DM able to carry wealth'}",
                 "mapping_rule": "BZ-D3"})
-    day_br = P[2]["branch"]
+    day = P[2]
+    spouse_star = ("Wealth",) if male else ("Officer", "Killings")
+    main_tg = day["hidden_stems"][0]["ten_god"]
     inter = [i for i in bz["interactions"] if "day" in i.get("pillars", [])]
     kinds = sorted({i["type"].split(" ")[0] for i in inter})
-    out.append({"domain": "D4", "prominence": "high" if inter else "medium",
-                "polarity": "mixed" if any(k in ("punishment", "destruction", "clash", "harm") for k in kinds) else "positive",
-                "scores": [1, -1],
-                "basis": f"spouse palace 申 Shen (main qi 庚 Indirect Wealth = spouse star for a male); interactions on it: {kinds}",
+    harmful = any(k in ("punishment", "destruction", "clash", "harm") for k in kinds)
+    pol4 = "mixed" if harmful else ("positive" if inter else "neutral")
+    out.append({"domain": "D4", "prominence": "high" if inter else "medium", "polarity": pol4,
+                "scores": [1, -1] if pol4 == "mixed" else [1] if pol4 == "positive" else [0],
+                "basis": f"spouse palace {day['branch']} {day['pinyin'].split()[1]} (main qi {day['hidden_stems'][0]['stem']} = {main_tg}; "
+                         f"spouse star for a {'male' if male else 'female'} chart is {'/'.join(spouse_star)}"
+                         f"{', present here' if any(x in main_tg for x in spouse_star) else ''}); interactions on it: {', '.join(kinds) or 'none'}",
                 "mapping_rule": "BZ-D4"})
-    combos = [i for i in bz["interactions"] if i["type"].startswith("stem combination") and "year" in i["pillars"]]
-    out.append({"domain": "D5", "prominence": "medium", "polarity": "mixed" if combos else "positive",
-                "scores": [1, -1] if combos else [1],
-                "basis": f"Resource star 甲 ({vis['year']}) on year stem" + ("; combined with 己 Hurting Officer (甲己合, not transformed)" if combos else ""),
+    res_vis = [k for k, v in vis.items() if "Resource" in v]
+    res_combined = [i for i in bz["interactions"] if i["type"].startswith("stem combination")
+                    and any(pp in res_vis for pp in i["pillars"])]
+    pol5 = ("mixed" if res_combined else "positive") if res_vis else "neutral"
+    out.append({"domain": "D5", "prominence": "medium", "polarity": pol5,
+                "scores": [1, -1] if pol5 == "mixed" else [1] if pol5 == "positive" else [0],
+                "basis": (f"Resource star visible in {', '.join(res_vis) or 'none'} pillar(s)" + (f"; combined away ({', '.join(i['chars'] for i in res_combined)}, not transformed)" if res_combined else ""))
+                if res_vis else "no Resource star on a visible stem",
                 "mapping_rule": "BZ-D5"})
-    out.append({"domain": "D6", "prominence": "medium", "polarity": "mixed" if shgg else "positive",
-                "scores": [1, -1] if shgg else [1],
-                "basis": f"children palace = hour pillar {P[3]['ganzhi']} with {vis['hour']} on the stem" + ("; 伤官见官" if shgg else ""),
+    if male:
+        child_vis, conflict, cname = officer_vis, shgg, "伤官见官"
+    else:
+        child_vis, conflict, cname = hurting_vis + eating_vis, bool(eating_vis and ind_res_vis), "枭神夺食"
+    pol6 = ("mixed" if conflict else "positive") if child_vis else "neutral"
+    out.append({"domain": "D6", "prominence": "medium", "polarity": pol6,
+                "scores": [1, -1] if pol6 == "mixed" else [1] if pol6 == "positive" else [0],
+                "basis": f"children palace = hour pillar {P[3]['ganzhi']} with {vis['hour']} on the stem; children star "
+                         f"({'Officer/Killings' if male else 'Eating God/Hurting Officer'}) visible in {', '.join(child_vis) or 'no pillar'}"
+                         + (f"; {cname}" if conflict and child_vis else ""),
                 "mapping_rule": "BZ-D6"})
     n_out_hidden = sum(("Eating" in h or "Hurting" in h) for h in hidden)
-    res = any("Resource" in v for v in vis.values())
-    if hurting_vis or n_out_hidden >= 3:
+    res = bool(res_vis)
+    if hurting_vis or eating_vis or n_out_hidden >= 3:
         out.append({"domain": "D8", "prominence": "high", "polarity": "positive" if res else "neutral", "scores": [1.5],
-                    "basis": f"Output stars: Hurting Officer visible in {hurting_vis}, Eating God hidden x{n_out_hidden}; Resource visible: {res}",
+                    "basis": f"Output stars: Hurting Officer visible in {', '.join(hurting_vis) or 'none'}, Eating God visible in {', '.join(eating_vis) or 'none'}, "
+                             f"output hidden x{n_out_hidden}; Resource visible: {res}",
                     "mapping_rule": "BZ-D8"})
     for o in out:
         o.update({"system": "bazi", "cluster": "sinic"})
@@ -348,8 +380,11 @@ def scenario(raw, name, jy_proj, w_proj, sinic_proj):
 
 # ---------------- timing ----------------
 # order matters: "Hurting Officer" must match "Hurting" before "Officer"
-TG_DOMAIN = {"Hurting": ["D8"], "Eating": ["D8"], "Rob": ["D1"], "Friend": ["D1"], "Wealth": ["D3", "D4"],
-             "Officer": ["D2", "D6"], "Killings": ["D2", "D6"], "Resource": ["D5", "D8"]}
+TG_DOMAIN_M = {"Hurting": ["D8"], "Eating": ["D8"], "Rob": ["D1"], "Friend": ["D1"], "Wealth": ["D3", "D4"],
+               "Officer": ["D2", "D6"], "Killings": ["D2", "D6"], "Resource": ["D5", "D8"]}
+TG_DOMAIN_F = {"Hurting": ["D6", "D8"], "Eating": ["D6", "D8"], "Rob": ["D1"], "Friend": ["D1"], "Wealth": ["D3"],
+               "Officer": ["D2", "D4"], "Killings": ["D2", "D4"], "Resource": ["D5", "D8"]}
+TG_DOMAIN = TG_DOMAIN_M
 
 
 def tg_domains(tg):
@@ -408,12 +443,13 @@ def timing(raw, today, ref="chandra"):
                   "end": en.date().isoformat(), "domains": ds,
                   "basis": f"stem {p['ganzhi'][0]} = {stem_tg}; branch {p['ganzhi'][1]} main qi {br_main} = {br_tg}; "
                            f"lunar_python start differs by {bz['da_yun']['start_convention_difference_days']} days"})
-    zw = raw["ziwei"]["alternatives"]["巳"]["chart_zh"]
+    zw = raw["ziwei"]["alternatives"][raw["ziwei"]["primary_branch"]]["chart_zh"]
+    by = int(raw["input_audit"]["gregorian_date"][:4])
     for p in zw["palaces"]:
         a, b = p["decadal"]["range"]
         # nominal age n corresponds to Chinese year (birth_year + n - 1); boundaries at lunar new year (approximated by year)
-        y0, y1 = 2004 + a - 1, 2004 + b
-        if y1 < 2004 or y0 > 2060:
+        y0, y1 = by + a - 1, by + b
+        if y1 < today.year - 15 or y0 > today.year + 40:
             continue
         s.append({"cluster": "sinic", "technique": f"Zi Wei decadal {a}-{b} ({p['name']} {p['earthlyBranch']})",
                   "start": f"{y0}-lunar-new-year", "end": f"{y1}-lunar-new-year",
@@ -429,7 +465,7 @@ def timing(raw, today, ref="chandra"):
             a, b = x["start_range"][-1], x["end_range"][0]
         return date.fromisoformat(a[:10]), date.fromisoformat(b[:10])
 
-    horizon = (date(today.year - 1, 1, 1), date(today.year + 6, 12, 31))
+    horizon = (date(today.year - 5, 1, 1), date(today.year + 6, 12, 31))
     windows = []
     for d in DOMAINS:
         acts = {cl: [(iv(x), x) for x in items if x["cluster"] == cl and d in x["domains"]] for cl in ("jyotisha", "western", "sinic")}
@@ -471,25 +507,39 @@ def temperament(raw, jy_sc, w_sc, bz, zw):
     dual = sum(1 for g, v in jc.items() if SIGNS.index(v["sign"]) % 3 == 2 and g not in ("Rahu", "Ketu"))
     wc = raw["western"]["charts"]["+0min"]["planets"]
     wmut = sum(1 for v in wc.values() if SIGNS.index(v["sign"]) % 3 == 2)
+    off_vis = [v for v in vis if ("Officer" in v and "Hurting" not in v) or "Killings" in v]
+    A = raw["astronomy"]["+0min"]["bodies"]
+    elong = (A["Moon"]["lon"] - A["Sun"]["lon"]) % 360
+
+    def jd_(g):
+        v = jc[g]
+        with_ = [h for h in jc if h != g and jc[h]["sign"] == v["sign"]]
+        extra = ("waxing" if elong < 180 else "waning") if g == "Moon" else ""
+        return ", ".join(x for x in [v["sign"], v["dignity"], extra, ("with " + "/".join(with_)) if with_ else "",
+                                     "navamsa " + v["d9"]] if x)
+
+    def wd_(p_):
+        v = wc[p_]
+        return f"{v['sign']}, {', '.join(v['essential']['planet_dignities'])}, {v['sect_status']}"
     axes = {
         "T1 Leadership/visibility": {
-            "jyotisha": (lab(jy_sc["Sun"]), f"Sun score {jy_sc['Sun']:+.2f} (Taurus, enemy's sign)"),
-            "western": (lab(w_sc["Sun"]), f"Sun score {w_sc['Sun']:+.2f} (Taurus, peregrine)"),
+            "jyotisha": (lab(jy_sc["Sun"]), f"Sun score {jy_sc['Sun']:+.2f} ({jd_('Sun')})"),
+            "western": (lab(w_sc["Sun"]), f"Sun score {w_sc['Sun']:+.2f} ({wd_('Sun')})"),
             "sinic": ("supported" if ({"紫微", "天府"} & names(ming)) else "mixed/neutral",
                       f"命宫 major stars {[s['name'] for s in ming['majorStars']]}; visible Officer: {any('Direct Officer' in v for v in vis)}")},
         "T2 Drive/initiative": {
-            "jyotisha": (lab(jy_sc["Mars"]), f"Mars score {jy_sc['Mars']:+.2f}"),
-            "western": (lab(w_sc["Mars"]), f"Mars score {w_sc['Mars']:+.2f} (fall, contrary to sect)"),
+            "jyotisha": (lab(jy_sc["Mars"]), f"Mars score {jy_sc['Mars']:+.2f} ({jd_('Mars')})"),
+            "western": (lab(w_sc["Mars"]), f"Mars score {w_sc['Mars']:+.2f} ({wd_('Mars')})"),
             "sinic": ("supported" if ({"七杀", "破军", "贪狼"} & (names(ming) | names(body))) else "mixed/neutral",
                       f"七杀/破军/贪狼 in 命/身: {sorted({'七杀', '破军', '贪狼'} & (names(ming) | names(body)))}; Seven Killings hidden x{sum('Killings' in h for h in hidden)}")},
         "T3 Nurturing/service": {
-            "jyotisha": (lab(jy_sc["Moon"]), f"Moon score {jy_sc['Moon']:+.2f} (waning, with Rahu)"),
-            "western": (lab(w_sc["Moon"]), f"Moon score {w_sc['Moon']:+.2f} (exalted in Taurus)"),
+            "jyotisha": (lab(jy_sc["Moon"]), f"Moon score {jy_sc['Moon']:+.2f} ({jd_('Moon')})"),
+            "western": (lab(w_sc["Moon"]), f"Moon score {w_sc['Moon']:+.2f} ({wd_('Moon')})"),
             "sinic": ("supported" if any("Resource" in v for v in vis) else "mixed/neutral",
                       f"Resource stem visible: {[v for v in vis if 'Resource' in v]}")},
         "T4 Intellect/craft": {
-            "jyotisha": (lab(jy_sc["Mercury"]), f"Mercury score {jy_sc['Mercury']:+.2f} (Aries with Rahu; navamsa Gemini)"),
-            "western": (lab(w_sc["Mercury"]), f"Mercury score {w_sc['Mercury']:+.2f} (Taurus, face)"),
+            "jyotisha": (lab(jy_sc["Mercury"]), f"Mercury score {jy_sc['Mercury']:+.2f} ({jd_('Mercury')})"),
+            "western": (lab(w_sc["Mercury"]), f"Mercury score {w_sc['Mercury']:+.2f} ({wd_('Mercury')})"),
             "sinic": ("supported" if (any("Hurting" in v or "Eating" in v for v in vis) or {"文昌", "文曲", "天机"} & (names(ming) | names(body))) else "mixed/neutral",
                       f"output stem visible {[v for v in vis if 'Hurting' in v or 'Eating' in v]}; 文昌/文曲/天机 in 命/身: {sorted({'文昌', '文曲', '天机'} & (names(ming) | names(body)))}")},
         "T5 Adaptability": {
@@ -497,10 +547,11 @@ def temperament(raw, jy_sc, w_sc, bz, zw):
             "western": ("supported" if wmut >= 3 else "mixed/neutral", f"{wmut} of 7 planets in mutable signs"),
             "sinic": ("silent", "no declared Sinic rule")},
         "T6 Discipline/structure": {
-            "jyotisha": (lab(jy_sc["Saturn"]), f"Saturn score {jy_sc['Saturn']:+.2f}"),
-            "western": (lab(w_sc["Saturn"]), f"Saturn score {w_sc['Saturn']:+.2f} (detriment, of sect)"),
-            "sinic": ("mixed/neutral" if any("Hurting" in v for v in vis) else "supported",
-                      "Direct Officer visible but confronted by visible Hurting Officer (伤官见官)")},
+            "jyotisha": (lab(jy_sc["Saturn"]), f"Saturn score {jy_sc['Saturn']:+.2f} ({jd_('Saturn')})"),
+            "western": (lab(w_sc["Saturn"]), f"Saturn score {w_sc['Saturn']:+.2f} ({wd_('Saturn')})"),
+            "sinic": (("mixed/neutral" if any("Hurting" in v for v in vis) else "supported") if off_vis else "mixed/neutral",
+                      ("Officer star visible but confronted by a visible Hurting Officer (伤官见官)" if any("Hurting" in v for v in vis)
+                       else "Officer star visible on a stem") if off_vis else "no Officer star on a visible stem")},
     }
     out = {}
     for k, v in axes.items():
@@ -520,11 +571,14 @@ def main():
     today = date.fromisoformat(load_input()["analysis_date"])
     st = raw["stability"]
 
+    global TG_DOMAIN
+    raw["input_audit"]["_gender"] = "male" if load_input()["gender"].lower().startswith("m") else "female"
+    TG_DOMAIN = TG_DOMAIN_M if raw["input_audit"]["_gender"] == "male" else TG_DOMAIN_F
     lagna_stable = st["jyotisha_lagna_sign"]["outer_interval"] == "stable"
     asc_stable = st["western_asc_sign"]["outer_interval"] == "stable"
     asc_inner_stable = st["western_asc_sign"]["inner_interval"] == "stable"
     ref = "lagna" if lagna_stable else "chandra"
-    zw_branch = st["ziwei_time_branch_civil"]["value_at_T"]
+    zw_branch = raw["ziwei"]["primary_branch"]
     jy_c, jy_sc = jyotisha_projections(raw, "+0min", ref)
     jy_secondary, _ = jyotisha_projections(raw, "+0min", "chandra" if ref == "lagna" else "lagna")
     jy_secondary = [p for p in jy_secondary if p["mapping_rule"] == "HOUSE-OCC"]
@@ -570,8 +624,9 @@ def main():
                                                  "note": f"Jyotisha houses from {'Chandra Lagna' if ref == 'lagna' else 'Lagna'} (JY-REFERENCE)"},
         "neutral_polarity_no_theme": {"count": len(n_neutral), "items": n_neutral},
         "school_dependent_low_confidence": {"count": 1, "items": ["BaZi Yong Shen / favourable element (schools disagree)"]},
-        "no_validated_source": {"count": 4, "items": ["Maya Tzolk'in 10 Ajaw meaning", "Maya Haab 3 Sip meaning",
-                                                      "Tibetan Male Wood Monkey meaning",
+        "no_validated_source": {"count": 4, "items": [f"Maya Tzolk'in {raw['maya']['tzolkin']} meaning",
+                                                      f"Maya Haab {raw['maya']['own_implementation']['haab']} meaning",
+                                                      f"Tibetan {raw['tibetan']['gender']} {raw['tibetan']['element']} {raw['tibetan']['animal']} meaning",
                                                       "Tibetan Mewa / Parkha / la-sok-lung-ta-wang-thang"]},
         "unavailable_methods": {"items": [k for k, v in {**raw["jyotisha"]["unavailable"], **raw["western"]["unavailable"]}.items()
                                           if not v.startswith("computed")]},

@@ -1,0 +1,385 @@
+{
+  "subject": {
+    "name": "you",
+    "possessive": "your",
+    "title": "Six Traditions Life Map"
+  },
+  "reading": {
+    "narrow": {
+      "D1|negative|MODERATE": "Vedic (the Sun, a significator of self, sits in an enemy's sign) and Western (Mars in fall and Saturn in detriment both on the Cancer Ascendant) both read the self/identity area as **strained**: self-assertion and self-image are prominent and carry friction. The Sinic reading is mixed (BaZi's two Day Master strength measures disagree), so it neither confirms nor contradicts this.",
+      "D3|mixed|MODERATE": "Vedic (Jupiter strong in the 2nd, against the Sun in the 11th in an enemy's sign) and Sinic (Metal/Wealth is the largest element while the Day Master counts as weak by weight, 财多身弱; Zi Wei's wealth palace borrows 武曲/贪狼 brightly) agree that money and gains are **prominent but double-edged**. Western is plainly positive here (Sun, exalted Moon and Mercury in the 11th house of gains), so it leans the same way without matching exactly.",
+      "D9|positive|MODERATE": "Vedic (Jupiter in a friendly sign and vargottama, Leo in both D1 and D9) and Zi Wei (福德 palace with 武曲庙化科 and 贪狼庙) both read fortune/worldview **favourably**. Western is neutral (Jupiter in detriment, stationing direct)."
+    },
+    "divergent": {
+      "D5": "Vedic puts Ketu in the 4th house (home), a negative reading. Western uses the Moon (mother/home) exalted in Taurus, a positive reading. Sinic is mixed: BaZi's Resource star is combined away by 甲己合, while Zi Wei has a bright 父母 palace against a 田宅 palace carrying 太阳化忌. The systems genuinely disagree here."
+    },
+    "timing_notes": [
+      {
+        "guard_current_domain": "D3",
+        "text": "Why D3 is active: the Sun Mahadasha lord sits in the 11th from the Lagna. The Western age-22 profection activates the 11th house. The BaZi 辛未 luck pillar has Direct Wealth (辛) on its stem."
+      }
+    ]
+  },
+  "html": {
+    "hero_place": "Lucknow (Fatima Hospital)",
+    "domains": {
+      "D1": {
+        "headline": "A protective, sensitive front, with confidence you build rather than inherit.",
+        "traditions": [
+          [
+            "jyotisha",
+            "Both zodiacs put Cancer on your eastern horizon, a sign ruled by the Moon. The Sun, the classical marker of confidence and authority, sits in Taurus, a sign ruled by its enemy Venus. Vedic texts read this as self-assurance that has to be earned."
+          ],
+          [
+            "western",
+            "Mars (in its fall) and Saturn (in its detriment) both sit in your first house, the house of body and self-presentation. Hellenistic authors read two planets in poor condition here as friction in how drive and discipline come out."
+          ],
+          [
+            "sinic",
+            "Your BaZi Day Master is 丙, Yang Fire, the image of the sun. It is born in its own season and rooted twice, yet the rest of the chart outweighs it by count. The two measures disagree, so the Chinese systems stay neutral here."
+          ]
+        ],
+        "practice": [
+          "Traditional readers would expect a guarded, caring first impression, with force showing up later.",
+          "Mars in Cancer is classically read as indirect drive: holding back, then acting all at once.",
+          "Saturn rising is traditionally read as early seriousness and self-criticism that matures into staying power."
+        ],
+        "reflect": [
+          "Where do you hold back first and push later?",
+          "Which kinds of confidence have you had to build on purpose?"
+        ],
+        "expect": {
+          "grade": "MODERATE",
+          "cluster_polarity": {
+            "jyotisha": "negative",
+            "western": "negative",
+            "sinic": "mixed"
+          }
+        }
+      },
+      "D2": {
+        "headline": "Work is a loud theme in the Vedic chart and a conflicted one in the Chinese charts.",
+        "traditions": [
+          [
+            "jyotisha",
+            "The Moon, Mercury and Rahu all sit in the 10th house from your Lagna, the career house. Three planets there make work very prominent. The registry scores it negative because Rahu counts as a malefic and the Moon is waning. Many Vedic astrologers instead read Rahu in the 10th as hungry, unconventional ambition. Both readings agree it is prominent."
+          ],
+          [
+            "sinic",
+            "BaZi has a Direct Officer (structure, authority) on the hour stem facing a Hurting Officer (talent that questions rules) on the month stem. The classical name is 伤官见官. Zi Wei's career palace holds 天相 in a weak position with 擎羊 and 铃星."
+          ],
+          [
+            "western",
+            "The Sun is peregrine (no dignity) in Taurus, so the Western signal is neutral."
+          ]
+        ],
+        "practice": [
+          "Tradition would expect work to matter a great deal to you, and rigid hierarchies to chafe.",
+          "The BaZi picture fits skill-led, independent roles better than rank-led ones."
+        ],
+        "reflect": [
+          "When have rules helped your work, and when have they blocked it?"
+        ],
+        "expect": {
+          "grade": "WEAK",
+          "cluster_polarity": {
+            "jyotisha": "negative",
+            "western": "neutral",
+            "sinic": "mixed"
+          }
+        }
+      },
+      "D3": {
+        "headline": "Money is one of the loudest themes in your chart, and it cuts both ways.",
+        "traditions": [
+          [
+            "jyotisha",
+            "Jupiter, the great benefic, sits strong in your 2nd house (savings, family wealth), in a friendly sign and in the same sign in the D9 chart. The Sun sits weak in the 11th house of income."
+          ],
+          [
+            "western",
+            "The Sun, the exalted Moon and Mercury sit together in the 11th house, which Hellenistic authors called the Good Spirit: gains, friends and allies. It is the most positive single factor in your Western chart."
+          ],
+          [
+            "sinic",
+            "Metal, your Wealth element, is the heaviest element in your BaZi, while the Day Master counts as weak by weight. The classical phrase is 财多身弱, more wealth around you than you can easily hold. Zi Wei's wealth palace borrows 武曲 (the wealth star, bright) and 贪狼."
+          ]
+        ],
+        "practice": [
+          "In the Western picture, gains come through people, networks and groups.",
+          "The Chinese reading adds a caution: opportunities can outgrow your capacity to hold them. The strength-balancing school's traditional answer is support from peers and from learning or mentors.",
+          "None of this is financial advice or a forecast of gain or loss."
+        ],
+        "reflect": [
+          "Which of your openings came through other people?",
+          "Where have you taken on more than you could carry?"
+        ],
+        "expect": {
+          "grade": "MODERATE",
+          "cluster_polarity": {
+            "jyotisha": "mixed",
+            "western": "positive",
+            "sinic": "mixed"
+          }
+        }
+      },
+      "D4": {
+        "headline": "Relationships run deep and shape you, but the systems disagree on their tone.",
+        "traditions": [
+          [
+            "jyotisha",
+            "Venus, the marker of love and marriage, is in a friendly sign and in its own sign, Libra, in the D9 chart, which Vedic astrologers use for marriage. A supportive picture."
+          ],
+          [
+            "sinic",
+            "Your BaZi spouse palace (day branch 申) is combined with, punished by and broken by the 巳 branches around it: attraction mixed with friction. In Zi Wei, the spouse palace is also your Body palace, with 廉贞 turning to 化禄 (fortune) and 破军 turning to 化权 (power). Partnership becomes part of who you are."
+          ],
+          [
+            "western",
+            "Venus was stationing to turn retrograde when you were born. Tradition reads this as love that gets revisited and reconsidered. The registry scores it neutral."
+          ]
+        ],
+        "practice": [
+          "Tradition expects relationships to be formative for you, with some push and pull. Only the Vedic chart gives a clear signal, so hold this loosely."
+        ],
+        "reflect": [
+          "Which relationships changed how you see yourself?"
+        ],
+        "expect": {
+          "grade": "WEAK",
+          "cluster_polarity": {
+            "jyotisha": "positive",
+            "western": "neutral",
+            "sinic": "mixed"
+          }
+        }
+      },
+      "D5": {
+        "headline": "Home and roots: the systems disagree.",
+        "traditions": [
+          [
+            "jyotisha",
+            "Ketu, the node of detachment, sits in your 4th house of home and roots. The classical reading is a loose tie to one fixed home."
+          ],
+          [
+            "western",
+            "The Moon, significator of mother and home, is exalted in Taurus, its best placement. A strong, nourishing home signature."
+          ],
+          [
+            "sinic",
+            "BaZi's Resource star (the mother) 甲 is tied up by the combination 甲己合. Zi Wei's parents palace is bright (天同, 太阴), but the property palace carries 太阳化忌."
+          ]
+        ],
+        "practice": [
+          "This one is unresolved. The traditions contradict each other, so no verdict comes out of it."
+        ],
+        "reflect": [],
+        "expect": {
+          "grade": "DIVERGENT",
+          "cluster_polarity": {
+            "jyotisha": "negative",
+            "western": "positive",
+            "sinic": "mixed"
+          }
+        }
+      },
+      "D6": {
+        "headline": "One clear voice, and a supportive one.",
+        "traditions": [
+          [
+            "jyotisha",
+            "Jupiter, the significator of children and creative legacy, is strong (friendly sign, same sign in D1 and D9)."
+          ],
+          [
+            "sinic",
+            "Your BaZi hour pillar (the children palace) repeats the 伤官见官 friction. Zi Wei's children palace is empty and borrows 太阳化忌 and 巨门 from the opposite palace."
+          ]
+        ],
+        "practice": [
+          "This is symbolic only. It says nothing about fertility or family planning."
+        ],
+        "reflect": [],
+        "expect": {
+          "grade": "WEAK",
+          "cluster_polarity": {
+            "jyotisha": "positive",
+            "western": "neutral",
+            "sinic": "mixed"
+          }
+        }
+      },
+      "D7": {
+        "headline": "Symbolic only. No health information.",
+        "traditions": [
+          [
+            "western",
+            "The Moon, the classical significator of the body, is exalted in Taurus."
+          ]
+        ],
+        "practice": [
+          "Nothing in this page is a health, medical or lifespan statement."
+        ],
+        "reflect": [],
+        "expect": {
+          "grade": "WEAK",
+          "cluster_polarity": {
+            "jyotisha": "silent",
+            "western": "positive",
+            "sinic": "neutral"
+          }
+        }
+      },
+      "D8": {
+        "headline": "The Chinese charts show strong creative output; the others stay neutral.",
+        "traditions": [
+          [
+            "sinic",
+            "The Hurting Officer is visible on your month stem and Eating God appears in four hidden stems. These are BaZi's output stars: expression, performance, making things, critique. Zi Wei's 文曲 (literary talent) sits in your Body palace."
+          ],
+          [
+            "jyotisha",
+            "Mercury sits with the Moon and Rahu in Aries, neutral. In the D9 chart it is in Gemini, its own sign."
+          ],
+          [
+            "western",
+            "Mercury is peregrine in Taurus: neutral."
+          ]
+        ],
+        "practice": [
+          "BaZi would point you toward making and expressing rather than following a script. Only one system says so."
+        ],
+        "reflect": [
+          "What do you make or say that nobody asked you to?"
+        ],
+        "expect": {
+          "grade": "WEAK",
+          "cluster_polarity": {
+            "jyotisha": "neutral",
+            "western": "neutral",
+            "sinic": "positive"
+          }
+        }
+      },
+      "D9": {
+        "headline": "Your steadiest signature: a good relationship with meaning, learning and luck.",
+        "traditions": [
+          [
+            "jyotisha",
+            "Jupiter (guru, dharma, wisdom) is in Leo in both the D1 and D9 charts. That is called vargottama, a mark of consistent strength."
+          ],
+          [
+            "sinic",
+            "Zi Wei's 福德 palace (inner contentment, spirit) holds 武曲, bright and turning to 化科 (recognition), with 贪狼 bright and 天魁 (helpful people). A well-starred palace."
+          ],
+          [
+            "western",
+            "Jupiter is in Virgo, its detriment, and stationing direct. Neutral."
+          ]
+        ],
+        "practice": [
+          "Tradition would expect beliefs, study and mentors to steady you.",
+          "Zi Wei's ten-year period in this palace runs roughly 2029 to 2038."
+        ],
+        "reflect": [
+          "Which ideas or teachers have steadied you when things wobbled?"
+        ],
+        "expect": {
+          "grade": "MODERATE",
+          "cluster_polarity": {
+            "jyotisha": "positive",
+            "western": "neutral",
+            "sinic": "positive"
+          }
+        }
+      }
+    },
+    "chapters": [
+      {
+        "start": "2026-05-17",
+        "end": "2027-05-17",
+        "title": "Money & gains switch on",
+        "tag": "STRONG",
+        "text": "The only window where all three clusters point at the same area. Vedic: Sun period, with the Sun in your 11th house of income. Western: the age-22 year activates the 11th house (gains, allies), with Venus as lord of the year. BaZi: the 辛未 luck pillar has Direct Wealth on its stem, and the 2026 year 丙午 adds peers and competitors (Friend / Rob Wealth). The area is active; the natal reading stays double-edged, so this says nothing about gain or loss.",
+        "refs": [
+          "SYNTHESIS.json → timing.current[0]",
+          "SYNTHESIS.json → bazi_annual_ten_gods.2026"
+        ]
+      },
+      {
+        "start": "2027-05-17",
+        "end": "2028-05-17",
+        "title": "Behind-the-scenes year",
+        "tag": "MODERATE",
+        "text": "Money stays moderately active (Vedic Sun period + BaZi 辛未). The Western profection moves to the 12th house, traditionally a quieter, withdrawn year, with Mercury as lord. Vedic sub-periods run Mars (to 10 Mar 2027), Rahu (to 2 Feb 2028) and Jupiter. BaZi's 2027 year 丁未 brings Rob Wealth and Hurting Officer.",
+        "refs": [
+          "RAW_CALCULATIONS.json → western.charts.+0min.profections[1]",
+          "RAW_CALCULATIONS.json → jyotisha.vimshottari.+0min"
+        ]
+      },
+      {
+        "start": "2028-05-17",
+        "end": "2029-05-17",
+        "title": "A year about you",
+        "tag": "MODERATE",
+        "text": "Vedic Sun period and the Western age-24 profection (1st house, Moon as lord) both activate the self. Given the strained natal reading of the self, tradition would frame this as a year of re-examining how you present and assert yourself.",
+        "refs": [
+          "SYNTHESIS.json → timing.windows (D1)"
+        ]
+      },
+      {
+        "start": "2029-02-01",
+        "end": "2039-02-01",
+        "title": "Zi Wei decade in the palace of meaning",
+        "tag": "WEAK",
+        "text": "Zi Wei's ten-year period moves into the 福德 palace, your best-starred palace. One system only, so it isn't a convergence. It lines up in theme with the favourable Vedic Jupiter reading of meaning and luck.",
+        "refs": [
+          "SYNTHESIS.json → timing.techniques (Zi Wei decadal 26-35)"
+        ]
+      },
+      {
+        "start": "2030-10-06",
+        "end": "2032-01-13",
+        "title": "Career pressure and structure",
+        "tag": "MODERATE",
+        "text": "BaZi's luck pillar changes to 壬申 on about 6 Oct 2030. Its stem is Seven Killings: pressure, challenge, authority. The Vedic Sun period (the Sun signifies status) is still running, so both activate work and money.",
+        "refs": [
+          "SYNTHESIS.json → timing.windows (D2)"
+        ]
+      },
+      {
+        "start": "2032-01-15",
+        "end": "2042-01-14",
+        "title": "Vedic Moon period begins",
+        "tag": "MODERATE",
+        "text": "A ten-year Moon period. The Moon sits in your 10th house of career, so work stays prominent; together with 壬申 it gives another two-system career window in 2032. The computed convergence horizon ends at 2032.",
+        "refs": [
+          "RAW_CALCULATIONS.json → jyotisha.vimshottari.+0min.mahadashas[3]"
+        ]
+      }
+    ],
+    "tension": [
+      {
+        "title": "Home & roots",
+        "text": "Vedic Ketu in the 4th says detachment. The Western exalted Moon says a strong home. They contradict each other, and neither wins.",
+        "link": "D5",
+        "refs": "SYNTHESIS.json → scenarios.outer.domains.D5"
+      },
+      {
+        "title": "How strong is the Day Master?",
+        "text": "Counted by weight, your 丙 fire has 33% support, which is weak. By season, it is at its peak. So BaZi's \"helpful element\" is low confidence: the seasonal school points to water and metal, the balancing school to wood and fire.",
+        "refs": "RAW_CALCULATIONS.json → bazi.primary.dm_strength · SYNTHESIS.json → yong_shen"
+      },
+      {
+        "title": "Leadership & drive",
+        "text": "The Vedic Sun and the Western Mars are both in poor condition, while Zi Wei places the steward star 天府 in your life palace and 破军 in your body palace. The systems read your drive in opposite ways.",
+        "refs": "SYNTHESIS.json → temperament.T1, T2"
+      },
+      {
+        "title": "Looking from the Moon instead",
+        "text": "Vedic astrology also reads houses from the Moon. From your Moon, Rahu joins it in the 1st and Ketu sits in the 7th. That would make self and partnership read harsher. It is shown but not counted.",
+        "refs": "SYNTHESIS.json → secondary_jyotisha_view"
+      }
+    ],
+    "temperament_summary": "What stands out: nurturing (Western exalted Moon, BaZi Resource star) is the most supported axis. Leadership and drive are where the systems clash: the Vedic and Western planets for them are weak, while Zi Wei places 天府 in the life palace and 破军 in the body palace."
+  }
+}

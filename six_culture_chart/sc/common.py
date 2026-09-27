@@ -9,7 +9,9 @@ import swisseph as swe
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 EPHE = os.path.join(ROOT, "ephe")
-OUT = os.path.join(ROOT, "output")
+# One chart per directory: BIRTH_INPUT.json (+ optional NARRATIVE.json) in CHART_DIR, results in CHART_DIR/output.
+CHART_DIR = os.path.abspath(os.environ.get("SIX_CHART_DIR", ROOT))
+OUT = os.path.join(CHART_DIR, "output")
 
 # Force zoneinfo to use the pinned `tzdata` package, not the OS copy.
 zoneinfo.reset_tzpath([])
@@ -111,5 +113,13 @@ def dump(name, obj):
 
 
 def load_input():
-    with open(os.path.join(ROOT, "BIRTH_INPUT.json"), encoding="utf-8") as f:
+    with open(os.path.join(CHART_DIR, "BIRTH_INPUT.json"), encoding="utf-8") as f:
+        return json.load(f)
+
+
+def load_narrative():
+    p = os.path.join(CHART_DIR, "NARRATIVE.json")
+    if not os.path.exists(p):
+        return {}
+    with open(p, encoding="utf-8") as f:
         return json.load(f)

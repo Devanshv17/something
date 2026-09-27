@@ -3,10 +3,11 @@
 All prose values are read from output/*.json so every sentence is traceable to the datasets.
 """
 import json
+from datetime import date
 import os
 import shutil
 
-from sc.common import OUT, ROOT, SIGNS, dump, fmt_dms
+from sc.common import CHART_DIR, OUT, ROOT, SIGNS, dump, fmt_dms, load_narrative
 
 J = lambda n: json.load(open(os.path.join(OUT, n), encoding="utf-8"))
 
@@ -17,9 +18,10 @@ def w(name, lines):
 
 def main():
     raw, man, ver, syn = J("RAW_CALCULATIONS.json"), J("CALCULATION_MANIFEST.json"), J("VERIFICATION_REPORT.json"), J("SYNTHESIS.json")
-    inp = json.load(open(os.path.join(ROOT, "BIRTH_INPUT.json"), encoding="utf-8"))
-    shutil.copy(os.path.join(ROOT, "BIRTH_INPUT.json"), os.path.join(OUT, "BIRTH_INPUT.json"))
+    inp = json.load(open(os.path.join(CHART_DIR, "BIRTH_INPUT.json"), encoding="utf-8"))
+    shutil.copy(os.path.join(CHART_DIR, "BIRTH_INPUT.json"), os.path.join(OUT, "BIRTH_INPUT.json"))
     a, st, bd = raw["input_audit"], raw["stability"], raw["boundaries"]
+    T = a["local_time_24h"][:5]
 
     # ---------------- MASTER_DATASET.json ----------------
     master = {"input": {"original": inp, "normalized": a}, "conventions_and_versions": man,
@@ -45,28 +47,29 @@ def main():
     L.append(f"| sunset | SE {a['sunset']['swiss_ephemeris']} / JPL {a['sunset']['skyfield_jpl']} (Δ {a['sunset']['difference_s']:.0f} s) |")
     L += ["", f"Time uncertainty: {inp['time_uncertainty']['interpretation']}.", "",
           f"## Boundary audit (every crossing inside ±{inp['time_uncertainty']['outer_minutes']} min)", "",
-          f"| Output | Value at 09:30 | ±{inp['time_uncertainty']['inner_minutes']} min | ±{inp['time_uncertainty']['outer_minutes']} min | Crossings (minutes from 09:30, from → to) |", "|---|---|---|---|---|"]
+          f"| Output | Value at {T} | ±{inp['time_uncertainty']['inner_minutes']} min | ±{inp['time_uncertainty']['outer_minutes']} min | Crossings (minutes from {T}, from → to) |", "|---|---|---|---|---|"]
     for k, v in st.items():
         cr = "; ".join(f"{c['minutes_from_T']:+.1f} min ({c['instant_local'][11:19]}): {c['from']} → {c['to']}" for c in v["crossings"]) or "—"
         L.append(f"| {k} | {v['value_at_T']} | {v['inner_interval']} | {v['outer_interval']} | {cr} |")
     wa, jl = bd["western_asc"], bd["jyotisha_lagna"]
     L += ["", "## Boundary distances", "",
-          f"- **Western Ascendant** {fmt_dms(wa['asc_lon'])}: {wa['to_next_cusp_deg']:.2f}° before Leo (≈{wa['minutes_to_next_cusp_approx']:.1f} min at {wa['asc_rate_deg_per_min']:.3f}°/min).",
-          f"- **Jyotisha Lagna** {fmt_dms(jl['lagna_lon'])} (Lahiri): only {jl['deg_in_sign']:.2f}° past the Gemini/Cancer cusp (≈{jl['minutes_since_prev_cusp_approx']:.1f} min). Its D9 segment is {jl['d9_segment_deg'][0]:.2f}–{jl['d9_segment_deg'][1]:.2f}° and D10 segment {jl['d10_segment_deg'][0]}–{jl['d10_segment_deg'][1]}°.",
-          f"- **Sect**: {bd['sunrise_sect']['minutes_after_sunrise']:.0f} min after sunrise, {bd['sunrise_sect']['minutes_before_sunset']:.0f} min before sunset → day chart, stable.",
-          f"- **BaZi / Zi Wei hour**: civil 09:30 is 30 min into the 巳 Si double-hour (09:00–11:00). Local apparent solar time {a['local_apparent_solar_time'][11:]} is {bd['bazi_hour']['minutes_after_09:00_LAT']:.1f} min into it. Under the solar-time track the hour becomes 辰 Chen only if birth was ≥{bd['bazi_hour']['minutes_after_09:00_LAT']:.1f} min earlier than 09:30.",
-          f"- **Day boundary**: {bd['day_boundary']['minutes_after_local_midnight']} min after midnight; late-Zi convention irrelevant.",
-          f"- **Solar terms**: birth {raw['bazi']['primary']['birth_after_lixia_days']:.2f} days after 立夏 and {raw['bazi']['primary']['birth_before_mangzhong_days']:.2f} days before 芒种 → month 己巳 stable.",
-          f"- **Zi Wei lunar date**: {bd['zi_wei_lunar']['lunar_date']}; next new moon {bd['zi_wei_lunar']['next_new_moon_utc']} ({bd['zi_wei_lunar']['hours_to_next_new_moon']:.1f} h after birth), so lunar month stable.",
+          f"- **Western Ascendant** {fmt_dms(wa['asc_lon'])}: {wa['deg_in_sign']:.2f}° into its sign, {wa['to_next_cusp_deg']:.2f}° before the next (≈{wa['minutes_since_prev_cusp_approx']:.1f} min since / ≈{wa['minutes_to_next_cusp_approx']:.1f} min to a cusp at {wa['asc_rate_deg_per_min']:.3f}°/min).",
+          f"- **Jyotisha Lagna** {fmt_dms(jl['lagna_lon'])} (Lahiri): {jl['deg_in_sign']:.2f}° into its sign (≈{jl['minutes_since_prev_cusp_approx']:.1f} min since / ≈{jl['minutes_to_next_cusp_approx']:.1f} min to a cusp). D9 segment {jl['d9_segment_deg'][0]:.2f}–{jl['d9_segment_deg'][1]:.2f}°, D10 segment {jl['d10_segment_deg'][0]}–{jl['d10_segment_deg'][1]}°.",
+          f"- **Sect**: {bd['sunrise_sect']['minutes_after_sunrise']:.0f} min after sunrise, {bd['sunrise_sect']['minutes_before_sunset']:.0f} min before sunset → {st['sect']['value_at_T']} chart, {st['sect']['outer_interval']}.",
+          "- **BaZi / Zi Wei hour**: " + "; ".join(f"{trk} {v['time'][11:16]} is {v['minutes_into_branch']:.1f} min into the {v['branch']} double-hour ({v['window']}), {v['minutes_to_branch_end']:.1f} min before its end" for trk, v in bd["bazi_hour"].items() if trk in ("civil", "LAT"))
+          + f". Nearest boundary: {bd['bazi_hour']['nearest_boundary']['minutes']:.1f} min ({bd['bazi_hour']['nearest_boundary']['track']} track, branch {bd['bazi_hour']['nearest_boundary']['side']}).",
+          f"- **Day boundary**: {bd['day_boundary']['minutes_after_local_midnight']} min after midnight; {bd['day_boundary']['note']}.",
+          f"- **Solar terms**: birth {raw['bazi']['primary']['birth_after_prev_jie_days']:.2f} days after {raw['bazi']['primary']['prev_jie']} and {raw['bazi']['primary']['birth_before_next_jie_days']:.2f} days before {raw['bazi']['primary']['next_jie']} → month {raw['bazi']['primary']['pillars'][1]['ganzhi']} stable.",
+          f"- **Zi Wei lunar date**: {bd['zi_wei_lunar']['lunar_date']} (leap month: {bd['zi_wei_lunar']['is_leap_month']}; year's leap month: {bd['zi_wei_lunar']['leap_month_of_year'] or 'none'}); next new moon {bd['zi_wei_lunar']['next_new_moon_utc']} ({bd['zi_wei_lunar']['hours_to_next_new_moon']:.1f} h after birth).",
           f"- **Tibetan Losar**: {bd['tibetan_losar']}.",
           f"- **Calendar adoption**: {bd['calendar_adoption']}.",
-          f"- **Mercury** is {bd['mercury_tropical_sign_cusp']['deg_past_0_taurus']:.2f}° into tropical Taurus (ingress ≈{bd['mercury_tropical_sign_cusp']['hours_since_ingress_approx']:.0f} h before birth) — stable over the uncertainty interval."]
+          "- **Planets within 1° of a sign cusp**: " + ("; ".join(f"{c['body']} {c['deg_from_cusp']:.2f}° ({c['zodiac']}, ≈{c['hours_per_degree'] * c['deg_from_cusp']:.0f} h of motion)" for c in bd["planets_near_sign_cusp"] if c["hours_per_degree"]) or "none") + "."]
     w("INPUT_AUDIT.md", L)
 
     # ---------------- MASTER_DATASET.md ----------------
     A = raw["astronomy"]["+0min"]
-    M = ["# Master dataset (facts only, no interpretation)", "", f"Birth instant: {a['local_iso']} ({a['utc_iso']} UTC), {a['weekday']}, Lucknow {a['latitude']}N {a['longitude']}E.", "",
-         "## Positions at 09:30 IST", "", "| Body | Tropical | Sidereal (Lahiri) | Speed °/d | JPL Δ° |", "|---|---|---|---|---|"]
+    M = ["# Master dataset (facts only, no interpretation)", "", f"Birth instant: {a['local_iso']} ({a['utc_iso']} UTC), {a['weekday']}, {inp['birthplace']['name']} {a['latitude']:.4f}N {a['longitude']:.4f}E.", "",
+         f"## Positions at {T} local", "", "| Body | Tropical | Sidereal (Lahiri) | Speed °/d | JPL Δ° |", "|---|---|---|---|---|"]
     for b in ["Sun", "Moon", "Mercury", "Venus", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune", "Pluto", "MeanNode", "TrueNode"]:
         v = A["bodies"][b]
         M.append(f"| {b} | {fmt_dms(v['lon'])} | {fmt_dms(v['sidereal_lon'])} | {v['speed_deg_day']:+.4f} | {format(v['validator_difference_deg'], '.1e') if v.get('validator_difference_deg') is not None else '— (no validator)'} |")
@@ -79,7 +82,7 @@ def main():
     for off in ["+0min"] + alt_offs[:1]:
         c = raw["jyotisha"]["charts"][off]
         M += [f"## Jyotisha D1 — Lagna {c['lagna']['sign']} {c['lagna']['deg']:.2f}° ({off} alternative)" if off != "+0min" else
-              f"## Jyotisha D1 — Lagna {c['lagna']['sign']} {c['lagna']['deg']:.2f}° (09:30; the Gemini cusp is ≈{jl_min:.1f} min earlier)", "",
+              f"## Jyotisha D1 — Lagna {c['lagna']['sign']} {c['lagna']['deg']:.2f}° ({T}; previous cusp ≈{jl_min:.1f} min earlier, next ≈{bd['jyotisha_lagna']['minutes_to_next_cusp_approx']:.1f} min later)", "",
               "| Graha | Sign | Deg | House | Nakshatra-pada | Dignity | D9 | D10 | Function |", "|---|---|---|---|---|---|---|---|---|"]
         for g, v in c["grahas"].items():
             M.append(f"| {g} | {v['sign']} | {v['deg']:.2f} | {v['house']} | {v['nakshatra']['name']}-{v['nakshatra']['pada']} | {v['dignity']}"
@@ -90,30 +93,35 @@ def main():
           f"Planetary war: {c['planetary_war'] or 'none'}. True node sign same as mean: {raw['jyotisha']['true_node_variant_T']['same_sign_as_mean']}.", ""]
     V = raw["jyotisha"]["vimshottari"]
     M += [f"Vimshottari: Moon in {V['+0min']['moon_nakshatra']['name']} (lord {V['+0min']['moon_nakshatra']['lord']}), balance {V['+0min']['balance_at_birth_years']:.3f} y.", "",
-          f"| Mahadasha | Start (09:30) | End (09:30) | Start range ±{inp['time_uncertainty']['outer_minutes']} min |", "|---|---|---|---|"]
-    for i, md in enumerate(V["+0min"]["mahadashas"][:6]):
+          f"| Mahadasha | Start ({T}) | End ({T}) | Start range ±{inp['time_uncertainty']['outer_minutes']} min |", "|---|---|---|---|"]
+    by_ = int(a["gregorian_date"][:4])
+    for i, md in enumerate(m_ for m_ in V["+0min"]["mahadashas"] if int(m_["start"][:4]) <= by_ + 100):
         rng = sorted(V[k]["mahadashas"][i]["start"][:10] for k in V)
         M.append(f"| {md['lord']} | {md['start'][:10]} | {md['end'][:10]} | {rng[0]} … {rng[-1]} |")
-    sun_md = next(m for m in V["+0min"]["mahadashas"] if m["lord"] == "Sun")
-    M += ["", "Sun Mahadasha antardashas at 09:30 (pratyantardashas listed where computed):", ""]
-    for ad in sun_md["antardashas"]:
-        M.append(f"- Sun–{ad['lord']}: {ad['start'][:10]} → {ad['end'][:10]}")
+    today_s = inp["analysis_date"]
+    cur_md = next(m for m in V["+0min"]["mahadashas"] if m["start"][:10] <= today_s < m["end"][:10])
+    L_ = cur_md["lord"]
+    M += ["", f"Current ({L_}) Mahadasha antardashas at {T} (pratyantardashas listed where computed):", ""]
+    for ad in cur_md["antardashas"]:
+        M.append(f"- {L_}–{ad['lord']}: {ad['start'][:10]} → {ad['end'][:10]}")
         for pd in ad.get("pratyantardashas", []):
-            M.append(f"  - Sun–{ad['lord']}–{pd['lord']}: {pd['start'][:10]} → {pd['end'][:10]}")
+            M.append(f"  - {L_}–{ad['lord']}–{pd['lord']}: {pd['start'][:10]} → {pd['end'][:10]}")
     # BaZi
     bz = raw["bazi"]["primary"]
     M += ["", "## BaZi", "", "| Pillar | 干支 | Stem Ten God | Hidden stems (Ten God) | Na Yin |", "|---|---|---|---|---|"]
     for p in bz["pillars"]:
         M.append(f"| {p['pillar']} | {p['ganzhi']} {p['pinyin']} | {p['ten_god_of_stem']} | " +
                  ", ".join(f"{h['stem']} {h['ten_god']}" for h in p["hidden_stems"]) + f" | {p['na_yin_traditional_attribute']} |")
-    M += ["", f"Adjacent hour pillar (reached only if birth was ≥{bd['bazi_hour']['minutes_after_09:00_LAT']:.1f} min earlier, solar-time track; outside the confirmed ±{inp['time_uncertainty']['outer_minutes']} min): {raw['bazi']['alternative_hour_Chen']['hour_pillar']['ganzhi']}.",
+    alt_h = raw["bazi"]["alternative_hour"]
+    M += ["", f"Adjacent hour pillar {alt_h['hour_pillar']['ganzhi']}: reached if {alt_h['reached_if']}; "
+              f"{'outside' if alt_h['minutes_away'] > inp['time_uncertainty']['outer_minutes'] else 'INSIDE'} the ±{inp['time_uncertainty']['outer_minutes']} min interval.",
           f"Day Master strength (BZ-DM-1): support share {bz['dm_strength']['support_share']:.3f} → {bz['dm_strength']['weighted_count_verdict']}; seasonal: {bz['dm_strength']['seasonal_verdict']}; rooted in {bz['dm_strength']['rooting']}.",
           "Interactions: " + "; ".join(f"{i['type']} {i['chars']} ({'/'.join(i.get('pillars', []))})" + (f", transformed={i['transformed']}" if 'transformed' in i else '') for i in bz["interactions"]), "",
           f"Da Yun {bz['da_yun']['direction']}; start {bz['da_yun']['start_date_exact_3day_rule']} (exact 3-day rule) vs {bz['da_yun']['lunar_python_start']['date']} (lunar_python).", ""]
     M += [f"- {t['technique']}: {t['start']} → {t['end']} — {t['basis']}" for t in syn["timing"]["techniques"] if t["technique"].startswith("BaZi")][:5]
     # Western
     wc = raw["western"]["charts"]["+0min"]
-    M += ["", f"## Western / Hellenistic — Asc {wc['asc']['sign']} {wc['asc']['deg']:.2f}° (the Leo cusp is ≈{bd['western_asc']['minutes_to_next_cusp_approx']:.1f} min later), {wc['sect']} chart", "",
+    M += ["", f"## Western / Hellenistic — Asc {wc['asc']['sign']} {wc['asc']['deg']:.2f}° (previous cusp ≈{bd['western_asc']['minutes_since_prev_cusp_approx']:.1f} min earlier, next ≈{bd['western_asc']['minutes_to_next_cusp_approx']:.1f} min later), {wc['sect']} chart", "",
           "| Planet | Sign | Deg | House | Dignities | Sect | Visibility | Motion |", "|---|---|---|---|---|---|---|---|"]
     for p, v in wc["planets"].items():
         M.append(f"| {p} | {v['sign']} | {v['deg']:.2f} | {v['whole_sign_house']} | {', '.join(v['essential']['planet_dignities'])} | {v['sect_status']} | {v['visibility'] or '—'} | "
@@ -162,17 +170,22 @@ def write_reading(raw, ver, syn, inp):
          "## 1. Input and sensitivity", "",
          f"- Born **{a['weekday']} {a['gregorian_date']}, {a['local_time_24h'][:5]} IST (UTC{a['local_iso'][-6:]}, no DST)** = {a['utc_iso'][:16].replace('T', ' ')} UTC, {inp['birthplace']['name']} ({a['latitude']:.4f}°N, {a['longitude']:.4f}°E; {inp['birthplace']['coordinate_source'].split(',')[0]}).",
          f"- Local mean time {a['local_mean_time'][11:]}; local apparent solar time {a['local_apparent_solar_time'][11:]}. Sunrise {a['sunrise']['swiss_ephemeris'][11:16]}, sunset {a['sunset']['swiss_ephemeris'][11:16]}.",
-         f"- Birth time confirmed by you as exact to within a minute. Modelled as **±{unc['outer_minutes']} min**. "
-         + ("**Every time-dependent output is stable over that interval.**" if not sensitive else f"Outputs still changing: {sensitive}."),
-         f"- The nearest boundaries, for reference: the Vedic Lagna is Cancer {jl['deg_in_sign']:.2f}°, which is ≈{jl['minutes_since_prev_cusp_approx']:.1f} min of clock time after the Gemini cusp. "
-         f"The Western Ascendant is Cancer {wa['deg_in_sign']:.2f}°, ≈{wa['minutes_to_next_cusp_approx']:.1f} min before Leo. "
-         f"The Chinese 巳 hour began ≈{bd['bazi_hour']['minutes_after_09:00_LAT']:.1f} min earlier by solar time and 30 min earlier by the clock. All of these are well outside ±{unc['outer_minutes']} min.",
-         ("- Birthplace is the named hospital, so positional uncertainty is under ~100 m, which is negligible for every output." if "previous_coordinates" in inp["birthplace"]
-          else "- Remaining input caveat: the coordinates are for the city centre. A different hospital within Lucknow shifts the Ascendant by roughly 0.1°, which is much smaller than the Lagna margin."),
-         f"- Houses are therefore counted from the **Lagna** (Jyotisha) and the **Ascendant** (Western). Zi Wei uses the **{zb}** hour. (Rules JY-REFERENCE and W-HOUSES in the registry.)", "",
+         f"- Time uncertainty: {unc['interpretation']}. Modelled as **±{unc['outer_minutes']} min**"
+         + (f" (inner scenario ±{unc['inner_minutes']} min)" if unc['inner_minutes'] != unc['outer_minutes'] else "") + ". "
+         + ("**Every time-dependent output is stable over that interval.**" if not sensitive else
+            "**Outputs that change inside it:** " + "; ".join(
+                k + " (" + ", ".join(f"{c['from']}→{c['to']} at {c['minutes_from_T']:+.1f} min" for c in st[k]["crossings"]) + ")"
+                for k in sensitive) + "."),
+         f"- Nearest boundaries: Vedic Lagna {jc['lagna']['sign']} {jl['deg_in_sign']:.2f}° (≈{jl['minutes_since_prev_cusp_approx']:.1f} min after / ≈{jl['minutes_to_next_cusp_approx']:.1f} min before a cusp); "
+         f"Western Ascendant {wc['asc']['sign']} {wa['deg_in_sign']:.2f}° (≈{wa['minutes_since_prev_cusp_approx']:.1f} / ≈{wa['minutes_to_next_cusp_approx']:.1f} min); "
+         f"Chinese double-hour boundary ≈{bd['bazi_hour']['nearest_boundary']['minutes']:.1f} min away ({bd['bazi_hour']['nearest_boundary']['track']} track).",
+         ("- Birthplace is a named hospital, so positional uncertainty is under ~100 m, negligible for every output." if "previous_coordinates" in inp["birthplace"]
+          else f"- Coordinates: {inp['birthplace']['coordinate_source']}. A different hospital in the same town shifts the Ascendant by roughly 0.1°."),
+         f"- Houses are counted from the **{'Lagna' if syn['reference_frames']['jyotisha_houses'] == 'lagna' else 'Moon (Chandra Lagna), because the Lagna sign is not stable'}** (Jyotisha); "
+         f"Western houses {'vote' if syn['reference_frames']['western_houses_vote'] else 'do not vote, because the Ascendant sign is not stable'}. Zi Wei uses the **{zb}** hour. (Rules JY-REFERENCE and W-HOUSES.)", "",
          "## 2. Verification", "",
          f"- Swiss Ephemeris vs NASA JPL DE440s (via Skyfield): the largest planetary difference is **{ver['largest_planet_difference_deg']:.1e}°** (alert threshold 0.01°). The Ascendant/MC agree to within 0.002°.",
-         f"- Chinese solar terms (立夏, 芒种): four engines agree to ≤{max(v['max_difference_s'] for v in bz['solar_terms'].values()):.1f} s. Four Pillars: lunar_python = sxtwl (an independent codebase): **{' '.join(p['ganzhi'] for p in bz['pillars'])}**.",
+         f"- Chinese solar terms ({', '.join(bz['solar_terms'])}): four engines agree to ≤{max(v['max_difference_s'] for v in bz['solar_terms'].values()):.1f} s. Four Pillars: lunar_python = sxtwl (an independent codebase): **{' '.join(p['ganzhi'] for p in bz['pillars'])}**.",
          f"- Zi Wei: canonical iztro {raw['ziwei']['alternatives'][zb]['chart_zh']['iztro_version']} matches the py-iztro wrapper. These are the **same method**, so the match is an interface check only. All structural invariants pass.",
          "- Maya: convertdate and a separate implementation agree; the date round-trips exactly.",
          f"- **Invariant failures: {len(ver['failures'])}.**",
@@ -196,24 +209,26 @@ def write_reading(raw, ver, syn, inp):
             if p["polarity"] not in ("neutral", "silent"):
                 R.append(f"- {p['system']}: {p['basis']} → {p['polarity']} [{p['mapping_rule']}]")
         R.append("")
-    NARROW = {
-        ("D1", "negative"): "Vedic (the Sun, a significator of self, sits in an enemy's sign) and Western (Mars in fall and Saturn in detriment both on the Cancer Ascendant) both read the self/identity area as **strained**: self-assertion and self-image are prominent and carry friction. The Sinic reading is mixed (BaZi's two Day Master strength measures disagree), so it neither confirms nor contradicts this.",
-        ("D3", "mixed"): "Vedic (Jupiter strong in the 2nd, against the Sun in the 11th in an enemy's sign) and Sinic (Metal/Wealth is the largest element while the Day Master counts as weak by weight, 财多身弱; Zi Wei's wealth palace borrows 武曲/贪狼 brightly) agree that money and gains are **prominent but double-edged**. Western is plainly positive here (Sun, exalted Moon and Mercury in the 11th house of gains), so it leans the same way without matching exactly.",
-        ("D9", "positive"): "Vedic (Jupiter in a friendly sign and vargottama, Leo in both D1 and D9) and Zi Wei (福德 palace with 武曲庙化科 and 贪狼庙) both read fortune/worldview **favourably**. Western is neutral (Jupiter in detriment, stationing direct).",
-    }
+    NV = load_narrative().get("reading", {})
     R.append("What these mean, stated narrowly:")
     for d in order:
-        t = NARROW.get((d, D[d]["agreed_polarity"]))
+        t = NV.get("narrow", {}).get(f"{d}|{D[d]['agreed_polarity']}|{D[d]['grade']}")
         if t:
             R.append(f"- **{d} {D[d]['domain']}:** {t}")
     R += ["- Prominence is not outcome. None of these says anything will succeed or fail.", "",
           "## 5. Disagreements (not smoothed over)", ""]
-    if D["D5"]["grade"] == "DIVERGENT":
-        R.append("- **D5 Family/roots/home:** Vedic puts Ketu in the 4th house (home), a negative reading. Western uses the Moon (mother/home) exalted in Taurus, a positive reading. Sinic is mixed: BaZi's Resource star is combined away by 甲己合, while Zi Wei has a bright 父母 palace against a 田宅 palace carrying 太阳化忌. The systems genuinely disagree here.")
+    for d, v in D.items():
+        if v["grade"] == "DIVERGENT":
+            t = NV.get("divergent", {}).get(d)
+            R.append(f"- **{d} {v['domain']}:** " + (t or "; ".join(f"{p['system']}: {p['basis']} → {p['polarity']}" for p in v["projections"] if p["polarity"] in ("positive", "negative"))))
     dm = bz["dm_strength"]
-    R += [f"- **BaZi Day Master strength:** the weighted count gives support {dm['support_share']:.2f} → {dm['weighted_count_verdict']}; the seasonal rule gives {dm['seasonal_verdict']}. So the favourable-element (Yong Shen) verdict is **low confidence**. The seasonal school (Qiong Tong) points to 壬 water and 庚 metal; the strength-balancing school, using the weak verdict, points to wood and fire.",
+    ys = bz["yong_shen"]
+    R += [f"- **BaZi Day Master strength:** the weighted count gives support {dm['support_share']:.2f} → {dm['weighted_count_verdict']}; the seasonal rule gives {dm['seasonal_verdict']}"
+          + (" — the two disagree" if ys["sub_verdicts_disagree"] else " — they agree") + f". Favourable-element (Yong Shen) confidence: **{ys['confidence']}**. "
+          + " ".join(f"{sc_['school']}: {', '.join(sc_.get('useful_elements') or sc_['useful'])}." for sc_ in ys["schools"]),
           "- **Temperament conflicts:** " + "; ".join(f"{k} ({', '.join(c + ' ' + x['reading'] for c, x in v['clusters'].items())})" for k, v in syn["temperament"].items() if v["summary"] == "conflict") + ".",
-          f"- **Secondary Vedic view (from the Moon, non-voting):** from the Moon, Moon/Mercury/Rahu fall in the 1st and Ketu in the 7th, which would add negative readings to D1 and D4 (D4 would become mixed). Shown for transparency; it doesn't vote.", "",
+          f"- **Secondary Vedic view ({'from the Moon' if syn['reference_frames']['jyotisha_houses'] == 'lagna' else 'from the Lagna'}, non-voting):** "
+          + "; ".join(f"{p['domain']}: {p['basis']} → {p['polarity']}" for p in syn["secondary_jyotisha_view"]) + ".", "",
           "## 6. Weak areas (do not over-read)", ""]
     for d, v in D.items():
         if v["grade"] in ("WEAK", "INSUFFICIENT"):
@@ -243,15 +258,23 @@ def write_reading(raw, ver, syn, inp):
                         if pd["start"][:10] <= today < pd["end"][:10]:
                             cur.append(("Pratyantardasha", pd))
     an = syn["bazi_annual_ten_gods"]
-    sun_t = next(t for t in syn["timing"]["techniques"] if t["technique"] == "Vimshottari Sun Mahadasha")
+    VV = raw["jyotisha"]["vimshottari"]
+    starts = sorted(VV[k]["mahadashas"][2]["start"][:10] for k in VV)
+    spread = (date.fromisoformat(starts[-1]) - date.fromisoformat(starts[0])).days / 2
+    yk = today[:4]
     R += ["  - Current Vimshottari: " + " / ".join(f"{k} {x['lord']} ({x['start'][:10]} → {x['end'][:10]})" for k, x in cur) +
-          f". Dates move by about ±2 days across ±{unc['outer_minutes']} min.",
-          f"  - Why D3 is active: the Sun Mahadasha lord sits in the 11th from the Lagna ({sun_t['basis'].split(';')[1].strip()}). The Western age-22 profection activates the 11th house. The BaZi 辛未 luck pillar has Direct Wealth (辛) on its stem.",
-          f"  - Activation is not outcome. The BaZi year {an['2026']['ganzhi']} (Lichun 2026 → Lichun 2027) is {an['2026']['stem_ten_god']} / {an['2026']['branch_ten_god']}: a companion/competitor year for a wealth theme. The natal D3 reading is itself mixed."]
+          f". Dates move by about ±{spread:.0f} days across ±{unc['outer_minutes']} min."]
+    for tn in NV.get("timing_notes", []):
+        if any(x["domain"] == tn["guard_current_domain"] for x in syn["timing"]["current"]):
+            R.append("  - " + tn["text"])
+    if yk in an:
+        R.append(f"  - BaZi year {an[yk]['ganzhi']} (Lichun {yk} → Lichun {int(yk) + 1}): stem {an[yk]['stem_ten_god']}, branch {an[yk]['branch_ten_god']}. Activation is not outcome.")
     for x in [x for x in syn["timing"]["next"] if x["start"] > today][:4]:
         R.append(f"- Next: {x['start']} → {x['end']}: {x['domain']} {x['domain_name']} — {x['grade']} (" +
                  "; ".join(f"{c}: {', '.join(t)}" for c, t in x["clusters"].items()) + ")")
-    R += ["- Zi Wei decadal (not a convergence by itself): 16–25 in the 父母 palace (roughly lunar years 2019–2028), then 26–35 in the 福德 palace (D9, roughly 2029–2038).", "",
+    zwd = sorted([t for t in syn["timing"]["techniques"] if t["technique"].startswith("Zi Wei")], key=lambda t: t["start_iso_approx"])
+    zwd = [t for t in zwd if t["end_iso_approx"] > today][:2]
+    R += ["- Zi Wei decadal (not a convergence by itself): " + "; then ".join(f"{t['technique'].split('decadal ')[1]} ≈{t['start_iso_approx'][:4]}–{t['end_iso_approx'][:4]}" for t in zwd) + ".", "",
           "## 9. Claims removed", ""]
     for k, v in syn["claims_removed"].items():
         R.append(f"- {k}: {v['count'] if isinstance(v, dict) else v}" + (f" — {v.get('note', '')}" if isinstance(v, dict) and v.get("note") else ""))

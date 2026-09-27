@@ -80,8 +80,8 @@ def main():
             "sect": "day" if rise <= u <= sset else "night",
             "bazi_hour_civil": bazi.pillars_lunar_python(loc)[1][3],
             "bazi_hour_LAT": bazi.pillars_lunar_python(lat_loc)[1][3],
-            "ziwei_time_branch_civil": "子丑寅卯辰巳午未申酉戌亥"[((loc.hour + 1) // 2) % 12],
-            "ziwei_time_branch_LAT": "子丑寅卯辰巳午未申酉戌亥"[((lat_loc.hour + 1) // 2) % 12],
+            "ziwei_time_branch_civil": ziwei.ORDER[ziwei.time_index(loc.hour) % 12],
+            "ziwei_time_branch_LAT": ziwei.ORDER[ziwei.time_index(lat_loc.hour) % 12],
             "western_lot_fortune_sign": SIGNS[sign_of(norm(asc_t + b['bodies']['Moon']['lon'] - b['bodies']['Sun']['lon']))],
         }
 
@@ -118,19 +118,58 @@ def main():
         }
 
     # ---------- boundary distances ----------
+    lat_naive = datetime.fromisoformat(audit["normalized"]["local_apparent_solar_time"])
+
+    def branch_window(t):
+        idx = ziwei.time_index(t.hour) % 12
+        start_h = (2 * idx - 1) % 24
+        start = t.replace(hour=start_h, minute=0, second=0)
+        if start > t:
+            start -= timedelta(days=1)
+        end = start + timedelta(hours=2)
+        return idx, start, end
+    hour_audit = {}
+    for trk, t_ in (("civil", local.replace(tzinfo=None)), ("LAT", lat_naive)):
+        idx, st_, en_ = branch_window(t_)
+        hour_audit[trk] = {"time": t_.isoformat(timespec="seconds"), "branch": ziwei.ORDER[idx],
+                           "window": f"{st_:%H:%M}-{en_:%H:%M}",
+                           "minutes_into_branch": (t_ - st_).total_seconds() / 60,
+                           "minutes_to_branch_end": (en_ - t_).total_seconds() / 60}
+    near = min([(trk, "start", v["minutes_into_branch"]) for trk, v in hour_audit.items()] +
+               [(trk, "end", v["minutes_to_branch_end"]) for trk, v in hour_audit.items()], key=lambda x: x[2])
+    hour_audit["nearest_boundary"] = {"track": near[0], "side": near[1], "minutes": near[2]}
+    from lunar_python import Solar as _Solar, LunarYear as _LunarYear
+    _ln = _Solar.fromYmdHms(local.year, local.month, local.day, local.hour, local.minute, 0).getLunar()
+    lunar_audit = {"lunar_date": f"{_ln.getYearInGanZhi()}年 {'闰' if _ln.getMonth() < 0 else ''}{_ln.getMonthInChinese()}月{_ln.getDayInChinese()}",
+                   "is_leap_month": _ln.getMonth() < 0,
+                   "leap_month_of_year": _LunarYear.fromYear(_ln.getYear()).getLeapMonth(),
+                   "note": "lunar day changes at civil midnight in iztro"}
+    cusp_list = []
+    for nm, v in B["bodies"].items():
+        if "tropical_boundary_distance_deg" not in v:
+            continue
+        for zod, key in (("tropical", "tropical_boundary_distance_deg"), ("sidereal", "sidereal_boundary_distance_deg")):
+            if v[key] < 1.0:
+                cusp_list.append({"body": nm, "zodiac": zod, "deg_from_cusp": v[key],
+                                  "hours_per_degree": 24 / abs(v["speed_deg_day"]) if v["speed_deg_day"] else None})
     asc_t, asc_s = B["angles_tropical"]["asc"], B["angles_sidereal"]["asc"]
     rate = (bases[inner]["angles_tropical"]["asc"] - bases[-inner]["angles_tropical"]["asc"]) / (2 * inner)
-    new_moon_jd = None
+    new_moon_jd = None  # noqa
     jd = jd_from_utc(utc)
     # previous and next new moon (for lunar-month context)
     def elong(j):
         s = swe.calc_ut(j, swe.SUN)[0][0]
         m = swe.calc_ut(j, swe.MOON)[0][0]
         return angdiff(m, s)
-    j = jd
-    while elong(j) < 0:
-        j += 0.25
-    lo, hi = j - 0.25, j
+    # next new moon: first forward step where elongation crosses from negative to non-negative near 0 deg
+    j, prev = jd, elong(jd)
+    while True:
+        nj = j + 0.25
+        cur = elong(nj)
+        if prev < 0 <= cur and abs(cur) < 90:
+            break
+        j, prev = nj, cur
+    lo, hi = j, nj
     for _ in range(60):
         mid = (lo + hi) / 2
         (lo, hi) = (mid, hi) if elong(mid) < 0 else (lo, mid)
@@ -148,24 +187,20 @@ def main():
         "sunrise_sect": {"sunrise_local": iso(rise, tz), "sunset_local": iso(sset, tz),
                          "minutes_after_sunrise": (utc - rise).total_seconds() / 60,
                          "minutes_before_sunset": (sset - utc).total_seconds() / 60},
-        "bazi_hour": {"civil_hour_branch_window": "09:00-11:00 巳 Si",
-                      "minutes_after_09:00_civil": 30,
-                      "LAT_time": audit["normalized"]["local_apparent_solar_time"],
-                      "minutes_after_09:00_LAT": (datetime.fromisoformat(audit["normalized"]["local_apparent_solar_time"]) -
-                                                  datetime(2004, 5, 17, 9, 0)).total_seconds() / 60},
-        "day_boundary": {"minutes_after_local_midnight": 570, "minutes_before_23:00_late_zi": 13 * 60 + 30,
-                         "note": "late-Zi convention irrelevant at 09:30"},
-        "zi_wei_lunar": {"lunar_date": "甲申年 三月廿九 (3rd lunar month, day 29; not a leap month; 2004's leap month was 闰二月)",
-                         "next_new_moon_utc": iso(next_new_moon),
-                         "hours_to_next_new_moon": (next_new_moon - utc).total_seconds() / 3600,
-                         "note": "lunar day changes at civil midnight in iztro; the next lunar month begins with the new moon's civil date in China (UTC+8)"},
-        "tibetan_losar": "birth in May is after every possible Losar date (late Jan - late Mar)",
-        "calendar_adoption": "Gregorian civil date; no Julian/Gregorian ambiguity for 2004",
-        "mercury_tropical_sign_cusp": {"deg_past_0_taurus": B["bodies"]["Mercury"]["lon"] - 30,
-                                       "hours_since_ingress_approx": (B["bodies"]["Mercury"]["lon"] - 30) /
-                                       B["bodies"]["Mercury"]["speed_deg_day"] * 24},
+        "bazi_hour": hour_audit,
+        "day_boundary": {"minutes_after_local_midnight": local.hour * 60 + local.minute,
+                         "minutes_before_23:00_late_zi": (23 * 60) - (local.hour * 60 + local.minute),
+                         "note": "late-Zi convention matters only for births between 23:00 and 24:00"},
+        "zi_wei_lunar": {**lunar_audit, "next_new_moon_utc": iso(next_new_moon),
+                         "hours_to_next_new_moon": (next_new_moon - utc).total_seconds() / 3600},
+        "tibetan_losar": ("birth month is after every possible Losar date (late Jan - late Mar)" if local.month >= 4
+                          else "birth falls in the Losar window; element-animal year needs a lineage-specific calendar"),
+        "calendar_adoption": f"Gregorian civil date; no Julian/Gregorian ambiguity for {local.year}",
+        "planets_near_sign_cusp": cusp_list,
     }
 
+    today = date.fromisoformat(inp["analysis_date"])
+    gender_code = 1 if inp["gender"].lower().startswith("m") else 0
     # ---------- Jyotisha ----------
     jy = {}
     for off in offsets:
@@ -177,7 +212,7 @@ def main():
     for off in (-outer, 0, outer):
         bb = bases[off]
         dasha[f"{off:+d}min"] = jyotisha.vimshottari(bb["bodies"]["Moon"]["sidereal_lon"], utc,
-                                                     pd_window=(2020, 2035) if outer <= 5 else None)
+                                                     pd_window=(today.year - 6, today.year + 9) if outer <= 5 else None)
     # identify distinct lagna alternatives
     lagna_alts = {}
     for off in offsets:
@@ -186,17 +221,23 @@ def main():
 
     # ---------- BaZi ----------
     lat_local = local.replace(tzinfo=None) + lat_offset
-    bz = bazi.compute(local.replace(tzinfo=None), lat_local, utc, gender_code=1)
-    bz_alt = bazi.compute(local.replace(tzinfo=None).replace(hour=8, minute=59), lat_local.replace(hour=8, minute=59), utc, 1)
+    bz = bazi.compute(local.replace(tzinfo=None), lat_local, utc, gender_code=gender_code, analysis_year=today.year)
+    # adjacent hour pillar across the nearest double-hour boundary (either track)
+    nb = hour_audit["nearest_boundary"]
+    base_t = local.replace(tzinfo=None) if nb["track"] == "civil" else lat_local
+    shift = timedelta(minutes=nb["minutes"] + 1)
+    alt_t = base_t - shift if nb["side"] == "start" else base_t + shift
+    bz_alt = bazi.compute(alt_t, alt_t, utc, gender_code, today.year)
     bz_alt_summary = {"hour_pillar": bz_alt["pillars"][3], "interactions": bz_alt["interactions"],
-                      "dm_strength": bz_alt["dm_strength"]}
+                      "dm_strength": bz_alt["dm_strength"],
+                      "reached_if": f"birth {nb['minutes']:.1f} min {'earlier' if nb['side'] == 'start' else 'later'} ({nb['track']} track)",
+                      "minutes_away": nb["minutes"]}
     bz["yong_shen"] = bazi.yong_shen(bz)
     bz_alt_summary["yong_shen"] = bazi.yong_shen(bz_alt)
     terms = bz.pop("_term_objs")
     bz_alt.pop("_term_objs")
 
     # ---------- Western ----------
-    today = date.fromisoformat(inp["analysis_date"])
     bdate = local.date()
     wc = {}
     for off in offsets:
@@ -205,26 +246,31 @@ def main():
         day = rise <= u <= sset
         wc[f"{off:+d}min"] = western.chart(bb, bb["angles_tropical"]["asc"], bb["angles_tropical"]["mc"], day)
         wc[f"{off:+d}min"]["profections"] = western.profections(sign_of(bb["angles_tropical"]["asc"]), bdate, today, 3)
-    places = {"birthplace_Lucknow": (lat, lon),
-              "current_residence_Almora": (inp["current_residence"]["latitude"], inp["current_residence"]["longitude"])}
-    sr = {str(y): western.solar_return(B["bodies"]["Sun"]["lon"], y, places) for y in (2026, 2027)}
+    places = {"birthplace": (lat, lon)}
+    if inp.get("current_residence"):
+        places["current_residence"] = (inp["current_residence"]["latitude"], inp["current_residence"]["longitude"])
+    sr_years = [today.year if (today.month, today.day) >= (bdate.month, bdate.day) else today.year - 1]
+    sr_years.append(sr_years[0] + 1)
+    sr = {str(y): western.solar_return(B["bodies"]["Sun"]["lon"], y, places, bdate) for y in sr_years}
     for y, v in sr.items():
         v["natal_sun_lon"] = B["bodies"]["Sun"]["lon"]
-        v["sensitivity_note"] = "Return Ascendant recomputed with the natal Sun at T-30 and T+30; see ensemble_asc_signs."
+        v["sensitivity_note"] = f"Return Ascendant recomputed with the natal Sun at T-{outer} and T+{outer} min; see ensemble_asc_signs."
         v["location_changes_asc_sign"] = len({x["asc_sign"] for x in v["locations"].values()}) > 1
     # SR sensitivity: recompute with Sun at -30/+30
     for y in sr:
         sr[y]["ensemble_asc_signs"] = {}
         for off in (-outer, outer):
-            s_alt = western.solar_return(bases[off]["bodies"]["Sun"]["lon"], int(y), places)
+            s_alt = western.solar_return(bases[off]["bodies"]["Sun"]["lon"], int(y), places, bdate)
             sr[y]["ensemble_asc_signs"][f"{off:+d}min"] = {k: v["asc_sign"] for k, v in s_alt["locations"].items()}
 
     # ---------- Zi Wei ----------
-    zw = ziwei.compute(f"{bdate.year}-{bdate.month}-{bdate.day}", [today.isoformat().replace("-0", "-"),
-                                                                     "2027-9-26", "2028-9-26"])
+    hd = [f"{today.year + k}-{today.month}-{today.day}" for k in range(3)]
+    tis = [ziwei.time_index(local.hour), ziwei.time_index(lat_local.hour), ziwei.time_index(alt_t.hour)]
+    zw = ziwei.compute(f"{bdate.year}-{bdate.month}-{bdate.day}", hd, tis, inp["gender"].lower())
+    zw["primary_branch"] = ziwei.ORDER[ziwei.time_index(local.hour) % 12]
 
     # ---------- Maya / Tibetan ----------
-    my = maya_tibet.maya(bdate.year, bdate.month, bdate.day)
+    my = maya_tibet.maya(bdate.year, bdate.month, bdate.day, after_sunrise=rise <= utc)
     tb = maya_tibet.tibetan(bdate.year, bdate.month, bdate.day)
 
     # ---------- manifest ----------
@@ -236,7 +282,7 @@ def main():
         "executed_utc": EXECUTED,
         "runtime": {"python": sys.version, "platform": platform.platform(), "node": os.popen("node --version").read().strip()},
         "packages": {p: version(p) for p in pkgs},
-        "npm": {"iztro": zw["alternatives"]["巳"]["chart_zh"]["iztro_version"]},
+        "npm": {"iztro": zw["alternatives"][zw["primary_branch"]]["chart_zh"]["iztro_version"]},
         "package_notes": [
             "pyswisseph and pysweph both provide the `swisseph` module; the loaded binary reports Swiss Ephemeris " + swe.version,
             "immanuel installed but NOT used: its object model was not needed after direct Swiss Ephemeris computation; no values come from it",
@@ -279,7 +325,7 @@ def main():
                                      "pratyantardasha": ("computed for Mahadashas overlapping 2020-2035 only" if outer <= 5 else
                                                          "time precision insufficient; omitted"),
                                      "D7_D12": "domains not specifically requested and time precision insufficient"}},
-        "bazi": {"primary": bz, "alternative_hour_Chen": bz_alt_summary},
+        "bazi": {"primary": bz, "alternative_hour": bz_alt_summary},
         "western": {"charts": wc, "solar_returns": sr,
                     "unavailable": {"zodiacal_releasing": "not implemented/validated here",
                                     "transits": "not requested", "modern_outer_planets": "computed in astronomy base only; excluded from Hellenistic scoring"}},

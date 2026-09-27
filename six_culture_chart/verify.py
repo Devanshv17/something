@@ -86,7 +86,7 @@ def main():
             primary_value=t["swiss_ephemeris_utc"], validator="Skyfield/DE440s; lunar_python; sxtwl",
             validator_value=[t["skyfield_jpl_utc"], t["lunar_python_utc"], t["sxtwl_utc"]],
             difference=t["max_difference_s"], convention=f"apparent solar longitude {t['sun_longitude']}",
-            boundary_distance=f"birth {bz['birth_after_lixia_days']:.2f} d after 立夏, {bz['birth_before_mangzhong_days']:.2f} d before 芒种",
+            boundary_distance=f"birth {bz['birth_after_prev_jie_days']:.2f} d after {bz['prev_jie']}, {bz['birth_before_next_jie_days']:.2f} d before {bz['next_jie']}",
             uncertainty_stability="stable", confidence="high" if ok else "low", status="pass" if ok else "alert")
     for tr, v in bz["tracks"].items():
         same = v["pillars"] == v["sxtwl_pillars"]
@@ -96,7 +96,7 @@ def main():
             uncertainty_stability=_stab(st, "bazi_hour_civil" if tr == "civil_clock" else "bazi_hour_LAT"),
             confidence="high" if same else "low", status="pass" if same else "fail")
     dy = bz["da_yun"]
-    add(system="bazi", datum="Da Yun start", primary_engine="own: exact 3-days-per-year from Swiss Ephemeris 芒种",
+    add(system="bazi", datum="Da Yun start", primary_engine="own: exact 3-days-per-year from Swiss Ephemeris sectional term",
         primary_value=dy["start_date_exact_3day_rule"], validator="lunar_python Yun (sect 1 rounding)",
         validator_value=dy["lunar_python_start"]["date"], difference=f"{dy['start_convention_difference_days']} days",
         convention="forward (yang male)", uncertainty_stability="convention difference ~10 days; time uncertainty shifts start by < 1 day",
@@ -162,10 +162,9 @@ def main():
     inv.append({"system": "western", "invariant": "Egyptian bounds: every sign ends at 30; planet totals J79 V82 Me76 Ma66 S57",
                 "pass": all(b[-1][1] == 30 for b in BOUNDS) and _bound_totals() == {"Jupiter": 79, "Venus": 82, "Mercury": 76, "Mars": 66, "Saturn": 57},
                 "value": _bound_totals()})
-    lix = bz["solar_terms"]["立夏"]["swiss_ephemeris_utc"]
-    inv.append({"system": "bazi", "invariant": "birth after 立夏 and before 芒种 (month 己巳)",
-                "pass": bz["birth_after_lixia_days"] > 0 and bz["birth_before_mangzhong_days"] > 0,
-                "value": [bz["birth_after_lixia_days"], bz["birth_before_mangzhong_days"]]})
+    inv.append({"system": "bazi", "invariant": f"birth after {bz['prev_jie']} and before {bz['next_jie']} (month {bz['pillars'][1]['ganzhi']})",
+                "pass": bz["birth_after_prev_jie_days"] > 0 and bz["birth_before_next_jie_days"] > 0,
+                "value": [bz["birth_after_prev_jie_days"], bz["birth_before_next_jie_days"]]})
     yrs = [p["start_year"] for p in dy["periods_lunar_python"]]
     inv.append({"system": "bazi", "invariant": "Da Yun periods contiguous 10-year blocks",
                 "pass": all(b - a == 10 for a, b in zip(yrs, yrs[1:]))})

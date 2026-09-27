@@ -47,18 +47,63 @@
   },
   "scenarios": {
     "outer": {
-      "scenario": "±1 min (primary)",
+      "scenario": "±10 min (primary)",
       "domains": {
         "D1": {
           "domain": "Self/identity",
           "cluster_polarity": {
             "jyotisha": "negative",
             "western": "negative",
-            "sinic": "mixed"
+            "sinic": "negative"
           },
-          "grade": "MODERATE",
+          "grade": "STRONG",
           "agreed_polarity": "negative",
           "projections": [
+            {
+              "domain": "D1",
+              "system": "jyotisha",
+              "cluster": "jyotisha",
+              "prominence": "high",
+              "polarity": "negative",
+              "scores": [
+                -1.0,
+                -0.5,
+                -0.5
+              ],
+              "basis": "Sun, Mercury, Saturn in house 1 from Lagna (Gemini)",
+              "mapping_rule": "HOUSE-OCC",
+              "facts": {
+                "Sun": {
+                  "base": -0.5,
+                  "dignity": "neutral sign",
+                  "d9": "Aquarius",
+                  "navamsa_adj": 0,
+                  "malefics_in_sign": [
+                    "Saturn"
+                  ]
+                },
+                "Mercury": {
+                  "base": -0.5,
+                  "dignity": "own sign",
+                  "d9": "Aquarius",
+                  "navamsa_adj": 0,
+                  "malefics_in_sign": [
+                    "Sun",
+                    "Saturn"
+                  ]
+                },
+                "Saturn": {
+                  "base": -1,
+                  "dignity": "friend's sign",
+                  "d9": "Aquarius",
+                  "navamsa_adj": 0.5,
+                  "malefics_in_sign": [
+                    "Sun"
+                  ]
+                }
+              },
+              "confidence": "medium"
+            },
             {
               "domain": "D1",
               "system": "jyotisha",
@@ -68,14 +113,16 @@
               "scores": [
                 -1.0
               ],
-              "basis": "karaka Sun: Taurus (enemy's sign), navamsa Capricorn",
+              "basis": "karaka Sun: Gemini (neutral sign), navamsa Aquarius",
               "mapping_rule": "JY-KARAKA",
               "facts": {
                 "base": -0.5,
-                "dignity": "enemy's sign",
-                "d9": "Capricorn",
+                "dignity": "neutral sign",
+                "d9": "Aquarius",
                 "navamsa_adj": 0,
-                "malefics_in_sign": []
+                "malefics_in_sign": [
+                  "Saturn"
+                ]
               },
               "confidence": "medium"
             },
@@ -86,17 +133,23 @@
               "prominence": "high",
               "polarity": "negative",
               "scores": [
-                -2.0,
+                0,
+                0,
                 -1.5
               ],
-              "basis": "Mars, Saturn in whole-sign house 1 (Cancer) from Asc Cancer",
+              "basis": "Sun, Mercury, Saturn in whole-sign house 1 (Cancer) from Asc Cancer",
               "mapping_rule": "HOUSE-OCC",
               "facts": {
-                "Mars": {
+                "Sun": {
                   "dignities": [
-                    "fall",
-                    "triplicity (other/participating)",
-                    "bound"
+                    "peregrine"
+                  ],
+                  "sect": "of the sect",
+                  "stationary": false
+                },
+                "Mercury": {
+                  "dignities": [
+                    "peregrine"
                   ],
                   "sect": "contrary to sect",
                   "stationary": false
@@ -120,7 +173,7 @@
               "scores": [
                 0
               ],
-              "basis": "significator Sun: Taurus peregrine, of the sect",
+              "basis": "significator Sun: Cancer peregrine, of the sect",
               "mapping_rule": "W-SIGNIF",
               "facts": {
                 "dignities": [
@@ -134,12 +187,11 @@
             {
               "domain": "D1",
               "prominence": "high",
-              "polarity": "mixed",
+              "polarity": "negative",
               "scores": [
-                1,
-                -1
+                1
               ],
-              "basis": "Day Master 丙 (Yang Fire): weighted support 0.33 (weak) vs seasonal prosperous 旺 (month element = DM element); rooted in month, hour",
+              "basis": "Day Master 辛 (Yin Metal): weighted support 0.43 (weak) vs seasonal weakened (month drains/controls/is controlled); rooted in day",
               "mapping_rule": "BZ-D1",
               "system": "bazi",
               "cluster": "sinic",
@@ -150,15 +202,16 @@
               "system": "ziwei",
               "cluster": "sinic",
               "prominence": "medium",
-              "polarity": "neutral",
+              "polarity": "negative",
               "scores": [
-                0.5
+                -1.75
               ],
-              "basis": "命宫 (soul) at 乙亥: 天府得; minors —",
+              "basis": "命宫 (soul) at 丁卯: 天相陷; minors 擎羊",
               "mapping_rule": "ZW-PALACE + ZW-SCORE",
               "facts": {
                 "parts": [
-                  0.5
+                  -1.0,
+                  -0.75
                 ]
               },
               "confidence": "medium"
@@ -170,53 +223,11 @@
           "cluster_polarity": {
             "jyotisha": "negative",
             "western": "neutral",
-            "sinic": "mixed"
+            "sinic": "positive"
           },
-          "grade": "WEAK",
+          "grade": "DIVERGENT",
           "agreed_polarity": null,
           "projections": [
-            {
-              "domain": "D2",
-              "system": "jyotisha",
-              "cluster": "jyotisha",
-              "prominence": "high",
-              "polarity": "negative",
-              "scores": [
-                -0.5,
-                -0.5,
-                -1.0
-              ],
-              "basis": "Moon, Mercury, Rahu in house 10 from Lagna (Cancer)",
-              "mapping_rule": "HOUSE-OCC",
-              "facts": {
-                "Moon": {
-                  "base": -0.5,
-                  "dignity": "neutral sign",
-                  "d9": "Cancer",
-                  "navamsa_adj": 0.5,
-                  "malefics_in_sign": [
-                    "Rahu"
-                  ]
-                },
-                "Mercury": {
-                  "base": -0.5,
-                  "dignity": "neutral sign",
-                  "d9": "Gemini",
-                  "navamsa_adj": 0.5,
-                  "malefics_in_sign": [
-                    "Rahu"
-                  ]
-                },
-                "Rahu": {
-                  "base": -1,
-                  "dignity": "n/a (node)",
-                  "d9": "Leo",
-                  "navamsa_adj": 0,
-                  "malefics_in_sign": []
-                }
-              },
-              "confidence": "medium"
-            },
             {
               "domain": "D2",
               "system": "jyotisha",
@@ -226,14 +237,16 @@
               "scores": [
                 -1.0
               ],
-              "basis": "karaka Sun: Taurus (enemy's sign), navamsa Capricorn",
+              "basis": "karaka Sun: Gemini (neutral sign), navamsa Aquarius",
               "mapping_rule": "JY-KARAKA",
               "facts": {
                 "base": -0.5,
-                "dignity": "enemy's sign",
-                "d9": "Capricorn",
+                "dignity": "neutral sign",
+                "d9": "Aquarius",
                 "navamsa_adj": 0,
-                "malefics_in_sign": []
+                "malefics_in_sign": [
+                  "Saturn"
+                ]
               },
               "confidence": "medium"
             },
@@ -246,7 +259,7 @@
               "scores": [
                 0
               ],
-              "basis": "significator Sun: Taurus peregrine, of the sect",
+              "basis": "significator Sun: Cancer peregrine, of the sect",
               "mapping_rule": "W-SIGNIF",
               "facts": {
                 "dignities": [
@@ -260,12 +273,11 @@
             {
               "domain": "D2",
               "prominence": "medium",
-              "polarity": "mixed",
+              "polarity": "positive",
               "scores": [
-                1,
-                -1
+                1
               ],
-              "basis": "Officer visible in hour pillar(s); Seven Killings hidden x2; 伤官见官: Hurting Officer visible in month",
+              "basis": "Officer visible in none pillar(s); Seven Killings hidden x1",
               "mapping_rule": "BZ-D2",
               "system": "bazi",
               "cluster": "sinic",
@@ -275,18 +287,21 @@
               "domain": "D2",
               "system": "ziwei",
               "cluster": "sinic",
-              "prominence": "medium",
-              "polarity": "negative",
+              "prominence": "low",
+              "polarity": "positive",
               "scores": [
-                -2.5
+                3.0
               ],
-              "basis": "官禄 (career) at 丁卯: 天相陷; minors 铃星/擎羊",
+              "basis": "官禄 (career) at 辛未: borrowed 武曲庙化科/贪狼庙; minors 文昌/文曲/天钺",
               "mapping_rule": "ZW-PALACE + ZW-SCORE",
               "facts": {
                 "parts": [
-                  -1.0,
-                  -0.75,
-                  -0.75
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5,
+                  0.5
                 ]
               },
               "confidence": "medium"
@@ -297,10 +312,10 @@
           "domain": "Wealth/gains",
           "cluster_polarity": {
             "jyotisha": "mixed",
-            "western": "positive",
+            "western": "mixed",
             "sinic": "mixed"
           },
-          "grade": "MODERATE",
+          "grade": "STRONG",
           "agreed_polarity": "mixed",
           "projections": [
             {
@@ -308,39 +323,17 @@
               "system": "jyotisha",
               "cluster": "jyotisha",
               "prominence": "medium",
-              "polarity": "positive",
-              "scores": [
-                2.0
-              ],
-              "basis": "Jupiter in house 2 from Lagna (Cancer)",
-              "mapping_rule": "HOUSE-OCC",
-              "facts": {
-                "Jupiter": {
-                  "base": 1,
-                  "dignity": "friend's sign",
-                  "d9": "Leo",
-                  "navamsa_adj": 0.5,
-                  "malefics_in_sign": []
-                }
-              },
-              "confidence": "medium"
-            },
-            {
-              "domain": "D3",
-              "system": "jyotisha",
-              "cluster": "jyotisha",
-              "prominence": "medium",
               "polarity": "negative",
               "scores": [
-                -1.0
+                -2.0
               ],
-              "basis": "Sun in house 11 from Lagna (Cancer)",
+              "basis": "Mars in house 2 from Lagna (Gemini)",
               "mapping_rule": "HOUSE-OCC",
               "facts": {
-                "Sun": {
-                  "base": -0.5,
-                  "dignity": "enemy's sign",
-                  "d9": "Capricorn",
+                "Mars": {
+                  "base": -1,
+                  "dignity": "debilitated",
+                  "d9": "Sagittarius",
                   "navamsa_adj": 0,
                   "malefics_in_sign": []
                 }
@@ -354,15 +347,15 @@
               "prominence": "medium",
               "polarity": "positive",
               "scores": [
-                2.0
+                1.0
               ],
-              "basis": "karaka Jupiter: Leo (friend's sign), navamsa Leo",
+              "basis": "karaka Jupiter: Aquarius (neutral sign), navamsa Taurus",
               "mapping_rule": "JY-KARAKA",
               "facts": {
                 "base": 1,
-                "dignity": "friend's sign",
-                "d9": "Leo",
-                "navamsa_adj": 0.5,
+                "dignity": "neutral sign",
+                "d9": "Taurus",
+                "navamsa_adj": 0,
                 "malefics_in_sign": []
               },
               "confidence": "medium"
@@ -371,36 +364,19 @@
               "domain": "D3",
               "system": "western",
               "cluster": "western",
-              "prominence": "high",
-              "polarity": "positive",
+              "prominence": "medium",
+              "polarity": "negative",
               "scores": [
-                0,
-                1.75,
-                0.1
+                -1.5
               ],
-              "basis": "Sun, Moon, Mercury in whole-sign house 11 (Taurus) from Asc Cancer",
+              "basis": "Mars in whole-sign house 2 (Leo) from Asc Cancer",
               "mapping_rule": "HOUSE-OCC",
               "facts": {
-                "Sun": {
+                "Mars": {
                   "dignities": [
                     "peregrine"
                   ],
-                  "sect": "of the sect",
-                  "stationary": false
-                },
-                "Moon": {
-                  "dignities": [
-                    "exaltation",
-                    "triplicity (other/participating)"
-                  ],
                   "sect": "contrary to sect",
-                  "stationary": false
-                },
-                "Mercury": {
-                  "dignities": [
-                    "face"
-                  ],
-                  "sect": "of the sect",
                   "stationary": false
                 }
               },
@@ -411,15 +387,16 @@
               "system": "western",
               "cluster": "western",
               "prominence": "medium",
-              "polarity": "neutral",
+              "polarity": "positive",
               "scores": [
-                0.75
+                2.85
               ],
-              "basis": "significator Jupiter: Virgo detriment, of the sect, stationary",
+              "basis": "significator Jupiter: Pisces domicile, face, of the sect, stationary",
               "mapping_rule": "W-SIGNIF",
               "facts": {
                 "dignities": [
-                  "detriment"
+                  "domicile",
+                  "face"
                 ],
                 "sect": "of the sect",
                 "stationary": true
@@ -434,7 +411,7 @@
                 1,
                 -1
               ],
-              "basis": "Wealth (Metal) share 0.29 of weighted tally, largest element; weighted-weak DM => 财多身弱 wealth heavy / self light",
+              "basis": "Wealth (Wood) share 0.28 of weighted tally, largest element; weighted-weak DM => 财多身弱 wealth heavy / self light",
               "mapping_rule": "BZ-D3",
               "system": "bazi",
               "cluster": "sinic",
@@ -444,20 +421,16 @@
               "domain": "D3",
               "system": "ziwei",
               "cluster": "sinic",
-              "prominence": "low",
-              "polarity": "positive",
+              "prominence": "medium",
+              "polarity": "neutral",
               "scores": [
-                1.25
+                0.5
               ],
-              "basis": "财帛 (wealth) at 辛未: borrowed 武曲庙化科/贪狼庙; minors 天钺/火星",
+              "basis": "财帛 (wealth) at 乙亥: 天府得; minors —",
               "mapping_rule": "ZW-PALACE + ZW-SCORE",
               "facts": {
                 "parts": [
-                  0.5,
-                  0.5,
-                  0.5,
-                  0.5,
-                  -0.75
+                  0.5
                 ]
               },
               "confidence": "medium"
@@ -481,18 +454,17 @@
               "prominence": "medium",
               "polarity": "positive",
               "scores": [
-                1.0
+                1.5
               ],
-              "basis": "karaka Venus: Gemini (friend's sign), navamsa Libra",
+              "basis": "karaka Venus: Taurus (own sign), navamsa Aries",
               "mapping_rule": "JY-KARAKA",
               "facts": {
                 "base": 1,
-                "dignity": "friend's sign",
-                "d9": "Libra",
-                "navamsa_adj": 0.5,
+                "dignity": "own sign",
+                "d9": "Aries",
+                "navamsa_adj": 0,
                 "malefics_in_sign": [
-                  "Mars",
-                  "Saturn"
+                  "Ketu"
                 ]
               },
               "confidence": "medium"
@@ -504,16 +476,16 @@
               "prominence": "medium",
               "polarity": "neutral",
               "scores": [
-                0.0
+                0.5
               ],
-              "basis": "significator Venus: Gemini peregrine, contrary to sect, stationary",
+              "basis": "significator Venus: Gemini peregrine, contrary to sect",
               "mapping_rule": "W-SIGNIF",
               "facts": {
                 "dignities": [
                   "peregrine"
                 ],
                 "sect": "contrary to sect",
-                "stationary": true
+                "stationary": false
               },
               "confidence": "medium"
             },
@@ -525,7 +497,7 @@
                 1,
                 -1
               ],
-              "basis": "spouse palace 申 Shen (main qi 庚 = 偏财 Indirect Wealth; spouse star for a male chart is Wealth, present here); interactions on it: destruction, punishment, six",
+              "basis": "spouse palace 丑 Chou (main qi 己 = 偏印 Indirect Resource; spouse star for a female chart is Officer/Killings); interactions on it: harm",
               "mapping_rule": "BZ-D4",
               "system": "bazi",
               "cluster": "sinic",
@@ -536,19 +508,19 @@
               "system": "ziwei",
               "cluster": "sinic",
               "prominence": "high",
-              "polarity": "mixed",
+              "polarity": "positive",
               "scores": [
-                1.5
+                2.75
               ],
-              "basis": "夫妻 (spouse) at 癸酉: 廉贞平化禄/破军陷化权; minors 文曲 [身宫 body palace]",
+              "basis": "夫妻 (spouse) at 丁丑: 武曲庙化科/贪狼庙; minors 天魁/陀罗",
               "mapping_rule": "ZW-PALACE + ZW-SCORE",
               "facts": {
                 "parts": [
-                  0.0,
                   1.0,
-                  -1.0,
                   1.0,
-                  0.5
+                  1.0,
+                  0.5,
+                  -0.75
                 ]
               },
               "confidence": "medium"
@@ -558,11 +530,11 @@
         "D5": {
           "domain": "Family/roots/home",
           "cluster_polarity": {
-            "jyotisha": "negative",
-            "western": "positive",
-            "sinic": "mixed"
+            "jyotisha": "neutral",
+            "western": "neutral",
+            "sinic": "neutral"
           },
-          "grade": "DIVERGENT",
+          "grade": "INSUFFICIENT",
           "agreed_polarity": null,
           "projections": [
             {
@@ -570,42 +542,18 @@
               "system": "jyotisha",
               "cluster": "jyotisha",
               "prominence": "medium",
-              "polarity": "negative",
-              "scores": [
-                -1.0
-              ],
-              "basis": "Ketu in house 4 from Lagna (Cancer)",
-              "mapping_rule": "HOUSE-OCC",
-              "facts": {
-                "Ketu": {
-                  "base": -1,
-                  "dignity": "n/a (node)",
-                  "d9": "Aquarius",
-                  "navamsa_adj": 0,
-                  "malefics_in_sign": []
-                }
-              },
-              "confidence": "medium"
-            },
-            {
-              "domain": "D5",
-              "system": "jyotisha",
-              "cluster": "jyotisha",
-              "prominence": "medium",
               "polarity": "neutral",
               "scores": [
-                -0.5
+                0.5
               ],
-              "basis": "karaka Moon: Aries (neutral sign), navamsa Cancer",
+              "basis": "karaka Moon: Libra (neutral sign), navamsa Capricorn",
               "mapping_rule": "JY-KARAKA",
               "facts": {
-                "base": -0.5,
+                "base": 0.5,
                 "dignity": "neutral sign",
-                "d9": "Cancer",
-                "navamsa_adj": 0.5,
-                "malefics_in_sign": [
-                  "Rahu"
-                ]
+                "d9": "Capricorn",
+                "navamsa_adj": 0,
+                "malefics_in_sign": []
               },
               "confidence": "medium"
             },
@@ -614,15 +562,15 @@
               "system": "western",
               "cluster": "western",
               "prominence": "medium",
-              "polarity": "positive",
+              "polarity": "neutral",
               "scores": [
-                1.75
+                -0.25
               ],
-              "basis": "significator Moon: Taurus exaltation, triplicity (other/participating), contrary to sect",
+              "basis": "significator Moon: Scorpio fall, triplicity (other/participating), contrary to sect",
               "mapping_rule": "W-SIGNIF",
               "facts": {
                 "dignities": [
-                  "exaltation",
+                  "fall",
                   "triplicity (other/participating)"
                 ],
                 "sect": "contrary to sect",
@@ -633,12 +581,11 @@
             {
               "domain": "D5",
               "prominence": "medium",
-              "polarity": "mixed",
+              "polarity": "neutral",
               "scores": [
-                1,
-                -1
+                0
               ],
-              "basis": "Resource star visible in year pillar(s); combined away (甲己, not transformed)",
+              "basis": "no Resource star on a visible stem",
               "mapping_rule": "BZ-D5",
               "system": "bazi",
               "cluster": "sinic",
@@ -649,19 +596,17 @@
               "system": "ziwei",
               "cluster": "sinic",
               "prominence": "high",
-              "polarity": "mixed",
+              "polarity": "neutral",
               "scores": [
-                1.5
+                0.75
               ],
-              "basis": "田宅 (property) at 丙寅: 太阳旺化忌/巨门庙; minors 禄存/天马",
+              "basis": "父母 (parents) at 戊辰: 天机利/天梁庙; minors 火星",
               "mapping_rule": "ZW-PALACE + ZW-SCORE",
               "facts": {
                 "parts": [
-                  1.0,
-                  -1.5,
-                  1.0,
                   0.5,
-                  0.5
+                  1.0,
+                  -0.75
                 ]
               },
               "confidence": "medium"
@@ -670,17 +615,19 @@
               "domain": "D5",
               "system": "ziwei",
               "cluster": "sinic",
-              "prominence": "high",
-              "polarity": "positive",
+              "prominence": "low",
+              "polarity": "neutral",
               "scores": [
-                2.0
+                0.75
               ],
-              "basis": "父母 (parents) at 丙子: 天同旺/太阴庙; minors —",
+              "basis": "田宅 (property) at 庚午: borrowed 天同旺/太阴庙; minors 右弼/铃星",
               "mapping_rule": "ZW-PALACE + ZW-SCORE",
               "facts": {
                 "parts": [
-                  1.0,
-                  1.0
+                  0.5,
+                  0.5,
+                  0.5,
+                  -0.75
                 ]
               },
               "confidence": "medium"
@@ -691,12 +638,34 @@
           "domain": "Children/creation",
           "cluster_polarity": {
             "jyotisha": "positive",
-            "western": "neutral",
-            "sinic": "mixed"
+            "western": "positive",
+            "sinic": "positive"
           },
-          "grade": "WEAK",
-          "agreed_polarity": null,
+          "grade": "STRONG",
+          "agreed_polarity": "positive",
           "projections": [
+            {
+              "domain": "D6",
+              "system": "jyotisha",
+              "cluster": "jyotisha",
+              "prominence": "medium",
+              "polarity": "neutral",
+              "scores": [
+                0.5
+              ],
+              "basis": "Moon in house 5 from Lagna (Gemini)",
+              "mapping_rule": "HOUSE-OCC",
+              "facts": {
+                "Moon": {
+                  "base": 0.5,
+                  "dignity": "neutral sign",
+                  "d9": "Capricorn",
+                  "navamsa_adj": 0,
+                  "malefics_in_sign": []
+                }
+              },
+              "confidence": "medium"
+            },
             {
               "domain": "D6",
               "system": "jyotisha",
@@ -704,15 +673,15 @@
               "prominence": "medium",
               "polarity": "positive",
               "scores": [
-                2.0
+                1.0
               ],
-              "basis": "karaka Jupiter: Leo (friend's sign), navamsa Leo",
+              "basis": "karaka Jupiter: Aquarius (neutral sign), navamsa Taurus",
               "mapping_rule": "JY-KARAKA",
               "facts": {
                 "base": 1,
-                "dignity": "friend's sign",
-                "d9": "Leo",
-                "navamsa_adj": 0.5,
+                "dignity": "neutral sign",
+                "d9": "Taurus",
+                "navamsa_adj": 0,
                 "malefics_in_sign": []
               },
               "confidence": "medium"
@@ -724,13 +693,37 @@
               "prominence": "medium",
               "polarity": "neutral",
               "scores": [
-                0.75
+                -0.25
               ],
-              "basis": "significator Jupiter: Virgo detriment, of the sect, stationary",
+              "basis": "Moon in whole-sign house 5 (Scorpio) from Asc Cancer",
+              "mapping_rule": "HOUSE-OCC",
+              "facts": {
+                "Moon": {
+                  "dignities": [
+                    "fall",
+                    "triplicity (other/participating)"
+                  ],
+                  "sect": "contrary to sect",
+                  "stationary": false
+                }
+              },
+              "confidence": "medium"
+            },
+            {
+              "domain": "D6",
+              "system": "western",
+              "cluster": "western",
+              "prominence": "medium",
+              "polarity": "positive",
+              "scores": [
+                2.85
+              ],
+              "basis": "significator Jupiter: Pisces domicile, face, of the sect, stationary",
               "mapping_rule": "W-SIGNIF",
               "facts": {
                 "dignities": [
-                  "detriment"
+                  "domicile",
+                  "face"
                 ],
                 "sect": "of the sect",
                 "stationary": true
@@ -740,12 +733,11 @@
             {
               "domain": "D6",
               "prominence": "medium",
-              "polarity": "mixed",
+              "polarity": "neutral",
               "scores": [
-                1,
-                -1
+                0
               ],
-              "basis": "children palace = hour pillar 癸巳 with 正官 Direct Officer on the stem; children star (Officer/Killings) visible in hour; 伤官见官",
+              "basis": "children palace = hour pillar 辛卯 with 比肩 Friend on the stem; children star (Eating God/Hurting Officer) visible in no pillar",
               "mapping_rule": "BZ-D6",
               "system": "bazi",
               "cluster": "sinic",
@@ -755,19 +747,17 @@
               "domain": "D6",
               "system": "ziwei",
               "cluster": "sinic",
-              "prominence": "low",
-              "polarity": "neutral",
+              "prominence": "high",
+              "polarity": "positive",
               "scores": [
-                0.75
+                2.0
               ],
-              "basis": "子女 (children) at 壬申: borrowed 太阳旺化忌/巨门庙; minors 右弼",
+              "basis": "子女 (children) at 丙子: 天同旺/太阴庙; minors —",
               "mapping_rule": "ZW-PALACE + ZW-SCORE",
               "facts": {
                 "parts": [
-                  0.5,
-                  -0.75,
-                  0.5,
-                  0.5
+                  1.0,
+                  1.0
                 ]
               },
               "confidence": "medium"
@@ -777,8 +767,8 @@
         "D7": {
           "domain": "Health/routine",
           "cluster_polarity": {
-            "jyotisha": "silent",
-            "western": "positive",
+            "jyotisha": "negative",
+            "western": "neutral",
             "sinic": "neutral"
           },
           "grade": "WEAK",
@@ -786,18 +776,40 @@
           "projections": [
             {
               "domain": "D7",
+              "system": "jyotisha",
+              "cluster": "jyotisha",
+              "prominence": "medium",
+              "polarity": "negative",
+              "scores": [
+                -1.0
+              ],
+              "basis": "Rahu in house 6 from Lagna (Gemini)",
+              "mapping_rule": "HOUSE-OCC",
+              "facts": {
+                "Rahu": {
+                  "base": -1,
+                  "dignity": "n/a (node)",
+                  "d9": "Aquarius",
+                  "navamsa_adj": 0,
+                  "malefics_in_sign": []
+                }
+              },
+              "confidence": "medium"
+            },
+            {
+              "domain": "D7",
               "system": "western",
               "cluster": "western",
               "prominence": "medium",
-              "polarity": "positive",
+              "polarity": "neutral",
               "scores": [
-                1.75
+                -0.25
               ],
-              "basis": "significator Moon: Taurus exaltation, triplicity (other/participating), contrary to sect",
+              "basis": "significator Moon: Scorpio fall, triplicity (other/participating), contrary to sect",
               "mapping_rule": "W-SIGNIF",
               "facts": {
                 "dignities": [
-                  "exaltation",
+                  "fall",
                   "triplicity (other/participating)"
                 ],
                 "sect": "contrary to sect",
@@ -814,14 +826,12 @@
               "scores": [
                 0.75
               ],
-              "basis": "疾厄 (health) at 庚午: borrowed 天同旺/太阴庙; minors 左辅/地空",
+              "basis": "疾厄 (health) at 甲戌: borrowed 天机利/天梁庙; minors —",
               "mapping_rule": "ZW-PALACE + ZW-SCORE",
               "facts": {
                 "parts": [
-                  0.5,
-                  0.5,
-                  0.5,
-                  -0.75
+                  0.25,
+                  0.5
                 ]
               },
               "confidence": "medium"
@@ -845,18 +855,16 @@
               "prominence": "medium",
               "polarity": "neutral",
               "scores": [
-                -0.5
+                0.5
               ],
-              "basis": "karaka Moon: Aries (neutral sign), navamsa Cancer",
+              "basis": "karaka Moon: Libra (neutral sign), navamsa Capricorn",
               "mapping_rule": "JY-KARAKA",
               "facts": {
-                "base": -0.5,
+                "base": 0.5,
                 "dignity": "neutral sign",
-                "d9": "Cancer",
-                "navamsa_adj": 0.5,
-                "malefics_in_sign": [
-                  "Rahu"
-                ]
+                "d9": "Capricorn",
+                "navamsa_adj": 0,
+                "malefics_in_sign": []
               },
               "confidence": "medium"
             },
@@ -869,15 +877,16 @@
               "scores": [
                 -0.5
               ],
-              "basis": "karaka Mercury: Aries (neutral sign), navamsa Gemini",
+              "basis": "karaka Mercury: Gemini (own sign), navamsa Aquarius",
               "mapping_rule": "JY-KARAKA",
               "facts": {
                 "base": -0.5,
-                "dignity": "neutral sign",
-                "d9": "Gemini",
-                "navamsa_adj": 0.5,
+                "dignity": "own sign",
+                "d9": "Aquarius",
+                "navamsa_adj": 0,
                 "malefics_in_sign": [
-                  "Rahu"
+                  "Sun",
+                  "Saturn"
                 ]
               },
               "confidence": "medium"
@@ -889,52 +898,17 @@
               "prominence": "medium",
               "polarity": "neutral",
               "scores": [
-                0.75
+                0
               ],
-              "basis": "Jupiter in whole-sign house 3 (Virgo) from Asc Cancer",
-              "mapping_rule": "HOUSE-OCC",
-              "facts": {
-                "Jupiter": {
-                  "dignities": [
-                    "detriment"
-                  ],
-                  "sect": "of the sect",
-                  "stationary": true
-                }
-              },
-              "confidence": "medium"
-            },
-            {
-              "domain": "D8",
-              "system": "western",
-              "cluster": "western",
-              "prominence": "medium",
-              "polarity": "neutral",
-              "scores": [
-                0.1
-              ],
-              "basis": "significator Mercury: Taurus face, of the sect",
+              "basis": "significator Mercury: Cancer peregrine, contrary to sect",
               "mapping_rule": "W-SIGNIF",
               "facts": {
                 "dignities": [
-                  "face"
+                  "peregrine"
                 ],
-                "sect": "of the sect",
+                "sect": "contrary to sect",
                 "stationary": false
               },
-              "confidence": "medium"
-            },
-            {
-              "domain": "D8",
-              "prominence": "high",
-              "polarity": "positive",
-              "scores": [
-                1.5
-              ],
-              "basis": "Output stars: Hurting Officer visible in month, Eating God visible in none, output hidden x4; Resource visible: True",
-              "mapping_rule": "BZ-D8",
-              "system": "bazi",
-              "cluster": "sinic",
               "confidence": "medium"
             },
             {
@@ -946,7 +920,7 @@
               "scores": [
                 1.0
               ],
-              "basis": "夫妻 holds 文曲",
+              "basis": "官禄 holds 文昌/文曲",
               "mapping_rule": "ZW-PALACE (D8 clause)",
               "facts": {},
               "confidence": "medium"
@@ -957,10 +931,10 @@
           "domain": "Fortune/spirituality/worldview",
           "cluster_polarity": {
             "jyotisha": "positive",
-            "western": "neutral",
+            "western": "positive",
             "sinic": "positive"
           },
-          "grade": "MODERATE",
+          "grade": "STRONG",
           "agreed_polarity": "positive",
           "projections": [
             {
@@ -970,15 +944,37 @@
               "prominence": "medium",
               "polarity": "positive",
               "scores": [
-                2.0
+                1.0
               ],
-              "basis": "karaka Jupiter: Leo (friend's sign), navamsa Leo",
+              "basis": "Jupiter in house 9 from Lagna (Gemini)",
+              "mapping_rule": "HOUSE-OCC",
+              "facts": {
+                "Jupiter": {
+                  "base": 1,
+                  "dignity": "neutral sign",
+                  "d9": "Taurus",
+                  "navamsa_adj": 0,
+                  "malefics_in_sign": []
+                }
+              },
+              "confidence": "medium"
+            },
+            {
+              "domain": "D9",
+              "system": "jyotisha",
+              "cluster": "jyotisha",
+              "prominence": "medium",
+              "polarity": "positive",
+              "scores": [
+                1.0
+              ],
+              "basis": "karaka Jupiter: Aquarius (neutral sign), navamsa Taurus",
               "mapping_rule": "JY-KARAKA",
               "facts": {
                 "base": 1,
-                "dignity": "friend's sign",
-                "d9": "Leo",
-                "navamsa_adj": 0.5,
+                "dignity": "neutral sign",
+                "d9": "Taurus",
+                "navamsa_adj": 0,
                 "malefics_in_sign": []
               },
               "confidence": "medium"
@@ -988,15 +984,39 @@
               "system": "western",
               "cluster": "western",
               "prominence": "medium",
-              "polarity": "neutral",
+              "polarity": "positive",
               "scores": [
-                0.75
+                2.85
               ],
-              "basis": "significator Jupiter: Virgo detriment, of the sect, stationary",
+              "basis": "Jupiter in whole-sign house 9 (Pisces) from Asc Cancer",
+              "mapping_rule": "HOUSE-OCC",
+              "facts": {
+                "Jupiter": {
+                  "dignities": [
+                    "domicile",
+                    "face"
+                  ],
+                  "sect": "of the sect",
+                  "stationary": true
+                }
+              },
+              "confidence": "medium"
+            },
+            {
+              "domain": "D9",
+              "system": "western",
+              "cluster": "western",
+              "prominence": "medium",
+              "polarity": "positive",
+              "scores": [
+                2.85
+              ],
+              "basis": "significator Jupiter: Pisces domicile, face, of the sect, stationary",
               "mapping_rule": "W-SIGNIF",
               "facts": {
                 "dignities": [
-                  "detriment"
+                  "domicile",
+                  "face"
                 ],
                 "sect": "of the sect",
                 "stationary": true
@@ -1010,17 +1030,14 @@
               "prominence": "high",
               "polarity": "positive",
               "scores": [
-                2.75
+                1.0
               ],
-              "basis": "福德 (spirit) at 丁丑: 武曲庙化科/贪狼庙; minors 天魁/陀罗",
+              "basis": "福德 (spirit) at 己巳: 紫微旺/七杀平; minors —",
               "mapping_rule": "ZW-PALACE + ZW-SCORE",
               "facts": {
                 "parts": [
                   1.0,
-                  1.0,
-                  1.0,
-                  0.5,
-                  -0.75
+                  0.0
                 ]
               },
               "confidence": "medium"
@@ -1029,13 +1046,13 @@
         }
       },
       "divergence_rate_all": "1/9",
-      "divergence_rate_sufficient": "1/9",
+      "divergence_rate_sufficient": "1/8",
       "counts": {
-        "STRONG": 0,
-        "MODERATE": 3,
-        "WEAK": 5,
+        "STRONG": 4,
+        "MODERATE": 0,
+        "WEAK": 3,
         "DIVERGENT": 1,
-        "INSUFFICIENT": 0
+        "INSUFFICIENT": 1
       }
     }
   },
@@ -1043,45 +1060,25 @@
   "reference_frames": {
     "jyotisha_houses": "lagna",
     "western_houses_vote": true,
-    "ziwei_hour_branch": "巳"
+    "ziwei_hour_branch": "卯"
   },
   "secondary_jyotisha_view": [
     {
       "domain": "D1",
       "system": "jyotisha",
       "cluster": "jyotisha",
-      "prominence": "high",
-      "polarity": "negative",
+      "prominence": "medium",
+      "polarity": "neutral",
       "scores": [
-        -0.5,
-        -0.5,
-        -1.0
+        0.5
       ],
-      "basis": "Moon, Mercury, Rahu in house 1 from Chandra Lagna (Moon, Aries)",
+      "basis": "Moon in house 1 from Chandra Lagna (Moon, Libra)",
       "mapping_rule": "HOUSE-OCC",
       "facts": {
         "Moon": {
-          "base": -0.5,
+          "base": 0.5,
           "dignity": "neutral sign",
-          "d9": "Cancer",
-          "navamsa_adj": 0.5,
-          "malefics_in_sign": [
-            "Rahu"
-          ]
-        },
-        "Mercury": {
-          "base": -0.5,
-          "dignity": "neutral sign",
-          "d9": "Gemini",
-          "navamsa_adj": 0.5,
-          "malefics_in_sign": [
-            "Rahu"
-          ]
-        },
-        "Rahu": {
-          "base": -1,
-          "dignity": "n/a (node)",
-          "d9": "Leo",
+          "d9": "Capricorn",
           "navamsa_adj": 0,
           "malefics_in_sign": []
         }
@@ -1096,59 +1093,15 @@
       "scores": [
         -1.0
       ],
-      "basis": "Sun in house 2 from Chandra Lagna (Moon, Aries)",
+      "basis": "Rahu in house 2 from Chandra Lagna (Moon, Libra)",
       "mapping_rule": "HOUSE-OCC",
       "facts": {
-        "Sun": {
-          "base": -0.5,
-          "dignity": "enemy's sign",
-          "d9": "Capricorn",
+        "Rahu": {
+          "base": -1,
+          "dignity": "n/a (node)",
+          "d9": "Aquarius",
           "navamsa_adj": 0,
           "malefics_in_sign": []
-        }
-      }
-    },
-    {
-      "domain": "D8",
-      "system": "jyotisha",
-      "cluster": "jyotisha",
-      "prominence": "high",
-      "polarity": "mixed",
-      "scores": [
-        -1.5,
-        1.0,
-        -0.5
-      ],
-      "basis": "Mars, Venus, Saturn in house 3 from Chandra Lagna (Moon, Aries)",
-      "mapping_rule": "HOUSE-OCC",
-      "facts": {
-        "Mars": {
-          "base": -1,
-          "dignity": "enemy's sign",
-          "d9": "Capricorn",
-          "navamsa_adj": 0.5,
-          "malefics_in_sign": [
-            "Saturn"
-          ]
-        },
-        "Venus": {
-          "base": 1,
-          "dignity": "friend's sign",
-          "d9": "Libra",
-          "navamsa_adj": 0.5,
-          "malefics_in_sign": [
-            "Mars",
-            "Saturn"
-          ]
-        },
-        "Saturn": {
-          "base": -1,
-          "dignity": "friend's sign",
-          "d9": "Aquarius",
-          "navamsa_adj": 0.5,
-          "malefics_in_sign": [
-            "Mars"
-          ]
         }
       }
     },
@@ -1159,36 +1112,80 @@
       "prominence": "medium",
       "polarity": "positive",
       "scores": [
-        2.0
+        1.0
       ],
-      "basis": "Jupiter in house 5 from Chandra Lagna (Moon, Aries)",
+      "basis": "Jupiter in house 5 from Chandra Lagna (Moon, Libra)",
       "mapping_rule": "HOUSE-OCC",
       "facts": {
         "Jupiter": {
           "base": 1,
-          "dignity": "friend's sign",
-          "d9": "Leo",
-          "navamsa_adj": 0.5,
+          "dignity": "neutral sign",
+          "d9": "Taurus",
+          "navamsa_adj": 0,
           "malefics_in_sign": []
         }
       }
     },
     {
-      "domain": "D4",
+      "domain": "D9",
+      "system": "jyotisha",
+      "cluster": "jyotisha",
+      "prominence": "high",
+      "polarity": "negative",
+      "scores": [
+        -1.0,
+        -0.5,
+        -0.5
+      ],
+      "basis": "Sun, Mercury, Saturn in house 9 from Chandra Lagna (Moon, Libra)",
+      "mapping_rule": "HOUSE-OCC",
+      "facts": {
+        "Sun": {
+          "base": -0.5,
+          "dignity": "neutral sign",
+          "d9": "Aquarius",
+          "navamsa_adj": 0,
+          "malefics_in_sign": [
+            "Saturn"
+          ]
+        },
+        "Mercury": {
+          "base": -0.5,
+          "dignity": "own sign",
+          "d9": "Aquarius",
+          "navamsa_adj": 0,
+          "malefics_in_sign": [
+            "Sun",
+            "Saturn"
+          ]
+        },
+        "Saturn": {
+          "base": -1,
+          "dignity": "friend's sign",
+          "d9": "Aquarius",
+          "navamsa_adj": 0.5,
+          "malefics_in_sign": [
+            "Sun"
+          ]
+        }
+      }
+    },
+    {
+      "domain": "D2",
       "system": "jyotisha",
       "cluster": "jyotisha",
       "prominence": "medium",
       "polarity": "negative",
       "scores": [
-        -1.0
+        -2.0
       ],
-      "basis": "Ketu in house 7 from Chandra Lagna (Moon, Aries)",
+      "basis": "Mars in house 10 from Chandra Lagna (Moon, Libra)",
       "mapping_rule": "HOUSE-OCC",
       "facts": {
-        "Ketu": {
+        "Mars": {
           "base": -1,
-          "dignity": "n/a (node)",
-          "d9": "Aquarius",
+          "dignity": "debilitated",
+          "d9": "Sagittarius",
           "navamsa_adj": 0,
           "malefics_in_sign": []
         }
@@ -1199,22 +1196,22 @@
   "stable_scores": {
     "jyotisha": {
       "Sun": -1.0,
-      "Moon": -0.5,
-      "Mars": -1.5,
+      "Moon": 0.5,
+      "Mars": -2.0,
       "Mercury": -0.5,
-      "Jupiter": 2.0,
-      "Venus": 1.0,
+      "Jupiter": 1.0,
+      "Venus": 1.5,
       "Saturn": -0.5,
       "Rahu": -1.0,
       "Ketu": -1.0
     },
     "western": {
       "Sun": 0,
-      "Moon": 1.75,
-      "Mercury": 0.1,
-      "Venus": 0.0,
-      "Mars": -2.0,
-      "Jupiter": 0.75,
+      "Moon": -0.25,
+      "Mercury": 0,
+      "Venus": 0.5,
+      "Mars": -1.5,
+      "Jupiter": 2.85,
       "Saturn": -1.5
     }
   },
@@ -1222,594 +1219,436 @@
     "techniques": [
       {
         "cluster": "jyotisha",
-        "technique": "Vimshottari Ketu Mahadasha",
-        "start": "1999-01-14",
-        "end": "2006-01-14",
-        "start_range": [
-          "1999-01-13",
-          "1999-01-16"
-        ],
-        "end_range": [
-          "2006-01-13",
-          "2006-01-16"
-        ],
-        "domains": [
-          "D5"
-        ],
-        "basis": "Ketu karaka []; occupies house 4 from Lagna; lords houses [] from Lagna (not used)"
-      },
-      {
-        "cluster": "jyotisha",
-        "technique": "Vimshottari Venus Mahadasha",
-        "start": "2006-01-14",
-        "end": "2026-01-14",
-        "start_range": [
-          "2006-01-13",
-          "2006-01-16"
-        ],
-        "end_range": [
-          "2026-01-13",
-          "2026-01-16"
-        ],
-        "domains": [
-          "D4"
-        ],
-        "basis": "Venus karaka ['D4']; occupies house 12 from Lagna; lords houses [11, 4] from Lagna (not used)"
-      },
-      {
-        "cluster": "jyotisha",
-        "technique": "Vimshottari Sun Mahadasha",
-        "start": "2026-01-14",
-        "end": "2032-01-15",
-        "start_range": [
-          "2026-01-13",
-          "2026-01-16"
-        ],
-        "end_range": [
-          "2032-01-13",
-          "2032-01-16"
-        ],
-        "domains": [
-          "D1",
-          "D2",
-          "D3"
-        ],
-        "basis": "Sun karaka ['D1', 'D2']; occupies house 11 from Lagna; lords houses [2] from Lagna (not used)"
-      },
-      {
-        "cluster": "jyotisha",
-        "technique": "Vimshottari Moon Mahadasha",
-        "start": "2032-01-15",
-        "end": "2042-01-14",
-        "start_range": [
-          "2032-01-13",
-          "2032-01-16"
-        ],
-        "end_range": [
-          "2042-01-13",
-          "2042-01-16"
-        ],
-        "domains": [
-          "D2",
-          "D5",
-          "D8"
-        ],
-        "basis": "Moon karaka ['D5', 'D8']; occupies house 10 from Lagna; lords houses [1] from Lagna (not used)"
-      },
-      {
-        "cluster": "jyotisha",
-        "technique": "Vimshottari Mars Mahadasha",
-        "start": "2042-01-14",
-        "end": "2049-01-14",
-        "start_range": [
-          "2042-01-13",
-          "2042-01-16"
-        ],
-        "end_range": [
-          "2049-01-12",
-          "2049-01-16"
-        ],
-        "domains": [],
-        "basis": "Mars karaka []; occupies house 12 from Lagna; lords houses [10, 5] from Lagna (not used)"
-      },
-      {
-        "cluster": "jyotisha",
         "technique": "Vimshottari Rahu Mahadasha",
-        "start": "2049-01-14",
-        "end": "2067-01-14",
+        "start": "1968-10-25",
+        "end": "1986-10-25",
         "start_range": [
-          "2049-01-12",
-          "2049-01-16"
+          "1968-09-10",
+          "1968-12-08"
         ],
         "end_range": [
-          "2067-01-13",
-          "2067-01-16"
+          "1986-09-11",
+          "1986-12-08"
         ],
         "domains": [
-          "D2"
+          "D7"
         ],
-        "basis": "Rahu karaka []; occupies house 10 from Lagna; lords houses [] from Lagna (not used)"
+        "basis": "Rahu karaka []; occupies house 6 from Lagna; lords houses [] from Lagna (not used)"
       },
       {
         "cluster": "jyotisha",
         "technique": "Vimshottari Jupiter Mahadasha",
-        "start": "2067-01-14",
-        "end": "2083-01-14",
+        "start": "1986-10-25",
+        "end": "2002-10-25",
         "start_range": [
-          "2067-01-13",
-          "2067-01-16"
+          "1986-09-11",
+          "1986-12-08"
         ],
         "end_range": [
-          "2083-01-13",
-          "2083-01-16"
+          "2002-09-11",
+          "2002-12-08"
         ],
         "domains": [
           "D3",
           "D6",
           "D9"
         ],
-        "basis": "Jupiter karaka ['D3', 'D6', 'D9']; occupies house 2 from Lagna; lords houses [6, 9] from Lagna (not used)"
+        "basis": "Jupiter karaka ['D3', 'D6', 'D9']; occupies house 9 from Lagna; lords houses [7, 10] from Lagna (not used)"
       },
       {
         "cluster": "jyotisha",
         "technique": "Vimshottari Saturn Mahadasha",
-        "start": "2083-01-14",
-        "end": "2102-01-15",
+        "start": "2002-10-25",
+        "end": "2021-10-25",
         "start_range": [
-          "2083-01-13",
-          "2083-01-16"
+          "2002-09-11",
+          "2002-12-08"
         ],
         "end_range": [
-          "2102-01-14",
-          "2102-01-17"
+          "2021-09-11",
+          "2021-12-08"
         ],
-        "domains": [],
-        "basis": "Saturn karaka []; occupies house 12 from Lagna; lords houses [7, 8] from Lagna (not used)"
+        "domains": [
+          "D1"
+        ],
+        "basis": "Saturn karaka []; occupies house 1 from Lagna; lords houses [8, 9] from Lagna (not used)"
       },
       {
         "cluster": "jyotisha",
         "technique": "Vimshottari Mercury Mahadasha",
-        "start": "2102-01-15",
-        "end": "2119-01-15",
+        "start": "2021-10-25",
+        "end": "2038-10-25",
         "start_range": [
-          "2102-01-14",
-          "2102-01-17"
+          "2021-09-11",
+          "2021-12-08"
         ],
         "end_range": [
-          "2119-01-14",
-          "2119-01-17"
+          "2038-09-11",
+          "2038-12-08"
         ],
-        "domains": [
-          "D2",
-          "D8"
-        ],
-        "basis": "Mercury karaka ['D8']; occupies house 10 from Lagna; lords houses [12, 3] from Lagna (not used)"
-      },
-      {
-        "cluster": "western",
-        "technique": "annual profection age 22",
-        "start": "2026-05-17",
-        "end": "2027-05-17",
-        "domains": [
-          "D3"
-        ],
-        "basis": "activated house 11 (stable); sign/lord of year sensitive: [('Taurus', 'Venus')]"
-      },
-      {
-        "cluster": "western",
-        "technique": "annual profection age 23",
-        "start": "2027-05-17",
-        "end": "2028-05-17",
-        "domains": [],
-        "basis": "activated house 12 (stable); sign/lord of year sensitive: [('Gemini', 'Mercury')]"
-      },
-      {
-        "cluster": "western",
-        "technique": "annual profection age 24",
-        "start": "2028-05-17",
-        "end": "2029-05-17",
-        "domains": [
-          "D1"
-        ],
-        "basis": "activated house 1 (stable); sign/lord of year sensitive: [('Cancer', 'Moon')]"
-      },
-      {
-        "cluster": "sinic",
-        "technique": "BaZi Da Yun 庚午",
-        "start": "2010-10-07",
-        "end": "2020-10-06",
         "domains": [
           "D1",
-          "D3",
+          "D8"
+        ],
+        "basis": "Mercury karaka ['D8']; occupies house 1 from Lagna; lords houses [1, 4] from Lagna (not used)"
+      },
+      {
+        "cluster": "jyotisha",
+        "technique": "Vimshottari Ketu Mahadasha",
+        "start": "2038-10-25",
+        "end": "2045-10-25",
+        "start_range": [
+          "2038-09-11",
+          "2038-12-08"
+        ],
+        "end_range": [
+          "2045-09-11",
+          "2045-12-08"
+        ],
+        "domains": [],
+        "basis": "Ketu karaka []; occupies house 12 from Lagna; lords houses [] from Lagna (not used)"
+      },
+      {
+        "cluster": "jyotisha",
+        "technique": "Vimshottari Venus Mahadasha",
+        "start": "2045-10-25",
+        "end": "2065-10-25",
+        "start_range": [
+          "2045-09-11",
+          "2045-12-08"
+        ],
+        "end_range": [
+          "2065-09-11",
+          "2065-12-08"
+        ],
+        "domains": [
           "D4"
         ],
-        "basis": "stem 庚 = 偏财 Indirect Wealth; branch 午 main qi 丁 = 劫财 Rob Wealth; lunar_python start differs by 10 days"
+        "basis": "Venus karaka ['D4']; occupies house 12 from Lagna; lords houses [12, 5] from Lagna (not used)"
       },
       {
-        "cluster": "sinic",
-        "technique": "BaZi Da Yun 辛未",
-        "start": "2020-10-06",
-        "end": "2030-10-06",
-        "domains": [
-          "D3",
-          "D4",
-          "D8"
+        "cluster": "jyotisha",
+        "technique": "Vimshottari Sun Mahadasha",
+        "start": "2065-10-25",
+        "end": "2071-10-25",
+        "start_range": [
+          "2065-09-11",
+          "2065-12-08"
         ],
-        "basis": "stem 辛 = 正财 Direct Wealth; branch 未 main qi 己 = 伤官 Hurting Officer; lunar_python start differs by 10 days"
-      },
-      {
-        "cluster": "sinic",
-        "technique": "BaZi Da Yun 壬申",
-        "start": "2030-10-06",
-        "end": "2040-10-06",
-        "domains": [
-          "D2",
-          "D3",
-          "D4",
-          "D6"
+        "end_range": [
+          "2071-09-11",
+          "2071-12-09"
         ],
-        "basis": "stem 壬 = 七杀 Seven Killings; branch 申 main qi 庚 = 偏财 Indirect Wealth; lunar_python start differs by 10 days"
-      },
-      {
-        "cluster": "sinic",
-        "technique": "BaZi Da Yun 癸酉",
-        "start": "2040-10-06",
-        "end": "2050-10-06",
         "domains": [
-          "D2",
-          "D3",
-          "D4",
-          "D6"
+          "D1",
+          "D2"
         ],
-        "basis": "stem 癸 = 正官 Direct Officer; branch 酉 main qi 辛 = 正财 Direct Wealth; lunar_python start differs by 10 days"
+        "basis": "Sun karaka ['D1', 'D2']; occupies house 1 from Lagna; lords houses [3] from Lagna (not used)"
       },
       {
-        "cluster": "sinic",
-        "technique": "BaZi Da Yun 甲戌",
-        "start": "2050-10-06",
-        "end": "2060-10-06",
-        "domains": [
-          "D5",
-          "D8"
+        "cluster": "jyotisha",
+        "technique": "Vimshottari Moon Mahadasha",
+        "start": "2071-10-25",
+        "end": "2081-10-25",
+        "start_range": [
+          "2071-09-11",
+          "2071-12-09"
         ],
-        "basis": "stem 甲 = 偏印 Indirect Resource; branch 戌 main qi 戊 = 食神 Eating God; lunar_python start differs by 10 days"
-      },
-      {
-        "cluster": "sinic",
-        "technique": "BaZi Da Yun 乙亥",
-        "start": "2060-10-06",
-        "end": "2070-10-06",
+        "end_range": [
+          "2081-09-11",
+          "2081-12-08"
+        ],
         "domains": [
-          "D2",
           "D5",
           "D6",
           "D8"
         ],
-        "basis": "stem 乙 = 正印 Direct Resource; branch 亥 main qi 壬 = 七杀 Seven Killings; lunar_python start differs by 10 days"
+        "basis": "Moon karaka ['D5', 'D8']; occupies house 5 from Lagna; lords houses [2] from Lagna (not used)"
       },
       {
-        "cluster": "sinic",
-        "technique": "BaZi Da Yun 丙子",
-        "start": "2070-10-06",
-        "end": "2080-10-05",
+        "cluster": "jyotisha",
+        "technique": "Vimshottari Mars Mahadasha",
+        "start": "2081-10-25",
+        "end": "2088-10-25",
+        "start_range": [
+          "2081-09-11",
+          "2081-12-08"
+        ],
+        "end_range": [
+          "2088-09-10",
+          "2088-12-08"
+        ],
         "domains": [
-          "D1",
-          "D2",
+          "D3"
+        ],
+        "basis": "Mars karaka []; occupies house 2 from Lagna; lords houses [11, 6] from Lagna (not used)"
+      },
+      {
+        "cluster": "western",
+        "technique": "annual profection age 52",
+        "start": "2026-06-29",
+        "end": "2027-06-29",
+        "domains": [
           "D6"
         ],
-        "basis": "stem 丙 = 比肩 Friend; branch 子 main qi 癸 = 正官 Direct Officer; lunar_python start differs by 10 days"
+        "basis": "activated house 5 (stable); sign/lord of year sensitive: [('Scorpio', 'Mars')]"
+      },
+      {
+        "cluster": "western",
+        "technique": "annual profection age 53",
+        "start": "2027-06-29",
+        "end": "2028-06-29",
+        "domains": [
+          "D7"
+        ],
+        "basis": "activated house 6 (stable); sign/lord of year sensitive: [('Sagittarius', 'Jupiter')]"
+      },
+      {
+        "cluster": "western",
+        "technique": "annual profection age 54",
+        "start": "2028-06-29",
+        "end": "2029-06-29",
+        "domains": [
+          "D4"
+        ],
+        "basis": "activated house 7 (stable); sign/lord of year sensitive: [('Capricorn', 'Saturn')]"
       },
       {
         "cluster": "sinic",
-        "technique": "BaZi Da Yun 丁丑",
-        "start": "2080-10-05",
-        "end": "2090-10-06",
+        "technique": "BaZi Da Yun 己巳",
+        "start": "1982-02-21",
+        "end": "1992-02-21",
         "domains": [
-          "D1",
+          "D2",
+          "D4",
+          "D5",
           "D8"
         ],
-        "basis": "stem 丁 = 劫财 Rob Wealth; branch 丑 main qi 己 = 伤官 Hurting Officer; lunar_python start differs by 10 days"
+        "basis": "stem 己 = 偏印 Indirect Resource; branch 巳 main qi 丙 = 正官 Direct Officer; lunar_python start differs by 13 days"
       },
       {
         "cluster": "sinic",
-        "technique": "BaZi Da Yun 戊寅",
-        "start": "2090-10-06",
-        "end": "2100-10-06",
+        "technique": "BaZi Da Yun 戊辰",
+        "start": "1992-02-21",
+        "end": "2002-02-20",
         "domains": [
           "D5",
           "D8"
         ],
-        "basis": "stem 戊 = 食神 Eating God; branch 寅 main qi 甲 = 偏印 Indirect Resource; lunar_python start differs by 10 days"
+        "basis": "stem 戊 = 正印 Direct Resource; branch 辰 main qi 戊 = 正印 Direct Resource; lunar_python start differs by 13 days"
       },
       {
         "cluster": "sinic",
-        "technique": "Zi Wei decadal 36-45 (田宅 寅)",
-        "start": "2039-lunar-new-year",
-        "end": "2049-lunar-new-year",
-        "start_iso_approx": "2039-02-01",
-        "end_iso_approx": "2049-02-01",
+        "technique": "BaZi Da Yun 丁卯",
+        "start": "2002-02-20",
+        "end": "2012-02-21",
         "domains": [
-          "D5"
+          "D2",
+          "D3",
+          "D4"
         ],
-        "basis": "decadal palace 田宅; nominal-age convention; exact boundary = Chinese New Year of 2039/2049"
+        "basis": "stem 丁 = 七杀 Seven Killings; branch 卯 main qi 乙 = 偏财 Indirect Wealth; lunar_python start differs by 13 days"
       },
       {
         "cluster": "sinic",
-        "technique": "Zi Wei decadal 46-55 (官禄 卯)",
-        "start": "2049-lunar-new-year",
-        "end": "2059-lunar-new-year",
-        "start_iso_approx": "2049-02-01",
-        "end_iso_approx": "2059-02-01",
+        "technique": "BaZi Da Yun 丙寅",
+        "start": "2012-02-21",
+        "end": "2022-02-20",
         "domains": [
-          "D2"
+          "D2",
+          "D3",
+          "D4"
         ],
-        "basis": "decadal palace 官禄; nominal-age convention; exact boundary = Chinese New Year of 2049/2059"
+        "basis": "stem 丙 = 正官 Direct Officer; branch 寅 main qi 甲 = 正财 Direct Wealth; lunar_python start differs by 13 days"
       },
       {
         "cluster": "sinic",
-        "technique": "Zi Wei decadal 56-65 (仆役 辰)",
+        "technique": "BaZi Da Yun 乙丑",
+        "start": "2022-02-20",
+        "end": "2032-02-21",
+        "domains": [
+          "D3",
+          "D5",
+          "D8"
+        ],
+        "basis": "stem 乙 = 偏财 Indirect Wealth; branch 丑 main qi 己 = 偏印 Indirect Resource; lunar_python start differs by 13 days"
+      },
+      {
+        "cluster": "sinic",
+        "technique": "BaZi Da Yun 甲子",
+        "start": "2032-02-21",
+        "end": "2042-02-20",
+        "domains": [
+          "D3",
+          "D6",
+          "D8"
+        ],
+        "basis": "stem 甲 = 正财 Direct Wealth; branch 子 main qi 癸 = 食神 Eating God; lunar_python start differs by 13 days"
+      },
+      {
+        "cluster": "sinic",
+        "technique": "BaZi Da Yun 癸亥",
+        "start": "2042-02-20",
+        "end": "2052-02-20",
+        "domains": [
+          "D6",
+          "D8"
+        ],
+        "basis": "stem 癸 = 食神 Eating God; branch 亥 main qi 壬 = 伤官 Hurting Officer; lunar_python start differs by 13 days"
+      },
+      {
+        "cluster": "sinic",
+        "technique": "BaZi Da Yun 壬戌",
+        "start": "2052-02-20",
+        "end": "2062-02-20",
+        "domains": [
+          "D5",
+          "D6",
+          "D8"
+        ],
+        "basis": "stem 壬 = 伤官 Hurting Officer; branch 戌 main qi 戊 = 正印 Direct Resource; lunar_python start differs by 13 days"
+      },
+      {
+        "cluster": "sinic",
+        "technique": "BaZi Da Yun 辛酉",
+        "start": "2062-02-20",
+        "end": "2072-02-20",
+        "domains": [
+          "D1"
+        ],
+        "basis": "stem 辛 = 比肩 Friend; branch 酉 main qi 辛 = 比肩 Friend; lunar_python start differs by 13 days"
+      },
+      {
+        "cluster": "sinic",
+        "technique": "Zi Wei decadal 86-95 (官禄 未)",
         "start": "2059-lunar-new-year",
         "end": "2069-lunar-new-year",
         "start_iso_approx": "2059-02-01",
         "end_iso_approx": "2069-02-01",
+        "domains": [
+          "D2"
+        ],
+        "basis": "decadal palace 官禄; nominal-age convention; exact boundary = Chinese New Year of 2059/2069"
+      },
+      {
+        "cluster": "sinic",
+        "technique": "Zi Wei decadal 76-85 (仆役 申)",
+        "start": "2049-lunar-new-year",
+        "end": "2059-lunar-new-year",
+        "start_iso_approx": "2049-02-01",
+        "end_iso_approx": "2059-02-01",
         "domains": [],
-        "basis": "decadal palace 仆役; nominal-age convention; exact boundary = Chinese New Year of 2059/2069"
+        "basis": "decadal palace 仆役; nominal-age convention; exact boundary = Chinese New Year of 2049/2059"
       },
       {
         "cluster": "sinic",
-        "technique": "Zi Wei decadal 6-15 (命宫 亥)",
-        "start": "2009-lunar-new-year",
-        "end": "2019-lunar-new-year",
-        "start_iso_approx": "2009-02-01",
-        "end_iso_approx": "2019-02-01",
-        "domains": [
-          "D1"
-        ],
-        "basis": "decadal palace 命宫; nominal-age convention; exact boundary = Chinese New Year of 2009/2019"
+        "technique": "Zi Wei decadal 66-75 (迁移 酉)",
+        "start": "2039-lunar-new-year",
+        "end": "2049-lunar-new-year",
+        "start_iso_approx": "2039-02-01",
+        "end_iso_approx": "2049-02-01",
+        "domains": [],
+        "basis": "decadal palace 迁移; nominal-age convention; exact boundary = Chinese New Year of 2039/2049"
       },
       {
         "cluster": "sinic",
-        "technique": "Zi Wei decadal 16-25 (父母 子)",
-        "start": "2019-lunar-new-year",
-        "end": "2029-lunar-new-year",
-        "start_iso_approx": "2019-02-01",
-        "end_iso_approx": "2029-02-01",
-        "domains": [
-          "D5"
-        ],
-        "basis": "decadal palace 父母; nominal-age convention; exact boundary = Chinese New Year of 2019/2029"
-      },
-      {
-        "cluster": "sinic",
-        "technique": "Zi Wei decadal 26-35 (福德 丑)",
+        "technique": "Zi Wei decadal 56-65 (疾厄 戌)",
         "start": "2029-lunar-new-year",
         "end": "2039-lunar-new-year",
         "start_iso_approx": "2029-02-01",
         "end_iso_approx": "2039-02-01",
         "domains": [
-          "D9"
+          "D7"
         ],
-        "basis": "decadal palace 福德; nominal-age convention; exact boundary = Chinese New Year of 2029/2039"
+        "basis": "decadal palace 疾厄; nominal-age convention; exact boundary = Chinese New Year of 2029/2039"
+      },
+      {
+        "cluster": "sinic",
+        "technique": "Zi Wei decadal 46-55 (财帛 亥)",
+        "start": "2019-lunar-new-year",
+        "end": "2029-lunar-new-year",
+        "start_iso_approx": "2019-02-01",
+        "end_iso_approx": "2029-02-01",
+        "domains": [
+          "D3"
+        ],
+        "basis": "decadal palace 财帛; nominal-age convention; exact boundary = Chinese New Year of 2019/2029"
+      },
+      {
+        "cluster": "sinic",
+        "technique": "Zi Wei decadal 36-45 (子女 子)",
+        "start": "2009-lunar-new-year",
+        "end": "2019-lunar-new-year",
+        "start_iso_approx": "2009-02-01",
+        "end_iso_approx": "2019-02-01",
+        "domains": [
+          "D6"
+        ],
+        "basis": "decadal palace 子女; nominal-age convention; exact boundary = Chinese New Year of 2009/2019"
       }
     ],
     "windows": [
       {
-        "domain": "D1",
-        "domain_name": "Self/identity",
-        "start": "2028-05-17",
-        "end": "2029-05-17",
+        "domain": "D8",
+        "domain_name": "Mind/education/craft",
+        "start": "2022-02-20",
+        "end": "2032-02-21",
         "grade": "MODERATE",
         "clusters": {
           "jyotisha": [
-            "Vimshottari Sun Mahadasha"
-          ],
-          "western": [
-            "annual profection age 24"
-          ]
-        }
-      },
-      {
-        "domain": "D2",
-        "domain_name": "Career/status",
-        "start": "2030-10-06",
-        "end": "2032-01-13",
-        "grade": "MODERATE",
-        "clusters": {
-          "jyotisha": [
-            "Vimshottari Sun Mahadasha"
+            "Vimshottari Mercury Mahadasha"
           ],
           "sinic": [
-            "BaZi Da Yun 壬申"
+            "BaZi Da Yun 乙丑"
           ]
         }
       },
       {
-        "domain": "D2",
-        "domain_name": "Career/status",
-        "start": "2032-01-16",
+        "domain": "D8",
+        "domain_name": "Mind/education/craft",
+        "start": "2032-02-21",
         "end": "2032-12-31",
         "grade": "MODERATE",
         "clusters": {
           "jyotisha": [
-            "Vimshottari Moon Mahadasha"
+            "Vimshottari Mercury Mahadasha"
           ],
           "sinic": [
-            "BaZi Da Yun 壬申"
-          ]
-        }
-      },
-      {
-        "domain": "D3",
-        "domain_name": "Wealth/gains",
-        "start": "2026-01-16",
-        "end": "2026-05-17",
-        "grade": "MODERATE",
-        "clusters": {
-          "jyotisha": [
-            "Vimshottari Sun Mahadasha"
-          ],
-          "sinic": [
-            "BaZi Da Yun 辛未"
-          ]
-        }
-      },
-      {
-        "domain": "D3",
-        "domain_name": "Wealth/gains",
-        "start": "2026-05-17",
-        "end": "2027-05-17",
-        "grade": "STRONG ⭐",
-        "clusters": {
-          "jyotisha": [
-            "Vimshottari Sun Mahadasha"
-          ],
-          "western": [
-            "annual profection age 22"
-          ],
-          "sinic": [
-            "BaZi Da Yun 辛未"
-          ]
-        }
-      },
-      {
-        "domain": "D3",
-        "domain_name": "Wealth/gains",
-        "start": "2027-05-17",
-        "end": "2030-10-06",
-        "grade": "MODERATE",
-        "clusters": {
-          "jyotisha": [
-            "Vimshottari Sun Mahadasha"
-          ],
-          "sinic": [
-            "BaZi Da Yun 辛未"
-          ]
-        }
-      },
-      {
-        "domain": "D3",
-        "domain_name": "Wealth/gains",
-        "start": "2030-10-06",
-        "end": "2032-01-13",
-        "grade": "MODERATE",
-        "clusters": {
-          "jyotisha": [
-            "Vimshottari Sun Mahadasha"
-          ],
-          "sinic": [
-            "BaZi Da Yun 壬申"
-          ]
-        }
-      },
-      {
-        "domain": "D4",
-        "domain_name": "Partnership",
-        "start": "2021-01-01",
-        "end": "2026-01-13",
-        "grade": "MODERATE",
-        "clusters": {
-          "jyotisha": [
-            "Vimshottari Venus Mahadasha"
-          ],
-          "sinic": [
-            "BaZi Da Yun 辛未"
+            "BaZi Da Yun 甲子"
           ]
         }
       }
     ],
     "current": [
       {
-        "domain": "D3",
-        "domain_name": "Wealth/gains",
-        "start": "2026-05-17",
-        "end": "2027-05-17",
-        "grade": "STRONG ⭐",
+        "domain": "D8",
+        "domain_name": "Mind/education/craft",
+        "start": "2022-02-20",
+        "end": "2032-02-21",
+        "grade": "MODERATE",
         "clusters": {
           "jyotisha": [
-            "Vimshottari Sun Mahadasha"
-          ],
-          "western": [
-            "annual profection age 22"
+            "Vimshottari Mercury Mahadasha"
           ],
           "sinic": [
-            "BaZi Da Yun 辛未"
+            "BaZi Da Yun 乙丑"
           ]
         }
       }
     ],
     "next": [
       {
-        "domain": "D3",
-        "domain_name": "Wealth/gains",
-        "start": "2027-05-17",
-        "end": "2030-10-06",
-        "grade": "MODERATE",
-        "clusters": {
-          "jyotisha": [
-            "Vimshottari Sun Mahadasha"
-          ],
-          "sinic": [
-            "BaZi Da Yun 辛未"
-          ]
-        }
-      },
-      {
-        "domain": "D1",
-        "domain_name": "Self/identity",
-        "start": "2028-05-17",
-        "end": "2029-05-17",
-        "grade": "MODERATE",
-        "clusters": {
-          "jyotisha": [
-            "Vimshottari Sun Mahadasha"
-          ],
-          "western": [
-            "annual profection age 24"
-          ]
-        }
-      },
-      {
-        "domain": "D2",
-        "domain_name": "Career/status",
-        "start": "2030-10-06",
-        "end": "2032-01-13",
-        "grade": "MODERATE",
-        "clusters": {
-          "jyotisha": [
-            "Vimshottari Sun Mahadasha"
-          ],
-          "sinic": [
-            "BaZi Da Yun 壬申"
-          ]
-        }
-      },
-      {
-        "domain": "D3",
-        "domain_name": "Wealth/gains",
-        "start": "2030-10-06",
-        "end": "2032-01-13",
-        "grade": "MODERATE",
-        "clusters": {
-          "jyotisha": [
-            "Vimshottari Sun Mahadasha"
-          ],
-          "sinic": [
-            "BaZi Da Yun 壬申"
-          ]
-        }
-      },
-      {
-        "domain": "D2",
-        "domain_name": "Career/status",
-        "start": "2032-01-16",
+        "domain": "D8",
+        "domain_name": "Mind/education/craft",
+        "start": "2032-02-21",
         "end": "2032-12-31",
         "grade": "MODERATE",
         "clusters": {
           "jyotisha": [
-            "Vimshottari Moon Mahadasha"
+            "Vimshottari Mercury Mahadasha"
           ],
           "sinic": [
-            "BaZi Da Yun 壬申"
+            "BaZi Da Yun 甲子"
           ]
         }
       }
@@ -1824,32 +1663,32 @@
       "clusters": {
         "jyotisha": {
           "reading": "strained",
-          "basis": "Sun score -1.00 (Taurus, enemy's sign, navamsa Capricorn)"
+          "basis": "Sun score -1.00 (Gemini, neutral sign, with Mercury/Saturn, navamsa Aquarius)"
         },
         "western": {
           "reading": "mixed/neutral",
-          "basis": "Sun score +0.00 (Taurus, peregrine, of the sect)"
+          "basis": "Sun score +0.00 (Cancer, peregrine, of the sect)"
         },
         "sinic": {
-          "reading": "supported",
-          "basis": "命宫 major stars ['天府']; visible Officer: True"
+          "reading": "mixed/neutral",
+          "basis": "命宫 major stars ['天相']; visible Officer: False"
         }
       },
-      "summary": "conflict"
+      "summary": "1 clusters: strained"
     },
     "T2 Drive/initiative": {
       "clusters": {
         "jyotisha": {
           "reading": "strained",
-          "basis": "Mars score -1.50 (Gemini, enemy's sign, with Venus/Saturn, navamsa Capricorn)"
+          "basis": "Mars score -2.00 (Cancer, debilitated, navamsa Sagittarius)"
         },
         "western": {
           "reading": "strained",
-          "basis": "Mars score -2.00 (Cancer, fall, triplicity (other/participating), bound, contrary to sect)"
+          "basis": "Mars score -1.50 (Leo, peregrine, contrary to sect)"
         },
         "sinic": {
           "reading": "supported",
-          "basis": "七杀/破军/贪狼 in 命/身: ['破军']; Seven Killings hidden x2"
+          "basis": "七杀/破军/贪狼 in 命/身: ['破军']; Seven Killings hidden x1"
         }
       },
       "summary": "conflict"
@@ -1858,35 +1697,35 @@
       "clusters": {
         "jyotisha": {
           "reading": "mixed/neutral",
-          "basis": "Moon score -0.50 (Aries, neutral sign, waning, with Mercury/Rahu, navamsa Cancer)"
+          "basis": "Moon score +0.50 (Libra, neutral sign, waxing, navamsa Capricorn)"
         },
         "western": {
-          "reading": "supported",
-          "basis": "Moon score +1.75 (Taurus, exaltation, triplicity (other/participating), contrary to sect)"
+          "reading": "mixed/neutral",
+          "basis": "Moon score -0.25 (Scorpio, fall, triplicity (other/participating), contrary to sect)"
         },
         "sinic": {
-          "reading": "supported",
-          "basis": "Resource stem visible: ['偏印 Indirect Resource']"
+          "reading": "mixed/neutral",
+          "basis": "Resource stem visible: []"
         }
       },
-      "summary": "2 clusters: supported"
+      "summary": "no clear signal"
     },
     "T4 Intellect/craft": {
       "clusters": {
         "jyotisha": {
           "reading": "mixed/neutral",
-          "basis": "Mercury score -0.50 (Aries, neutral sign, with Moon/Rahu, navamsa Gemini)"
+          "basis": "Mercury score -0.50 (Gemini, own sign, with Sun/Saturn, navamsa Aquarius)"
         },
         "western": {
           "reading": "mixed/neutral",
-          "basis": "Mercury score +0.10 (Taurus, face, of the sect)"
+          "basis": "Mercury score +0.00 (Cancer, peregrine, contrary to sect)"
         },
         "sinic": {
-          "reading": "supported",
-          "basis": "output stem visible ['伤官 Hurting Officer']; 文昌/文曲/天机 in 命/身: ['文曲']"
+          "reading": "mixed/neutral",
+          "basis": "output stem visible []; 文昌/文曲/天机 in 命/身: []"
         }
       },
-      "summary": "1 clusters: supported"
+      "summary": "no clear signal"
     },
     "T5 Adaptability": {
       "clusters": {
@@ -1909,7 +1748,7 @@
       "clusters": {
         "jyotisha": {
           "reading": "mixed/neutral",
-          "basis": "Saturn score -0.50 (Gemini, friend's sign, with Mars/Venus, navamsa Aquarius)"
+          "basis": "Saturn score -0.50 (Gemini, friend's sign, with Sun/Mercury, navamsa Aquarius)"
         },
         "western": {
           "reading": "strained",
@@ -1917,7 +1756,7 @@
         },
         "sinic": {
           "reading": "mixed/neutral",
-          "basis": "Officer star visible but confronted by a visible Hurting Officer (伤官见官)"
+          "basis": "no Officer star on a visible stem"
         }
       },
       "summary": "1 clusters: strained"
@@ -1926,68 +1765,66 @@
   "bazi_annual_ten_gods": {
     "2026": {
       "ganzhi": "丙午",
-      "stem_ten_god": "比肩 Friend",
+      "stem_ten_god": "正官 Direct Officer",
       "branch_main_qi": "丁",
-      "branch_ten_god": "劫财 Rob Wealth",
+      "branch_ten_god": "七杀 Seven Killings",
       "period": "Lichun 2026 to Lichun 2027"
     },
     "2027": {
       "ganzhi": "丁未",
-      "stem_ten_god": "劫财 Rob Wealth",
+      "stem_ten_god": "七杀 Seven Killings",
       "branch_main_qi": "己",
-      "branch_ten_god": "伤官 Hurting Officer",
+      "branch_ten_god": "偏印 Indirect Resource",
       "period": "Lichun 2027 to Lichun 2028"
     },
     "2028": {
       "ganzhi": "戊申",
-      "stem_ten_god": "食神 Eating God",
+      "stem_ten_god": "正印 Direct Resource",
       "branch_main_qi": "庚",
-      "branch_ten_god": "偏财 Indirect Wealth",
+      "branch_ten_god": "劫财 Rob Wealth",
       "period": "Lichun 2028 to Lichun 2029"
     }
   },
   "overlays": {
     "maya": {
-      "computed": "10 Ajaw 3 Zip / 12.19.11.5.0",
+      "computed": "2 Chikchan 18 Sotz' / 12.18.0.17.5",
       "meaning": "omitted — no verifiable named Maya source available in this environment"
     },
     "tibetan": {
-      "computed": "Male Wood Monkey",
+      "computed": "Male Wood Tiger",
       "meaning": "omitted — no validated lineage-specific source; Mewa/Parkha/personal forces not computed"
     }
   },
   "yong_shen": {
     "schools": [
       {
-        "school": "调候 Seasonal regulation (Qiong Tong Bao Jian, 丙 born in 巳 month)",
-        "rule_chain": [
-          "Day Master 丙, month branch 巳",
-          "Qiong Tong Bao Jian for 丙 in 四月 (巳): 壬 Ren water as primary, 庚 Geng metal as assistant"
-        ],
+        "school": "调候 Seasonal regulation (Qiong Tong Bao Jian)",
         "useful": [
-          "Water (壬)",
-          "Metal (庚)"
+          "unavailable"
+        ],
+        "rule_chain": [
+          "Day Master 辛, month branch 午: no verified table entry in this build"
         ]
       },
       {
         "school": "扶抑 Strength-balancing (rule BZ-DM-1)",
         "rule_chain": [
-          "weighted support share 0.333 -> weak",
-          "seasonal status: prosperous 旺 (month element = DM element)",
-          "the two sub-verdicts disagree"
+          "weighted support share 0.434 -> weak",
+          "seasonal status: weakened (month drains/controls/is controlled)",
+          "sub-verdicts agree"
         ],
         "useful": [
           "Resource element",
           "Companion element"
         ],
         "useful_elements": [
-          "Wood",
-          "Fire"
+          "Earth",
+          "Metal"
         ]
       }
     ],
     "confidence": "low",
-    "sub_verdicts_disagree": true
+    "sub_verdicts_disagree": false
   },
   "claims_removed": {
     "sensitive_to_birth_time": {
@@ -1999,22 +1836,25 @@
       "note": "Jyotisha houses from Chandra Lagna (JY-REFERENCE)"
     },
     "neutral_polarity_no_theme": {
-      "count": 14,
+      "count": 17,
       "items": [
-        "karaka Moon: Aries (neutral sign), navamsa Cancer",
-        "karaka Moon: Aries (neutral sign), navamsa Cancer",
-        "karaka Mercury: Aries (neutral sign), navamsa Gemini",
-        "Jupiter in whole-sign house 3 (Virgo) from Asc Cancer",
-        "significator Sun: Taurus peregrine, of the sect",
-        "significator Sun: Taurus peregrine, of the sect",
-        "significator Mercury: Taurus face, of the sect",
-        "significator Venus: Gemini peregrine, contrary to sect, stationary",
-        "significator Jupiter: Virgo detriment, of the sect, stationary",
-        "significator Jupiter: Virgo detriment, of the sect, stationary",
-        "significator Jupiter: Virgo detriment, of the sect, stationary",
-        "疾厄 (health) at 庚午: borrowed 天同旺/太阴庙; minors 左辅/地空",
-        "子女 (children) at 壬申: borrowed 太阳旺化忌/巨门庙; minors 右弼",
-        "命宫 (soul) at 乙亥: 天府得; minors —"
+        "Moon in house 5 from Lagna (Gemini)",
+        "karaka Moon: Libra (neutral sign), navamsa Capricorn",
+        "karaka Moon: Libra (neutral sign), navamsa Capricorn",
+        "karaka Mercury: Gemini (own sign), navamsa Aquarius",
+        "Moon in whole-sign house 5 (Scorpio) from Asc Cancer",
+        "significator Sun: Cancer peregrine, of the sect",
+        "significator Sun: Cancer peregrine, of the sect",
+        "significator Moon: Scorpio fall, triplicity (other/participating), contrary to sect",
+        "significator Moon: Scorpio fall, triplicity (other/participating), contrary to sect",
+        "significator Mercury: Cancer peregrine, contrary to sect",
+        "significator Venus: Gemini peregrine, contrary to sect",
+        "no Resource star on a visible stem",
+        "children palace = hour pillar 辛卯 with 比肩 Friend on the stem; children star (Eating God/Hurting Officer) visible in no pillar",
+        "父母 (parents) at 戊辰: 天机利/天梁庙; minors 火星",
+        "田宅 (property) at 庚午: borrowed 天同旺/太阴庙; minors 右弼/铃星",
+        "疾厄 (health) at 甲戌: borrowed 天机利/天梁庙; minors —",
+        "财帛 (wealth) at 乙亥: 天府得; minors —"
       ]
     },
     "school_dependent_low_confidence": {
@@ -2026,9 +1866,9 @@
     "no_validated_source": {
       "count": 4,
       "items": [
-        "Maya Tzolk'in 10 Ajaw meaning",
-        "Maya Haab 3 Sip meaning",
-        "Tibetan Male Wood Monkey meaning",
+        "Maya Tzolk'in 2 Chikchan meaning",
+        "Maya Haab 18 Sotz' meaning",
+        "Tibetan Male Wood Tiger meaning",
         "Tibetan Mewa / Parkha / la-sok-lung-ta-wang-thang"
       ]
     },
@@ -2036,13 +1876,14 @@
       "items": [
         "shadbala",
         "ashtakavarga",
+        "pratyantardasha",
         "D7_D12",
         "zodiacal_releasing",
         "transits"
       ],
-      "count": 5
+      "count": 6
     },
     "barnum_screen": "every retained projection is tied to a computed datum via a registry rule; no automated Barnum test was run, so generic-sounding prose was avoided by hand in FINAL_READING.md"
   },
-  "candidate_projection_count": 42
+  "candidate_projection_count": 43
 }

@@ -66,13 +66,13 @@ Time uncertainty: user-confirmed exact time, at most 1 minute off; ensemble uses
 
 ## Boundary distances
 
-- **Western Ascendant** 25°25'43" Cancer: 4.57° before Leo (≈21.2 min at 0.216°/min).
-- **Jyotisha Lagna** 01°30'38" Cancer (Lahiri): only 1.51° past the Gemini/Cancer cusp (≈7.0 min). Its D9 segment is 0.00–3.33° and D10 segment 0–3°.
+- **Western Ascendant** 25°25'43" Cancer: 25.43° into its sign, 4.57° before the next (≈117.9 min since / ≈21.2 min to a cusp at 0.216°/min).
+- **Jyotisha Lagna** 01°30'38" Cancer (Lahiri): 1.51° into its sign (≈7.0 min since / ≈132.1 min to a cusp). D9 segment 0.00–3.33°, D10 segment 0–3°.
 - **Sect**: 252 min after sunrise, 558 min before sunset → day chart, stable.
-- **BaZi / Zi Wei hour**: civil 09:30 is 30 min into the 巳 Si double-hour (09:00–11:00). Local apparent solar time 09:27:26 is 27.4 min into it. Under the solar-time track the hour becomes 辰 Chen only if birth was ≥27.4 min earlier than 09:30.
-- **Day boundary**: 570 min after midnight; late-Zi convention irrelevant.
+- **BaZi / Zi Wei hour**: civil 09:30 is 30.0 min into the 巳 double-hour (09:00-11:00), 90.0 min before its end; LAT 09:27 is 27.4 min into the 巳 double-hour (09:00-11:00), 92.6 min before its end. Nearest boundary: 27.4 min (LAT track, branch start).
+- **Day boundary**: 570 min after midnight; late-Zi convention matters only for births between 23:00 and 24:00.
 - **Solar terms**: birth 12.00 days after 立夏 and 19.18 days before 芒种 → month 己巳 stable.
-- **Zi Wei lunar date**: 甲申年 三月廿九 (3rd lunar month, day 29; not a leap month; 2004's leap month was 闰二月); next new moon 2004-05-19T04:51:55+00:00 (48.9 h after birth), so lunar month stable.
-- **Tibetan Losar**: birth in May is after every possible Losar date (late Jan - late Mar).
+- **Zi Wei lunar date**: 甲申年 三月廿九 (leap month: False; year's leap month: 2); next new moon 2004-05-19T04:51:55+00:00 (48.9 h after birth).
+- **Tibetan Losar**: birth month is after every possible Losar date (late Jan - late Mar).
 - **Calendar adoption**: Gregorian civil date; no Julian/Gregorian ambiguity for 2004.
-- **Mercury** is 0.93° into tropical Taurus (ingress ≈21 h before birth) — stable over the uncertainty interval.
+- **Planets within 1° of a sign cusp**: Mercury 0.93° (tropical, ≈21 h of motion).

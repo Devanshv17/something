@@ -1,0 +1,394 @@
+{
+  "subject": {
+    "name": "Anju",
+    "possessive": "Anju's",
+    "title": "Anju's Life Map"
+  },
+  "reading": {
+    "narrow": {
+      "D1|negative|STRONG": "All three clusters read the self as **carrying weight**: Sun, Mercury and Saturn on the Ascendant in both zodiacs (Saturn in detriment in the Western chart), a weak 辛 Day Master in BaZi, and 天相 in a weak position with 擎羊 in Zi Wei's life palace. The Vedic Bhadra and Budhaditya yogas add a quick, articulate mind.",
+      "D3|mixed|STRONG": "All three read money as **prominent but double-edged**: debilitated Mars in the Vedic 2nd, Mars in the Western 2nd against a dignified Jupiter, and 财多身弱 in BaZi (heavy Wood wealth, weak Day Master).",
+      "D6|positive|STRONG": "All three read children and creation **favourably**: Jupiter as significator in both zodiacs (own sign in Pisces in the Western chart) and Zi Wei's children palace with 天同 and 太阴 at full brightness. Symbolic only; nothing about fertility.",
+      "D9|positive|STRONG": "All three read meaning and fortune **favourably**: Jupiter in the 9th house in both zodiacs (own sign and of the sect in the Western chart) and 紫微 bright in Zi Wei's 福德 palace. This is her clearest supportive signature."
+    },
+    "divergent": {
+      "D2": "Zi Wei's career palace is bright (literary stars 文昌/文曲, borrowed 武曲化科) and BaZi has a hidden Seven Killings, both positive under the registry; the Vedic Sun (status significator) reads negative. Western is neutral. The systems genuinely disagree."
+    },
+    "timing_notes": [
+      {
+        "guard_current_domain": "D8",
+        "text": "Why D8 is active: the Vedic Mercury Mahadasha (Mercury is the intellect karaka and her Lagna lord, sitting in the 1st) overlaps the BaZi 乙丑 luck pillar, whose branch main qi is Indirect Resource (learning)."
+      }
+    ]
+  },
+  "html": {
+    "hero_place": "Roorkee (city centre; hospital not given)",
+    "domains": {
+      "D1": {
+        "expect": {
+          "grade": "STRONG",
+          "cluster_polarity": {
+            "jyotisha": "negative",
+            "western": "negative",
+            "sinic": "negative"
+          }
+        },
+        "headline": "Every system puts weight on the self: a serious, responsible core that carries a lot, with a quick mind underneath.",
+        "traditions": [
+          [
+            "jyotisha",
+            "Gemini rises, and the Sun, Mercury and Saturn all sit in her first house. Mercury rules Gemini and is in its own sign there, which classically forms Bhadra yoga (skill, speech, intelligence) and Budhaditya yoga (Sun with Mercury). But Mercury is retrograde and only 2.8° from the Sun (combust), and Saturn sits 1.2° from the Sun too. The registry scores the house as strained."
+          ],
+          [
+            "western",
+            "Cancer rises, with the Sun, Mercury and Saturn in the first house. Saturn is in its detriment and within 1.2° of the Sun. Hellenistic authors read a strong Saturn on the Ascendant as seriousness and responsibility carried early."
+          ],
+          [
+            "sinic",
+            "Her BaZi Day Master is 辛, Yin Metal, the image of a jewel. It is born in the fire month 午, and fire melts metal; both strength measures call it weak. Zi Wei's life palace holds 天相, the steward star, in a weak position with 擎羊."
+          ]
+        ],
+        "practice": [
+          "Tradition would expect someone who takes on duty for others and is harder on herself than on anyone else.",
+          "The Vedic yogas point to a quick, articulate mind under the seriousness.",
+          "Saturn rising is classically read as a life that gets lighter with age, as responsibility turns into authority."
+        ],
+        "reflect": [
+          "Where has she carried responsibility that others didn't see?",
+          "When does her sharp, talkative side come out?"
+        ]
+      },
+      "D2": {
+        "expect": {
+          "grade": "DIVERGENT",
+          "cluster_polarity": {
+            "jyotisha": "negative",
+            "western": "neutral",
+            "sinic": "positive"
+          }
+        },
+        "headline": "Work and status: the systems genuinely disagree.",
+        "traditions": [
+          [
+            "jyotisha",
+            "The Sun, the significator of status, is in Gemini, a neutral sign, crowded by Mercury and Saturn. The registry reads it as strained."
+          ],
+          [
+            "sinic",
+            "Zi Wei's career palace has no major star of its own but holds 文昌 and 文曲, the two literary stars, and borrows the bright 武曲 (turning to 化科, recognition) and 贪狼 from the opposite palace. BaZi has a Seven Killings star hidden in the month branch."
+          ],
+          [
+            "western",
+            "The Sun is peregrine in Cancer: neutral."
+          ]
+        ],
+        "practice": [
+          "This is unresolved. The Chinese charts favour work built on writing, teaching or knowledge; the Vedic chart doesn't agree."
+        ],
+        "reflect": []
+      },
+      "D3": {
+        "expect": {
+          "grade": "STRONG",
+          "cluster_polarity": {
+            "jyotisha": "mixed",
+            "western": "mixed",
+            "sinic": "mixed"
+          }
+        },
+        "headline": "Money is a lifelong live theme for her, and every system reads it as double-edged.",
+        "traditions": [
+          [
+            "jyotisha",
+            "Mars is debilitated in her 2nd house, the house of savings, family wealth and speech. Jupiter, the wealth significator, is in a neutral sign."
+          ],
+          [
+            "western",
+            "Mars sits in the 2nd house too (Leo, contrary to sect), while Jupiter is in Pisces, its own sign, and of the sect: the strongest planet in her Western chart."
+          ],
+          [
+            "sinic",
+            "Wood, her Wealth element, is the heaviest element in her BaZi, and the Day Master counts as weak: 财多身弱, more wealth around her than she can easily hold. The year stem is Direct Wealth. Zi Wei's wealth palace holds 天府, the treasury star."
+          ]
+        ],
+        "practice": [
+          "Tradition would expect resources to be around her, with effort and friction in keeping hold of them (debilitated Mars in the house of savings).",
+          "Zi Wei's current ten-year period, roughly 2019 to 2029, sits in her wealth palace.",
+          "None of this is financial advice or a forecast of gain or loss."
+        ],
+        "reflect": [
+          "Where has money come easily to her, and where has it slipped away?"
+        ]
+      },
+      "D4": {
+        "expect": {
+          "grade": "WEAK",
+          "cluster_polarity": {
+            "jyotisha": "positive",
+            "western": "neutral",
+            "sinic": "mixed"
+          }
+        },
+        "headline": "Partnership: supportive in the Vedic chart, mixed in the Chinese ones.",
+        "traditions": [
+          [
+            "jyotisha",
+            "Venus, the marker of love and marriage, is in Taurus, its own sign."
+          ],
+          [
+            "sinic",
+            "In BaZi her spouse palace (day branch 丑) is harmed by the month branch 午 (六害), and the husband star (the Officer) appears only hidden. Zi Wei's spouse palace, by contrast, is bright: 武曲 turning to 化科 with 贪狼 and 天魁."
+          ],
+          [
+            "western",
+            "Venus is peregrine in Gemini: neutral."
+          ]
+        ],
+        "practice": [
+          "Only the Vedic chart gives a clear, supportive signal; hold this loosely."
+        ],
+        "reflect": []
+      },
+      "D5": {
+        "expect": {
+          "grade": "INSUFFICIENT",
+          "cluster_polarity": {
+            "jyotisha": "neutral",
+            "western": "neutral",
+            "sinic": "neutral"
+          }
+        },
+        "headline": "Home and roots: no system gives a clear signal.",
+        "traditions": [
+          [
+            "jyotisha",
+            "The Moon, significator of home and mother, is in Libra, a neutral sign."
+          ],
+          [
+            "western",
+            "The Moon is in Scorpio, its fall, with little else in play."
+          ],
+          [
+            "sinic",
+            "No Resource star (mother) on a visible BaZi stem; Zi Wei's parents palace is middling."
+          ]
+        ],
+        "practice": [
+          "Nothing to read here. Silence is not a negative signal."
+        ],
+        "reflect": []
+      },
+      "D6": {
+        "expect": {
+          "grade": "STRONG",
+          "cluster_polarity": {
+            "jyotisha": "positive",
+            "western": "positive",
+            "sinic": "positive"
+          }
+        },
+        "headline": "Children and what she creates: all three clusters read it favourably.",
+        "traditions": [
+          [
+            "jyotisha",
+            "Jupiter, the significator of children, is in a neutral sign with a supportive D9 placement (Taurus). The Moon sits in her 5th house of children."
+          ],
+          [
+            "western",
+            "Jupiter, significator of children in Hellenistic texts, is in Pisces, its own sign, and of the sect. The Moon sits in her 5th house."
+          ],
+          [
+            "sinic",
+            "Zi Wei's children palace holds 天同 (bright) and 太阴 (at its strongest). BaZi is neutral here: no Output star on a visible stem."
+          ]
+        ],
+        "practice": [
+          "Traditionally, a favourable signature for her bond with her children and for what she brings into being.",
+          "Her Western year from 29 June 2026 to 29 June 2027 activates this same 5th house.",
+          "This is symbolic only and says nothing about fertility."
+        ],
+        "reflect": [
+          "What has she built or nurtured that she's proudest of?"
+        ]
+      },
+      "D7": {
+        "expect": {
+          "grade": "WEAK",
+          "cluster_polarity": {
+            "jyotisha": "negative",
+            "western": "neutral",
+            "sinic": "neutral"
+          }
+        },
+        "headline": "Symbolic only. No health information.",
+        "traditions": [
+          [
+            "jyotisha",
+            "Rahu sits in her 6th house of routine and daily work."
+          ]
+        ],
+        "practice": [
+          "Nothing on this page is a health, medical or lifespan statement."
+        ],
+        "reflect": []
+      },
+      "D8": {
+        "expect": {
+          "grade": "WEAK",
+          "cluster_polarity": {
+            "jyotisha": "neutral",
+            "western": "neutral",
+            "sinic": "positive"
+          }
+        },
+        "headline": "Mind, study and writing: favoured by the Chinese charts and switched on right now.",
+        "traditions": [
+          [
+            "sinic",
+            "Zi Wei places 文昌 and 文曲, the literary stars, in her career palace."
+          ],
+          [
+            "jyotisha",
+            "Mercury, planet of intellect, is in its own sign on her Ascendant, but retrograde and combust, so the registry scores it neutral."
+          ],
+          [
+            "western",
+            "Mercury is retrograde and combust in Cancer: neutral."
+          ]
+        ],
+        "practice": [
+          "Only one system gives a clear natal signal. The timing, though, activates this area from 2022 to 2032 (see the timeline)."
+        ],
+        "reflect": [
+          "What has she been learning, reading or teaching lately?"
+        ]
+      },
+      "D9": {
+        "expect": {
+          "grade": "STRONG",
+          "cluster_polarity": {
+            "jyotisha": "positive",
+            "western": "positive",
+            "sinic": "positive"
+          }
+        },
+        "headline": "Her strongest signature: faith, meaning, teachers and luck.",
+        "traditions": [
+          [
+            "jyotisha",
+            "Jupiter, the guru planet, sits in her 9th house of dharma and fortune."
+          ],
+          [
+            "western",
+            "Jupiter is in Pisces, its own sign, in the 9th house, of the sect and nearly stationary: the strongest planet in her Western chart. The Lot of Spirit falls in the same house."
+          ],
+          [
+            "sinic",
+            "Zi Wei's 福德 palace (inner contentment, spirit) holds 紫微, the emperor star, bright, with 七杀."
+          ]
+        ],
+        "practice": [
+          "Tradition would expect belief, learning and a sense of meaning to be what carries her.",
+          "In all three traditions this is the clearest supportive factor in her chart."
+        ],
+        "reflect": [
+          "What does she turn to when things get hard?"
+        ]
+      }
+    },
+    "chapters": [
+      {
+        "start": "2022-02-20",
+        "end": "2032-02-21",
+        "title": "A decade of thinking, learning and ideas",
+        "tag": "MODERATE",
+        "text": "Two clusters activate the mind-and-craft area together. Vedic: the Mercury period (21 Oct 2021 to 25 Oct 2038, about ±45 days); Mercury rules her Ascendant and sits in it. BaZi: the 乙丑 luck pillar (from about 20 Feb 2022), with Indirect Wealth on the stem and Indirect Resource in the branch. The current Vedic sub-period is Venus, to about 19 Jan 2028.",
+        "refs": [
+          "SYNTHESIS.json → timing.current[0]",
+          "RAW_CALCULATIONS.json → jyotisha.vimshottari.+0min"
+        ]
+      },
+      {
+        "start": "2026-06-29",
+        "end": "2027-06-29",
+        "title": "A year about children and joy",
+        "tag": "WEAK",
+        "text": "Western only: the age-52 profection activates her 5th house (children, creativity, pleasure), with Mars as lord of the year. BaZi's 2026 year 丙午 brings Direct Officer and Seven Killings, traditionally pressure and authority, and for a woman's chart also the partner. Single-cluster signals, not a convergence.",
+        "refs": [
+          "RAW_CALCULATIONS.json → western.charts.+0min.profections[0]",
+          "SYNTHESIS.json → bazi_annual_ten_gods.2026"
+        ]
+      },
+      {
+        "start": "2027-06-29",
+        "end": "2028-06-29",
+        "title": "Work and routine year",
+        "tag": "WEAK",
+        "text": "Western: the 6th-house year (daily work and routine), led by Jupiter, her strongest planet. BaZi 2027 丁未: Seven Killings and Indirect Resource.",
+        "refs": [
+          "RAW_CALCULATIONS.json → western.charts.+0min.profections[1]"
+        ]
+      },
+      {
+        "start": "2028-06-29",
+        "end": "2029-06-29",
+        "title": "Partnership year",
+        "tag": "WEAK",
+        "text": "Western: the 7th-house year (partnership), led by Saturn. BaZi 2028 戊申: Direct Resource and Rob Wealth. Earth (Resource) is one of the two elements the strength-balancing school counts as helpful for her, at low confidence. Vedic sub-periods Sun (from about 19 Jan 2028) and Moon (from about 24 Nov 2028).",
+        "refs": [
+          "SYNTHESIS.json → yong_shen",
+          "RAW_CALCULATIONS.json → jyotisha.vimshottari.+0min"
+        ]
+      },
+      {
+        "start": "2029-02-01",
+        "end": "2039-02-01",
+        "title": "Zi Wei decade in the palace of daily life",
+        "tag": "WEAK",
+        "text": "Zi Wei's ten-year period moves from the wealth palace to 疾厄, the palace of body and routine. One system only; symbolic only, not a health statement.",
+        "refs": [
+          "SYNTHESIS.json → timing.techniques (Zi Wei decadal 56-65)"
+        ]
+      },
+      {
+        "start": "2032-02-21",
+        "end": "2042-02-20",
+        "title": "Money and output pillar",
+        "tag": "MODERATE",
+        "text": "BaZi's luck pillar changes to 甲子: Direct Wealth on the stem, Eating God (output, children) in the branch. With the Vedic Mercury period still running, the mind-and-craft area stays activated by two clusters into 2032.",
+        "refs": [
+          "SYNTHESIS.json → timing.windows (D8)"
+        ]
+      }
+    ],
+    "tension": [
+      {
+        "title": "Work & status",
+        "text": "Zi Wei's career palace is bright with the literary stars 文昌 and 文曲, and BaZi has a hidden Seven Killings. The Vedic Sun, significator of status, reads strained. The systems contradict each other, and neither wins.",
+        "link": "D2",
+        "refs": "SYNTHESIS.json → scenarios.outer.domains.D2"
+      },
+      {
+        "title": "How strong is the Day Master?",
+        "text": "Here both measures agree: her 辛 metal is weak, born in a fire month, rooted only in the day branch. The balancing school's helpful elements are Earth and Metal. The seasonal-regulation school has no verified entry in this build for 辛 in 午, so the overall favourable-element verdict stays low confidence.",
+        "refs": "RAW_CALCULATIONS.json → bazi.primary.dm_strength · SYNTHESIS.json → yong_shen"
+      },
+      {
+        "title": "Drive",
+        "text": "Mars is debilitated in the Vedic chart and contrary to sect in the Western one, yet Zi Wei puts 破军 (breakthrough, overturning) in her body palace. The systems read her drive in opposite ways.",
+        "refs": "SYNTHESIS.json → temperament.T2"
+      },
+      {
+        "title": "Looking from the Moon instead",
+        "text": "From her Moon in Libra, the Sun, Mercury and Saturn fall in the 9th and Mars in the 10th. That view would read meaning and career harsher than the Lagna view does. It is shown but not counted.",
+        "refs": "SYNTHESIS.json → secondary_jyotisha_view"
+      },
+      {
+        "title": "Where she lives changes the return chart",
+        "text": "Her 2026 solar return rises in Capricorn at Roorkee but Aquarius at Kohima, where she lives now. Western practice reads the return from where the person is, so the Kohima version is the one tradition would use.",
+        "refs": "RAW_CALCULATIONS.json → western.solar_returns.2026"
+      }
+    ],
+    "temperament_summary": "What stands out: drive is where the systems clash (weak Mars in both zodiacs, but 破军 in Zi Wei's body palace). Discipline reads strained in the Western chart (Saturn in detriment on the Ascendant). Adaptability is supported in the Vedic chart, with three planets in dual-natured Gemini."
+  }
+}

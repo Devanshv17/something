@@ -28,7 +28,21 @@ mkdir -p ephe && cd ephe
 for f in sepl_18.se1 semo_18.se1 seas_18.se1; do curl -sSfLO https://raw.githubusercontent.com/aloistr/swisseph/master/ephe/$f; done
 curl -sSfLO https://naif.jpl.nasa.gov/pub/naif/generic_kernels/spk/planets/de440s.bsp
 cd .. && sha256sum ephe/*   # compare with CALCULATION_MANIFEST.json
-./run_all.sh
+./run_all.sh                 # the chart in this folder (BIRTH_INPUT.json -> output/)
+./run_all.sh people/anju     # any other chart directory with its own BIRTH_INPUT.json
 ```
+
+## More than one person
+
+Each chart lives in its own directory containing `BIRTH_INPUT.json` and, optionally, `NARRATIVE.json`
+(the hand-written interpretation text). Results go to that directory's `output/`.
+
+| Chart | Directory |
+|---|---|
+| 17 May 2004, Lucknow | this folder (`output/`) |
+| Anju, 29 June 1974, Roorkee | `people/anju/` (`people/anju/output/`) |
+
+`NARRATIVE.json` entries record the grade and cluster readings they were written for. If a rerun changes those,
+the page withholds that text instead of showing stale interpretation.
 
 Pipeline: `build.py` computes facts, `verify.py` checks them against validators and invariants, `synth.py` projects them through the declared registry, and `render.py` writes the Markdown.
