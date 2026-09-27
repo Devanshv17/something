@@ -16,6 +16,7 @@ The output is **symbolic corroboration between traditions, not a validated forec
 | `VERIFICATION_REPORT.json` / `.md` | primary-vs-validator differences, invariants and confidence |
 | `SYNTHESIS.json` | predeclared mapping registry, projections, domain grades, timing windows and temperament |
 | `FINAL_READING.md` | the human-readable reading; every statement is traceable to `SYNTHESIS.json` |
+| `LIFE_MAP.html` | visual reading: plain-language implications per life area, timeline, charts, with each claim linked to its JSON source |
 
 ## Reproduce
 

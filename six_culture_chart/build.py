@@ -231,7 +231,7 @@ def main():
     pkgs = ["pyswisseph", "pysweph", "skyfield", "jplephem", "numpy", "tzdata", "timezonefinder", "lunar_python",
             "sxtwl", "convertdate", "py-iztro", "pythonmonkey", "immanuel", "ephem"]
     code_files = sorted([os.path.join("sc", f) for f in os.listdir(os.path.join(ROOT, "sc")) if f.endswith(".py")] +
-                        ["build.py", "verify.py", "synth.py", "render.py", "js/ziwei.js", "js/package.json"])
+                        ["build.py", "verify.py", "synth.py", "render.py", "render_html.py", "js/ziwei.js", "js/package.json"])
     manifest = {
         "executed_utc": EXECUTED,
         "runtime": {"python": sys.version, "platform": platform.platform(), "node": os.popen("node --version").read().strip()},

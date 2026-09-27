@@ -6,3 +6,4 @@ cd "$(dirname "$0")"
 .venv/bin/python verify.py
 .venv/bin/python synth.py > /dev/null
 .venv/bin/python render.py
+.venv/bin/python render_html.py
