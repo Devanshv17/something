@@ -1,13 +1,25 @@
 {
   "original_user_input": "23 JUN 2004,  Vashi navi mumbai maharastra, 1PM +-1hr, cureent:- blr. / female, riya",
-  "subject": {"name": "Riya"},
-  "date": {"raw": "23 JUN 2004", "iso": "2004-06-23", "format_assumed": "D Mon YYYY", "calendar": "gregorian"},
-  "time": {"raw": "1PM", "local_24h": "13:00:00"},
+  "subject": {
+    "name": "Riya"
+  },
+  "date": {
+    "raw": "23 JUN 2004",
+    "iso": "2004-06-23",
+    "format_assumed": "D Mon YYYY",
+    "calendar": "gregorian"
+  },
+  "time": {
+    "raw": "1PM (+-1hr); later: 'assume 1:05 or so'",
+    "local_24h": "13:05:00",
+    "assumed": true
+  },
   "time_uncertainty": {
-    "raw": "+-1hr",
-    "interpretation": "approximate time, stated as plus or minus one hour; outer envelope +/-60 min is primary, +/-30 min is the inner scenario",
-    "inner_minutes": 30,
-    "outer_minutes": 60
+    "raw": "assume 1:05 or so",
+    "previous_raw": "+-1hr",
+    "interpretation": "ASSUMED time chosen by the user (13:05, 'or so'), not a recorded time; modelled as +/-5 min. The underlying record is only 1 PM +/- 1 hour",
+    "inner_minutes": 5,
+    "outer_minutes": 5
   },
   "birthplace": {
     "raw": "Vashi navi mumbai maharastra",
